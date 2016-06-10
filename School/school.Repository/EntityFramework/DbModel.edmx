@@ -1,0 +1,1244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="genderId" />
+          </Key>
+          <Property Name="genderId" Type="int" Nullable="false" />
+          <Property Name="genderDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="genderLetter" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="gradeId" />
+          </Key>
+          <Property Name="gradeId" Type="int" Nullable="false" />
+          <Property Name="gradeDescription" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PayTransaction">
+          <Key>
+            <PropertyRef Name="payTransactionId" />
+          </Key>
+          <Property Name="payTransactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studentPayTransactionId" Type="int" Nullable="false" />
+          <Property Name="payAmount" Type="money" Nullable="false" />
+          <Property Name="payDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PayTransactionStatusType">
+          <Key>
+            <PropertyRef Name="payTransactionStatusTypeId" />
+          </Key>
+          <Property Name="payTransactionStatusTypeId" Type="int" Nullable="false" />
+          <Property Name="payTransactionStatusTypeDescription" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Period">
+          <Key>
+            <PropertyRef Name="periodId" />
+          </Key>
+          <Property Name="periodId" Type="int" Nullable="false" />
+          <Property Name="yearFrom" Type="int" Nullable="false" />
+          <Property Name="yearTo" Type="int" Nullable="false" />
+          <Property Name="active" Type="bit" />
+        </EntityType>
+        <EntityType Name="PeriodGrade">
+          <Key>
+            <PropertyRef Name="periodGradeId" />
+          </Key>
+          <Property Name="periodGradeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="periodId" Type="int" Nullable="false" />
+          <Property Name="gradeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PeriodGradeGroup">
+          <Key>
+            <PropertyRef Name="periodGradeGroupId" />
+          </Key>
+          <Property Name="periodGradeGroupId" Type="int" Nullable="false" />
+          <Property Name="periodGradeId" Type="int" Nullable="false" />
+          <Property Name="groupDescription" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PeriodGradeStudent">
+          <Key>
+            <PropertyRef Name="periodGradeStudentId" />
+          </Key>
+          <Property Name="periodGradeStudentId" Type="int" Nullable="false" />
+          <Property Name="periodGradeGroupId" Type="int" Nullable="false" />
+          <Property Name="studentId" Type="int" Nullable="false" />
+          <Property Name="fromDate" Type="datetime" Nullable="false" />
+          <Property Name="toDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PeriodGradeStudentTranTypeConfiguration">
+          <Key>
+            <PropertyRef Name="periodGradeStudentTranTypeConfigurationId" />
+          </Key>
+          <Property Name="periodGradeStudentTranTypeConfigurationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="periodGradeStudentId" Type="int" Nullable="false" />
+          <Property Name="transactionTypeId" Type="int" Nullable="false" />
+          <Property Name="payConfiguration" Type="money" Nullable="false" />
+          <Property Name="fromDate" Type="datetime" Nullable="false" />
+          <Property Name="toDate" Type="datetime" />
+          <Property Name="runScheduleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RunSchedule">
+          <Key>
+            <PropertyRef Name="runScheduleId" />
+          </Key>
+          <Property Name="runScheduleId" Type="int" Nullable="false" />
+          <Property Name="runScheduleDescription" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="studentId" />
+          </Key>
+          <Property Name="studentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="middleName" Type="varchar" MaxLength="10" />
+          <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="genderId" Type="int" Nullable="false" />
+          <Property Name="address1" Type="varchar" MaxLength="200" />
+          <Property Name="address2" Type="varchar" MaxLength="200" />
+          <Property Name="cityId" Type="int" />
+          <Property Name="zipCode" Type="varchar" MaxLength="50" />
+          <Property Name="stateCode" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="StudentPayTransaction">
+          <Key>
+            <PropertyRef Name="studentPayTransactionId" />
+          </Key>
+          <Property Name="studentPayTransactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="periodGradeStudentTranTypeConfigurationId" Type="int" Nullable="false" />
+          <Property Name="transactionDate" Type="datetime" Nullable="false" />
+          <Property Name="studentPayTransactionDescription" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentPayTransactionStatus">
+          <Key>
+            <PropertyRef Name="studentPayTransactionStatusId" />
+          </Key>
+          <Property Name="studentPayTransactionStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studentPayTransactionId" Type="int" Nullable="false" />
+          <Property Name="payTransactionStatusTypeId" Type="int" Nullable="false" />
+          <Property Name="fromDate" Type="datetime" Nullable="false" />
+          <Property Name="toDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="transactionTypeId" />
+          </Key>
+          <Property Name="transactionTypeId" Type="int" Nullable="false" />
+          <Property Name="transactionTypeDescription" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PayTransaction_StudentPayTransaction">
+          <End Role="StudentPayTransaction" Type="Self.StudentPayTransaction" Multiplicity="1" />
+          <End Role="PayTransaction" Type="Self.PayTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentPayTransaction">
+              <PropertyRef Name="studentPayTransactionId" />
+            </Principal>
+            <Dependent Role="PayTransaction">
+              <PropertyRef Name="studentPayTransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGrade_Grade">
+          <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+          <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade">
+              <PropertyRef Name="gradeId" />
+            </Principal>
+            <Dependent Role="PeriodGrade">
+              <PropertyRef Name="gradeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGrade_Period">
+          <End Role="Period" Type="Self.Period" Multiplicity="1" />
+          <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="periodId" />
+            </Principal>
+            <Dependent Role="PeriodGrade">
+              <PropertyRef Name="periodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGradeGroup_PeriodGrade">
+          <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="1" />
+          <End Role="PeriodGradeGroup" Type="Self.PeriodGradeGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PeriodGrade">
+              <PropertyRef Name="periodGradeId" />
+            </Principal>
+            <Dependent Role="PeriodGradeGroup">
+              <PropertyRef Name="periodGradeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGradeStudent_PeriodGradeGroup">
+          <End Role="PeriodGradeGroup" Type="Self.PeriodGradeGroup" Multiplicity="1" />
+          <End Role="PeriodGradeStudent" Type="Self.PeriodGradeStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PeriodGradeGroup">
+              <PropertyRef Name="periodGradeGroupId" />
+            </Principal>
+            <Dependent Role="PeriodGradeStudent">
+              <PropertyRef Name="periodGradeGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGradeStudent_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="PeriodGradeStudent" Type="Self.PeriodGradeStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="studentId" />
+            </Principal>
+            <Dependent Role="PeriodGradeStudent">
+              <PropertyRef Name="studentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGradeStudentTranTypeConfiguration_PeriodGradeStudent">
+          <End Role="PeriodGradeStudent" Type="Self.PeriodGradeStudent" Multiplicity="1" />
+          <End Role="PeriodGradeStudentTranTypeConfiguration" Type="Self.PeriodGradeStudentTranTypeConfiguration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PeriodGradeStudent">
+              <PropertyRef Name="periodGradeStudentId" />
+            </Principal>
+            <Dependent Role="PeriodGradeStudentTranTypeConfiguration">
+              <PropertyRef Name="periodGradeStudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGradeStudentTranTypeConfiguration_RunSchedule">
+          <End Role="RunSchedule" Type="Self.RunSchedule" Multiplicity="1" />
+          <End Role="PeriodGradeStudentTranTypeConfiguration" Type="Self.PeriodGradeStudentTranTypeConfiguration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunSchedule">
+              <PropertyRef Name="runScheduleId" />
+            </Principal>
+            <Dependent Role="PeriodGradeStudentTranTypeConfiguration">
+              <PropertyRef Name="runScheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGradeStudentTranTypeConfiguration_TransactionType">
+          <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
+          <End Role="PeriodGradeStudentTranTypeConfiguration" Type="Self.PeriodGradeStudentTranTypeConfiguration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="transactionTypeId" />
+            </Principal>
+            <Dependent Role="PeriodGradeStudentTranTypeConfiguration">
+              <PropertyRef Name="transactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="genderId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="genderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentPayTransaction_PeriodGradeStudentTranTypeConfiguration">
+          <End Role="PeriodGradeStudentTranTypeConfiguration" Type="Self.PeriodGradeStudentTranTypeConfiguration" Multiplicity="1" />
+          <End Role="StudentPayTransaction" Type="Self.StudentPayTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PeriodGradeStudentTranTypeConfiguration">
+              <PropertyRef Name="periodGradeStudentTranTypeConfigurationId" />
+            </Principal>
+            <Dependent Role="StudentPayTransaction">
+              <PropertyRef Name="periodGradeStudentTranTypeConfigurationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentPayTransactionStatus_PayTransactionStatusType">
+          <End Role="PayTransactionStatusType" Type="Self.PayTransactionStatusType" Multiplicity="1" />
+          <End Role="StudentPayTransactionStatus" Type="Self.StudentPayTransactionStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PayTransactionStatusType">
+              <PropertyRef Name="payTransactionStatusTypeId" />
+            </Principal>
+            <Dependent Role="StudentPayTransactionStatus">
+              <PropertyRef Name="payTransactionStatusTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentPayTransactionStatus_StudentPayTransaction">
+          <End Role="StudentPayTransaction" Type="Self.StudentPayTransaction" Multiplicity="1" />
+          <End Role="StudentPayTransactionStatus" Type="Self.StudentPayTransactionStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentPayTransaction">
+              <PropertyRef Name="studentPayTransactionId" />
+            </Principal>
+            <Dependent Role="StudentPayTransactionStatus">
+              <PropertyRef Name="studentPayTransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="proc_Gender_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_Grade_ExpenceSummaryByPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="periodId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_Grade_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_Grade_StudentDetailByPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="periodId" Type="int" Mode="In" />
+          <Parameter Name="gradeId" Type="int" Mode="In" />
+          <Parameter Name="firstName" Type="varchar" Mode="In" />
+          <Parameter Name="lastName" Type="varchar" Mode="In" />
+          <Parameter Name="genderId" Type="int" Mode="In" />
+          <Parameter Name="studentCode" Type="varchar(max)" Mode="In" />
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageCount" Type="int" Mode="In" />
+          <Parameter Name="sortBy" Type="varchar" Mode="In" />
+          <Parameter Name="sortOrder" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Grade_StudentSummaryByPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="periodId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_PayTransaction_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_PayTransaction_SubmitPay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentPayTransactionId" Type="int" Mode="In" />
+          <Parameter Name="paymentAmount" Type="money" Mode="In" />
+          <Parameter Name="balance" Type="money" Mode="In" />
+          <Parameter Name="submitById" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_Period_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_Period_StudentSummaryByPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_PeriodGrade_GetByPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="periodId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_PeriodGradeGroup_GetByPeriodGradeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="periodGradeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_Student_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_Student_PaymentAvailable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="SchoolModelStoreContainer">
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PayTransaction" EntityType="Self.PayTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PayTransactionStatusType" EntityType="Self.PayTransactionStatusType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Period" EntityType="Self.Period" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeriodGrade" EntityType="Self.PeriodGrade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeriodGradeGroup" EntityType="Self.PeriodGradeGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeriodGradeStudent" EntityType="Self.PeriodGradeStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeriodGradeStudentTranTypeConfiguration" EntityType="Self.PeriodGradeStudentTranTypeConfiguration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RunSchedule" EntityType="Self.RunSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentPayTransaction" EntityType="Self.StudentPayTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentPayTransactionStatus" EntityType="Self.StudentPayTransactionStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PayTransaction_StudentPayTransaction" Association="Self.FK_PayTransaction_StudentPayTransaction">
+            <End Role="StudentPayTransaction" EntitySet="StudentPayTransaction" />
+            <End Role="PayTransaction" EntitySet="PayTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGrade_Grade" Association="Self.FK_PeriodGrade_Grade">
+            <End Role="Grade" EntitySet="Grade" />
+            <End Role="PeriodGrade" EntitySet="PeriodGrade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGrade_Period" Association="Self.FK_PeriodGrade_Period">
+            <End Role="Period" EntitySet="Period" />
+            <End Role="PeriodGrade" EntitySet="PeriodGrade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGradeGroup_PeriodGrade" Association="Self.FK_PeriodGradeGroup_PeriodGrade">
+            <End Role="PeriodGrade" EntitySet="PeriodGrade" />
+            <End Role="PeriodGradeGroup" EntitySet="PeriodGradeGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGradeStudent_PeriodGradeGroup" Association="Self.FK_PeriodGradeStudent_PeriodGradeGroup">
+            <End Role="PeriodGradeGroup" EntitySet="PeriodGradeGroup" />
+            <End Role="PeriodGradeStudent" EntitySet="PeriodGradeStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGradeStudent_Student" Association="Self.FK_PeriodGradeStudent_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="PeriodGradeStudent" EntitySet="PeriodGradeStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGradeStudentTranTypeConfiguration_PeriodGradeStudent" Association="Self.FK_PeriodGradeStudentTranTypeConfiguration_PeriodGradeStudent">
+            <End Role="PeriodGradeStudent" EntitySet="PeriodGradeStudent" />
+            <End Role="PeriodGradeStudentTranTypeConfiguration" EntitySet="PeriodGradeStudentTranTypeConfiguration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGradeStudentTranTypeConfiguration_RunSchedule" Association="Self.FK_PeriodGradeStudentTranTypeConfiguration_RunSchedule">
+            <End Role="RunSchedule" EntitySet="RunSchedule" />
+            <End Role="PeriodGradeStudentTranTypeConfiguration" EntitySet="PeriodGradeStudentTranTypeConfiguration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGradeStudentTranTypeConfiguration_TransactionType" Association="Self.FK_PeriodGradeStudentTranTypeConfiguration_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionType" />
+            <End Role="PeriodGradeStudentTranTypeConfiguration" EntitySet="PeriodGradeStudentTranTypeConfiguration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Gender" Association="Self.FK_Student_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentPayTransaction_PeriodGradeStudentTranTypeConfiguration" Association="Self.FK_StudentPayTransaction_PeriodGradeStudentTranTypeConfiguration">
+            <End Role="PeriodGradeStudentTranTypeConfiguration" EntitySet="PeriodGradeStudentTranTypeConfiguration" />
+            <End Role="StudentPayTransaction" EntitySet="StudentPayTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentPayTransactionStatus_PayTransactionStatusType" Association="Self.FK_StudentPayTransactionStatus_PayTransactionStatusType">
+            <End Role="PayTransactionStatusType" EntitySet="PayTransactionStatusType" />
+            <End Role="StudentPayTransactionStatus" EntitySet="StudentPayTransactionStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentPayTransactionStatus_StudentPayTransaction" Association="Self.FK_StudentPayTransactionStatus_StudentPayTransaction">
+            <End Role="StudentPayTransaction" EntitySet="StudentPayTransaction" />
+            <End Role="StudentPayTransactionStatus" EntitySet="StudentPayTransactionStatus" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="genderId" />
+          </Key>
+          <Property Name="genderId" Type="Int32" Nullable="false" />
+          <Property Name="genderDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="genderLetter" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Student_Gender" FromRole="Gender" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="gradeId" />
+          </Key>
+          <Property Name="gradeId" Type="Int32" Nullable="false" />
+          <Property Name="gradeDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PeriodGrades" Relationship="Self.FK_PeriodGrade_Grade" FromRole="Grade" ToRole="PeriodGrade" />
+        </EntityType>
+        <EntityType Name="PayTransaction">
+          <Key>
+            <PropertyRef Name="payTransactionId" />
+          </Key>
+          <Property Name="payTransactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studentPayTransactionId" Type="Int32" Nullable="false" />
+          <Property Name="payAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="payDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="StudentPayTransaction" Relationship="Self.FK_PayTransaction_StudentPayTransaction" FromRole="PayTransaction" ToRole="StudentPayTransaction" />
+        </EntityType>
+        <EntityType Name="PayTransactionStatusType">
+          <Key>
+            <PropertyRef Name="payTransactionStatusTypeId" />
+          </Key>
+          <Property Name="payTransactionStatusTypeId" Type="Int32" Nullable="false" />
+          <Property Name="payTransactionStatusTypeDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="StudentPayTransactionStatus" Relationship="Self.FK_StudentPayTransactionStatus_PayTransactionStatusType" FromRole="PayTransactionStatusType" ToRole="StudentPayTransactionStatus" />
+        </EntityType>
+        <EntityType Name="Period">
+          <Key>
+            <PropertyRef Name="periodId" />
+          </Key>
+          <Property Name="periodId" Type="Int32" Nullable="false" />
+          <Property Name="yearFrom" Type="Int32" Nullable="false" />
+          <Property Name="yearTo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PeriodGrades" Relationship="Self.FK_PeriodGrade_Period" FromRole="Period" ToRole="PeriodGrade" />
+          <Property Name="active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PeriodGrade">
+          <Key>
+            <PropertyRef Name="periodGradeId" />
+          </Key>
+          <Property Name="periodGradeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="periodId" Type="Int32" Nullable="false" />
+          <Property Name="gradeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Grade" Relationship="Self.FK_PeriodGrade_Grade" FromRole="PeriodGrade" ToRole="Grade" />
+          <NavigationProperty Name="Period" Relationship="Self.FK_PeriodGrade_Period" FromRole="PeriodGrade" ToRole="Period" />
+          <NavigationProperty Name="PeriodGradeGroups" Relationship="Self.FK_PeriodGradeGroup_PeriodGrade" FromRole="PeriodGrade" ToRole="PeriodGradeGroup" />
+        </EntityType>
+        <EntityType Name="PeriodGradeGroup">
+          <Key>
+            <PropertyRef Name="periodGradeGroupId" />
+          </Key>
+          <Property Name="periodGradeGroupId" Type="Int32" Nullable="false" />
+          <Property Name="periodGradeId" Type="Int32" Nullable="false" />
+          <Property Name="groupDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PeriodGrade" Relationship="Self.FK_PeriodGradeGroup_PeriodGrade" FromRole="PeriodGradeGroup" ToRole="PeriodGrade" />
+          <NavigationProperty Name="PeriodGradeStudents" Relationship="Self.FK_PeriodGradeStudent_PeriodGradeGroup" FromRole="PeriodGradeGroup" ToRole="PeriodGradeStudent" />
+        </EntityType>
+        <EntityType Name="PeriodGradeStudent">
+          <Key>
+            <PropertyRef Name="periodGradeStudentId" />
+          </Key>
+          <Property Name="periodGradeStudentId" Type="Int32" Nullable="false" />
+          <Property Name="periodGradeGroupId" Type="Int32" Nullable="false" />
+          <Property Name="studentId" Type="Int32" Nullable="false" />
+          <Property Name="fromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="toDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PeriodGradeGroup" Relationship="Self.FK_PeriodGradeStudent_PeriodGradeGroup" FromRole="PeriodGradeStudent" ToRole="PeriodGradeGroup" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_PeriodGradeStudent_Student" FromRole="PeriodGradeStudent" ToRole="Student" />
+          <NavigationProperty Name="PeriodGradeStudentTranTypeConfigurations" Relationship="Self.FK_PeriodGradeStudentTranTypeConfiguration_PeriodGradeStudent" FromRole="PeriodGradeStudent" ToRole="PeriodGradeStudentTranTypeConfiguration" />
+        </EntityType>
+        <EntityType Name="PeriodGradeStudentTranTypeConfiguration">
+          <Key>
+            <PropertyRef Name="periodGradeStudentTranTypeConfigurationId" />
+          </Key>
+          <Property Name="periodGradeStudentTranTypeConfigurationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="periodGradeStudentId" Type="Int32" Nullable="false" />
+          <Property Name="transactionTypeId" Type="Int32" Nullable="false" />
+          <Property Name="payConfiguration" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="fromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="toDate" Type="DateTime" Precision="3" />
+          <Property Name="runScheduleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PeriodGradeStudent" Relationship="Self.FK_PeriodGradeStudentTranTypeConfiguration_PeriodGradeStudent" FromRole="PeriodGradeStudentTranTypeConfiguration" ToRole="PeriodGradeStudent" />
+          <NavigationProperty Name="RunSchedule" Relationship="Self.FK_PeriodGradeStudentTranTypeConfiguration_RunSchedule" FromRole="PeriodGradeStudentTranTypeConfiguration" ToRole="RunSchedule" />
+          <NavigationProperty Name="TransactionType" Relationship="Self.FK_PeriodGradeStudentTranTypeConfiguration_TransactionType" FromRole="PeriodGradeStudentTranTypeConfiguration" ToRole="TransactionType" />
+          <NavigationProperty Name="StudentPayTransactions" Relationship="Self.FK_StudentPayTransaction_PeriodGradeStudentTranTypeConfiguration" FromRole="PeriodGradeStudentTranTypeConfiguration" ToRole="StudentPayTransaction" />
+        </EntityType>
+        <EntityType Name="RunSchedule">
+          <Key>
+            <PropertyRef Name="runScheduleId" />
+          </Key>
+          <Property Name="runScheduleId" Type="Int32" Nullable="false" />
+          <Property Name="runScheduleDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PeriodGradeStudentTranTypeConfigurations" Relationship="Self.FK_PeriodGradeStudentTranTypeConfiguration_RunSchedule" FromRole="RunSchedule" ToRole="PeriodGradeStudentTranTypeConfiguration" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="studentId" />
+          </Key>
+          <Property Name="studentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="middleName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="genderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Student_Gender" FromRole="Student" ToRole="Gender" />
+          <NavigationProperty Name="PeriodGradeStudents" Relationship="Self.FK_PeriodGradeStudent_Student" FromRole="Student" ToRole="PeriodGradeStudent" />
+          <Property Name="address1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="address2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="cityId" Type="Int32" />
+          <Property Name="zipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stateCode" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StudentPayTransaction">
+          <Key>
+            <PropertyRef Name="studentPayTransactionId" />
+          </Key>
+          <Property Name="studentPayTransactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="periodGradeStudentTranTypeConfigurationId" Type="Int32" Nullable="false" />
+          <Property Name="transactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="studentPayTransactionDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PayTransactions" Relationship="Self.FK_PayTransaction_StudentPayTransaction" FromRole="StudentPayTransaction" ToRole="PayTransaction" />
+          <NavigationProperty Name="PeriodGradeStudentTranTypeConfiguration" Relationship="Self.FK_StudentPayTransaction_PeriodGradeStudentTranTypeConfiguration" FromRole="StudentPayTransaction" ToRole="PeriodGradeStudentTranTypeConfiguration" />
+          <NavigationProperty Name="StudentPayTransactionStatus" Relationship="Self.FK_StudentPayTransactionStatus_StudentPayTransaction" FromRole="StudentPayTransaction" ToRole="StudentPayTransactionStatus" />
+        </EntityType>
+        <EntityType Name="StudentPayTransactionStatu">
+          <Key>
+            <PropertyRef Name="studentPayTransactionStatusId" />
+          </Key>
+          <Property Name="studentPayTransactionStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studentPayTransactionId" Type="Int32" Nullable="false" />
+          <Property Name="payTransactionStatusTypeId" Type="Int32" Nullable="false" />
+          <Property Name="fromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="toDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PayTransactionStatusType" Relationship="Self.FK_StudentPayTransactionStatus_PayTransactionStatusType" FromRole="StudentPayTransactionStatus" ToRole="PayTransactionStatusType" />
+          <NavigationProperty Name="StudentPayTransaction" Relationship="Self.FK_StudentPayTransactionStatus_StudentPayTransaction" FromRole="StudentPayTransactionStatus" ToRole="StudentPayTransaction" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="transactionTypeId" />
+          </Key>
+          <Property Name="transactionTypeId" Type="Int32" Nullable="false" />
+          <Property Name="transactionTypeDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PeriodGradeStudentTranTypeConfigurations" Relationship="Self.FK_PeriodGradeStudentTranTypeConfiguration_TransactionType" FromRole="TransactionType" ToRole="PeriodGradeStudentTranTypeConfiguration" />
+        </EntityType>
+        <Association Name="FK_Student_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="genderId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="genderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGrade_Grade">
+          <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+          <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade">
+              <PropertyRef Name="gradeId" />
+            </Principal>
+            <Dependent Role="PeriodGrade">
+              <PropertyRef Name="gradeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayTransaction_StudentPayTransaction">
+          <End Role="StudentPayTransaction" Type="Self.StudentPayTransaction" Multiplicity="1" />
+          <End Role="PayTransaction" Type="Self.PayTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentPayTransaction">
+              <PropertyRef Name="studentPayTransactionId" />
+            </Principal>
+            <Dependent Role="PayTransaction">
+              <PropertyRef Name="studentPayTransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentPayTransactionStatus_PayTransactionStatusType">
+          <End Role="PayTransactionStatusType" Type="Self.PayTransactionStatusType" Multiplicity="1" />
+          <End Role="StudentPayTransactionStatus" Type="Self.StudentPayTransactionStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PayTransactionStatusType">
+              <PropertyRef Name="payTransactionStatusTypeId" />
+            </Principal>
+            <Dependent Role="StudentPayTransactionStatus">
+              <PropertyRef Name="payTransactionStatusTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGrade_Period">
+          <End Role="Period" Type="Self.Period" Multiplicity="1" />
+          <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="periodId" />
+            </Principal>
+            <Dependent Role="PeriodGrade">
+              <PropertyRef Name="periodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGradeGroup_PeriodGrade">
+          <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="1" />
+          <End Role="PeriodGradeGroup" Type="Self.PeriodGradeGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PeriodGrade">
+              <PropertyRef Name="periodGradeId" />
+            </Principal>
+            <Dependent Role="PeriodGradeGroup">
+              <PropertyRef Name="periodGradeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGradeStudent_PeriodGradeGroup">
+          <End Role="PeriodGradeGroup" Type="Self.PeriodGradeGroup" Multiplicity="1" />
+          <End Role="PeriodGradeStudent" Type="Self.PeriodGradeStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PeriodGradeGroup">
+              <PropertyRef Name="periodGradeGroupId" />
+            </Principal>
+            <Dependent Role="PeriodGradeStudent">
+              <PropertyRef Name="periodGradeGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGradeStudent_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="PeriodGradeStudent" Type="Self.PeriodGradeStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="studentId" />
+            </Principal>
+            <Dependent Role="PeriodGradeStudent">
+              <PropertyRef Name="studentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGradeStudentTranTypeConfiguration_PeriodGradeStudent">
+          <End Role="PeriodGradeStudent" Type="Self.PeriodGradeStudent" Multiplicity="1" />
+          <End Role="PeriodGradeStudentTranTypeConfiguration" Type="Self.PeriodGradeStudentTranTypeConfiguration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PeriodGradeStudent">
+              <PropertyRef Name="periodGradeStudentId" />
+            </Principal>
+            <Dependent Role="PeriodGradeStudentTranTypeConfiguration">
+              <PropertyRef Name="periodGradeStudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGradeStudentTranTypeConfiguration_RunSchedule">
+          <End Role="RunSchedule" Type="Self.RunSchedule" Multiplicity="1" />
+          <End Role="PeriodGradeStudentTranTypeConfiguration" Type="Self.PeriodGradeStudentTranTypeConfiguration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunSchedule">
+              <PropertyRef Name="runScheduleId" />
+            </Principal>
+            <Dependent Role="PeriodGradeStudentTranTypeConfiguration">
+              <PropertyRef Name="runScheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodGradeStudentTranTypeConfiguration_TransactionType">
+          <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
+          <End Role="PeriodGradeStudentTranTypeConfiguration" Type="Self.PeriodGradeStudentTranTypeConfiguration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="transactionTypeId" />
+            </Principal>
+            <Dependent Role="PeriodGradeStudentTranTypeConfiguration">
+              <PropertyRef Name="transactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentPayTransaction_PeriodGradeStudentTranTypeConfiguration">
+          <End Role="PeriodGradeStudentTranTypeConfiguration" Type="Self.PeriodGradeStudentTranTypeConfiguration" Multiplicity="1" />
+          <End Role="StudentPayTransaction" Type="Self.StudentPayTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PeriodGradeStudentTranTypeConfiguration">
+              <PropertyRef Name="periodGradeStudentTranTypeConfigurationId" />
+            </Principal>
+            <Dependent Role="StudentPayTransaction">
+              <PropertyRef Name="periodGradeStudentTranTypeConfigurationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentPayTransactionStatus_StudentPayTransaction">
+          <End Role="StudentPayTransaction" Type="Self.StudentPayTransaction" Multiplicity="1" />
+          <End Role="StudentPayTransactionStatus" Type="Self.StudentPayTransactionStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentPayTransaction">
+              <PropertyRef Name="studentPayTransactionId" />
+            </Principal>
+            <Dependent Role="StudentPayTransactionStatus">
+              <PropertyRef Name="studentPayTransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SchoolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Genders" EntityType="Self.Gender" />
+          <EntitySet Name="Grades" EntityType="Self.Grade" />
+          <EntitySet Name="PayTransactions" EntityType="Self.PayTransaction" />
+          <EntitySet Name="PayTransactionStatusTypes" EntityType="Self.PayTransactionStatusType" />
+          <EntitySet Name="Periods" EntityType="Self.Period" />
+          <EntitySet Name="PeriodGrades" EntityType="Self.PeriodGrade" />
+          <EntitySet Name="PeriodGradeGroups" EntityType="Self.PeriodGradeGroup" />
+          <EntitySet Name="PeriodGradeStudents" EntityType="Self.PeriodGradeStudent" />
+          <EntitySet Name="PeriodGradeStudentTranTypeConfigurations" EntityType="Self.PeriodGradeStudentTranTypeConfiguration" />
+          <EntitySet Name="RunSchedules" EntityType="Self.RunSchedule" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="StudentPayTransactions" EntityType="Self.StudentPayTransaction" />
+          <EntitySet Name="StudentPayTransactionStatus" EntityType="Self.StudentPayTransactionStatu" />
+          <EntitySet Name="TransactionTypes" EntityType="Self.TransactionType" />
+          <AssociationSet Name="FK_Student_Gender" Association="Self.FK_Student_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGrade_Grade" Association="Self.FK_PeriodGrade_Grade">
+            <End Role="Grade" EntitySet="Grades" />
+            <End Role="PeriodGrade" EntitySet="PeriodGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayTransaction_StudentPayTransaction" Association="Self.FK_PayTransaction_StudentPayTransaction">
+            <End Role="StudentPayTransaction" EntitySet="StudentPayTransactions" />
+            <End Role="PayTransaction" EntitySet="PayTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentPayTransactionStatus_PayTransactionStatusType" Association="Self.FK_StudentPayTransactionStatus_PayTransactionStatusType">
+            <End Role="PayTransactionStatusType" EntitySet="PayTransactionStatusTypes" />
+            <End Role="StudentPayTransactionStatus" EntitySet="StudentPayTransactionStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGrade_Period" Association="Self.FK_PeriodGrade_Period">
+            <End Role="Period" EntitySet="Periods" />
+            <End Role="PeriodGrade" EntitySet="PeriodGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGradeGroup_PeriodGrade" Association="Self.FK_PeriodGradeGroup_PeriodGrade">
+            <End Role="PeriodGrade" EntitySet="PeriodGrades" />
+            <End Role="PeriodGradeGroup" EntitySet="PeriodGradeGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGradeStudent_PeriodGradeGroup" Association="Self.FK_PeriodGradeStudent_PeriodGradeGroup">
+            <End Role="PeriodGradeGroup" EntitySet="PeriodGradeGroups" />
+            <End Role="PeriodGradeStudent" EntitySet="PeriodGradeStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGradeStudent_Student" Association="Self.FK_PeriodGradeStudent_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="PeriodGradeStudent" EntitySet="PeriodGradeStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGradeStudentTranTypeConfiguration_PeriodGradeStudent" Association="Self.FK_PeriodGradeStudentTranTypeConfiguration_PeriodGradeStudent">
+            <End Role="PeriodGradeStudent" EntitySet="PeriodGradeStudents" />
+            <End Role="PeriodGradeStudentTranTypeConfiguration" EntitySet="PeriodGradeStudentTranTypeConfigurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGradeStudentTranTypeConfiguration_RunSchedule" Association="Self.FK_PeriodGradeStudentTranTypeConfiguration_RunSchedule">
+            <End Role="RunSchedule" EntitySet="RunSchedules" />
+            <End Role="PeriodGradeStudentTranTypeConfiguration" EntitySet="PeriodGradeStudentTranTypeConfigurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGradeStudentTranTypeConfiguration_TransactionType" Association="Self.FK_PeriodGradeStudentTranTypeConfiguration_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionTypes" />
+            <End Role="PeriodGradeStudentTranTypeConfiguration" EntitySet="PeriodGradeStudentTranTypeConfigurations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentPayTransaction_PeriodGradeStudentTranTypeConfiguration" Association="Self.FK_StudentPayTransaction_PeriodGradeStudentTranTypeConfiguration">
+            <End Role="PeriodGradeStudentTranTypeConfiguration" EntitySet="PeriodGradeStudentTranTypeConfigurations" />
+            <End Role="StudentPayTransaction" EntitySet="StudentPayTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentPayTransactionStatus_StudentPayTransaction" Association="Self.FK_StudentPayTransactionStatus_StudentPayTransaction">
+            <End Role="StudentPayTransaction" EntitySet="StudentPayTransactions" />
+            <End Role="StudentPayTransactionStatus" EntitySet="StudentPayTransactionStatus" />
+          </AssociationSet>
+          <FunctionImport Name="proc_Period_GetAll" ReturnType="Collection(SchoolModel.proc_Period_GetAll_Result)" />
+          <FunctionImport Name="proc_Gender_GetAll" ReturnType="Collection(SchoolModel.proc_Gender_GetAll_Result)" />
+          <FunctionImport Name="proc_Grade_StudentDetailByPeriod" ReturnType="Collection(SchoolModel.proc_Grade_StudentDetailByPeriod_Result)">
+            <Parameter Name="periodId" Mode="In" Type="Int32" />
+            <Parameter Name="gradeId" Mode="In" Type="Int32" />
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="genderId" Mode="In" Type="Int32" />
+            <Parameter Name="studentCode" Mode="In" Type="String" />
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageCount" Mode="In" Type="Int32" />
+            <Parameter Name="sortBy" Mode="In" Type="String" />
+            <Parameter Name="sortOrder" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Grade_StudentSummaryByPeriod" ReturnType="Collection(SchoolModel.proc_Grade_StudentSummaryByPeriod_Result)">
+          <Parameter Name="periodId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Period_StudentSummaryByPeriod" ReturnType="Collection(SchoolModel.proc_Period_StudentSummaryByPeriod_Result)">
+          </FunctionImport>
+          <FunctionImport Name="proc_PeriodGrade_GetByPeriod" ReturnType="Collection(SchoolModel.proc_PeriodGrade_GetByPeriod_Result)">
+          <Parameter Name="periodId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_PeriodGradeGroup_GetByPeriodGradeId" ReturnType="Collection(SchoolModel.proc_PeriodGradeGroup_GetByPeriodGradeId_Result)">
+          <Parameter Name="periodGradeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Grade_GetAll" ReturnType="Collection(SchoolModel.proc_Grade_GetAll_Result)" />
+          <FunctionImport Name="proc_Grade_ExpenceSummaryByPeriod" ReturnType="Collection(SchoolModel.proc_Grade_ExpenceSummaryByPeriod_Result)">
+          <Parameter Name="periodId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Student_PaymentAvailable" ReturnType="Collection(SchoolModel.proc_Student_PaymentAvailable_Result)">
+          <Parameter Name="periodGradeStudentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_PayTransaction_SubmitPay">
+            <Parameter Name="studentPayTransactionId" Mode="In" Type="Int32" />
+            <Parameter Name="paymentAmount" Mode="In" Type="Decimal" />
+            <Parameter Name="balance" Mode="In" Type="Decimal" />
+            <Parameter Name="submitById" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_PayTransaction_GetAll" ReturnType="Collection(SchoolModel.proc_PayTransaction_GetAll_Result)">
+          <Parameter Name="periodGradeStudentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Student_GetById" ReturnType="Collection(SchoolModel.proc_Student_GetById_Result)">
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="proc_Period_GetAll_Result">
+          <Property Type="Int32" Name="periodId" Nullable="false" />
+          <Property Type="Int32" Name="yearFrom" Nullable="false" />
+          <Property Type="Int32" Name="yearTo" Nullable="false" />
+          <Property Type="String" Name="YearDescription" Nullable="true" MaxLength="8000" />
+          <Property Type="Boolean" Name="active" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_Gender_GetAll_Result">
+          <Property Type="Int32" Name="genderId" Nullable="false" />
+          <Property Type="String" Name="genderDescription" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="genderLetter" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="proc_Grade_StudentDetailByPeriod_Result">
+          <Property Type="Int32" Name="periodGradeStudentId" Nullable="false" />
+          <Property Type="Int32" Name="periodGradeGroupId" Nullable="false" />
+          <Property Type="Int32" Name="studentId" Nullable="false" />
+          <Property Type="DateTime" Name="fromDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="toDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="periodGradeId" Nullable="false" />
+          <Property Type="Int32" Name="gradeId" Nullable="false" />
+          <Property Type="String" Name="gradeDescription" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="firstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="middleName" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="lastName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="genderId" Nullable="false" />
+          <Property Type="String" Name="genderDescription" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="genderLetter" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="periodId" Nullable="false" />
+          <Property Type="Int32" Name="yearFrom" Nullable="false" />
+          <Property Type="Int32" Name="yearTo" Nullable="false" />
+          <Property Type="String" Name="yearDescription" Nullable="false" />
+          <Property Type="Int32" Name="TotalRecord" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_Grade_StudentSummaryByPeriod_Result">
+          <Property Type="String" Name="gradeDescription" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="gradeId" Nullable="false" />
+          <Property Type="Int32" Name="studentCountByGrade" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_Period_StudentSummaryByPeriod_Result">
+          <Property Type="String" Name="periodYear" Nullable="true" MaxLength="18" />
+          <Property Type="Int32" Name="studentCountByYear" Nullable="true" />
+          <Property Type="Int32" Name="periodId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_PeriodGrade_GetByPeriod_Result">
+          <Property Type="Int32" Name="periodGradeId" Nullable="false" />
+          <Property Type="Int32" Name="periodId" Nullable="false" />
+          <Property Type="Int32" Name="gradeId" Nullable="false" />
+          <Property Type="Int32" Name="yearFrom" Nullable="false" />
+          <Property Type="Int32" Name="yearTo" Nullable="false" />
+          <Property Type="Boolean" Name="active" Nullable="true" />
+          <Property Type="String" Name="gradeDescription" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="proc_PeriodGradeGroup_GetByPeriodGradeId_Result">
+          <Property Type="Int32" Name="periodGradeId" Nullable="false" />
+          <Property Type="Int32" Name="periodId" Nullable="false" />
+          <Property Type="Int32" Name="gradeId" Nullable="false" />
+          <Property Type="Int32" Name="yearFrom" Nullable="false" />
+          <Property Type="Int32" Name="yearTo" Nullable="false" />
+          <Property Type="Boolean" Name="active" Nullable="true" />
+          <Property Type="String" Name="gradeDescription" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="groupDescription" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="periodGradeGroupId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_Grade_GetAll_Result">
+          <Property Type="Int32" Name="gradeId" Nullable="false" />
+          <Property Type="String" Name="gradeDescription" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="proc_Grade_ExpenceSummaryByPeriod_Result">
+          <Property Type="String" Name="gradeDescription" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="gradeId" Nullable="false" />
+          <Property Type="Decimal" Name="payAmount" Nullable="false" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="proc_Student_PaymentAvailable_Result">
+          <Property Type="Decimal" Name="payConfiguration" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="payAmount" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="periodGradeStudentId" Nullable="false" />
+          <Property Type="Int32" Name="periodGradeStudentTranTypeConfigurationId" Nullable="false" />
+          <Property Type="Int32" Name="studentPayTransactionId" Nullable="false" />
+          <Property Type="DateTime" Name="transactionDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="studentPayTransactionDescription" Nullable="false" MaxLength="200" />
+          <Property Type="Decimal" Name="remaining" Nullable="true" Precision="19" />
+          </ComplexType>
+        <ComplexType Name="proc_PayTransaction_GetAll_Result">
+          <Property Type="Int32" Name="payTransactionId" Nullable="false" />
+          <Property Type="Decimal" Name="payAmount" Nullable="false" Precision="19" />
+          <Property Type="DateTime" Name="payDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="studentPayTransactionDescription" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="proc_Student_GetById_Result">
+          <Property Type="Int32" Name="studentId" Nullable="false" />
+          <Property Type="String" Name="firstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="middleName" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="lastName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="genderId" Nullable="false" />
+          <Property Type="String" Name="address1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="address2" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="cityId" Nullable="true" />
+          <Property Type="String" Name="zipCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="stateCode" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="genderDescription" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="genderLetter" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="cityDescription" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer" CdmEntityContainer="SchoolEntities">
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="SchoolModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="genderId" ColumnName="genderId" />
+                <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
+                <ScalarProperty Name="genderLetter" ColumnName="genderLetter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grades">
+            <EntityTypeMapping TypeName="SchoolModel.Grade">
+              <MappingFragment StoreEntitySet="Grade">
+                <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+                <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PayTransactions">
+            <EntityTypeMapping TypeName="SchoolModel.PayTransaction">
+              <MappingFragment StoreEntitySet="PayTransaction">
+                <ScalarProperty Name="payTransactionId" ColumnName="payTransactionId" />
+                <ScalarProperty Name="studentPayTransactionId" ColumnName="studentPayTransactionId" />
+                <ScalarProperty Name="payAmount" ColumnName="payAmount" />
+                <ScalarProperty Name="payDate" ColumnName="payDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PayTransactionStatusTypes">
+            <EntityTypeMapping TypeName="SchoolModel.PayTransactionStatusType">
+              <MappingFragment StoreEntitySet="PayTransactionStatusType">
+                <ScalarProperty Name="payTransactionStatusTypeId" ColumnName="payTransactionStatusTypeId" />
+                <ScalarProperty Name="payTransactionStatusTypeDescription" ColumnName="payTransactionStatusTypeDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Periods">
+            <EntityTypeMapping TypeName="SchoolModel.Period">
+              <MappingFragment StoreEntitySet="Period">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="periodId" ColumnName="periodId" />
+                <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
+                <ScalarProperty Name="yearTo" ColumnName="yearTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PeriodGrades">
+            <EntityTypeMapping TypeName="SchoolModel.PeriodGrade">
+              <MappingFragment StoreEntitySet="PeriodGrade">
+                <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
+                <ScalarProperty Name="periodId" ColumnName="periodId" />
+                <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PeriodGradeGroups">
+            <EntityTypeMapping TypeName="SchoolModel.PeriodGradeGroup">
+              <MappingFragment StoreEntitySet="PeriodGradeGroup">
+                <ScalarProperty Name="periodGradeGroupId" ColumnName="periodGradeGroupId" />
+                <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
+                <ScalarProperty Name="groupDescription" ColumnName="groupDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PeriodGradeStudents">
+            <EntityTypeMapping TypeName="SchoolModel.PeriodGradeStudent">
+              <MappingFragment StoreEntitySet="PeriodGradeStudent">
+                <ScalarProperty Name="periodGradeStudentId" ColumnName="periodGradeStudentId" />
+                <ScalarProperty Name="periodGradeGroupId" ColumnName="periodGradeGroupId" />
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+                <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+                <ScalarProperty Name="toDate" ColumnName="toDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PeriodGradeStudentTranTypeConfigurations">
+            <EntityTypeMapping TypeName="SchoolModel.PeriodGradeStudentTranTypeConfiguration">
+              <MappingFragment StoreEntitySet="PeriodGradeStudentTranTypeConfiguration">
+                <ScalarProperty Name="periodGradeStudentTranTypeConfigurationId" ColumnName="periodGradeStudentTranTypeConfigurationId" />
+                <ScalarProperty Name="periodGradeStudentId" ColumnName="periodGradeStudentId" />
+                <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
+                <ScalarProperty Name="payConfiguration" ColumnName="payConfiguration" />
+                <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+                <ScalarProperty Name="toDate" ColumnName="toDate" />
+                <ScalarProperty Name="runScheduleId" ColumnName="runScheduleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RunSchedules">
+            <EntityTypeMapping TypeName="SchoolModel.RunSchedule">
+              <MappingFragment StoreEntitySet="RunSchedule">
+                <ScalarProperty Name="runScheduleId" ColumnName="runScheduleId" />
+                <ScalarProperty Name="runScheduleDescription" ColumnName="runScheduleDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="SchoolModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="stateCode" ColumnName="stateCode" />
+                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="genderId" ColumnName="genderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentPayTransactions">
+            <EntityTypeMapping TypeName="SchoolModel.StudentPayTransaction">
+              <MappingFragment StoreEntitySet="StudentPayTransaction">
+                <ScalarProperty Name="studentPayTransactionId" ColumnName="studentPayTransactionId" />
+                <ScalarProperty Name="periodGradeStudentTranTypeConfigurationId" ColumnName="periodGradeStudentTranTypeConfigurationId" />
+                <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+                <ScalarProperty Name="studentPayTransactionDescription" ColumnName="studentPayTransactionDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentPayTransactionStatus">
+            <EntityTypeMapping TypeName="SchoolModel.StudentPayTransactionStatu">
+              <MappingFragment StoreEntitySet="StudentPayTransactionStatus">
+                <ScalarProperty Name="studentPayTransactionStatusId" ColumnName="studentPayTransactionStatusId" />
+                <ScalarProperty Name="studentPayTransactionId" ColumnName="studentPayTransactionId" />
+                <ScalarProperty Name="payTransactionStatusTypeId" ColumnName="payTransactionStatusTypeId" />
+                <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+                <ScalarProperty Name="toDate" ColumnName="toDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionTypes">
+            <EntityTypeMapping TypeName="SchoolModel.TransactionType">
+              <MappingFragment StoreEntitySet="TransactionType">
+                <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
+                <ScalarProperty Name="transactionTypeDescription" ColumnName="transactionTypeDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="proc_Period_GetAll" FunctionName="SchoolModel.Store.proc_Period_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_Period_GetAll_Result">
+                <ScalarProperty Name="periodId" ColumnName="periodId" />
+                <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
+                <ScalarProperty Name="yearTo" ColumnName="yearTo" />
+                <ScalarProperty Name="YearDescription" ColumnName="YearDescription" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Gender_GetAll" FunctionName="SchoolModel.Store.proc_Gender_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_Gender_GetAll_Result">
+                <ScalarProperty Name="genderId" ColumnName="genderId" />
+                <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
+                <ScalarProperty Name="genderLetter" ColumnName="genderLetter" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Grade_StudentDetailByPeriod" FunctionName="SchoolModel.Store.proc_Grade_StudentDetailByPeriod">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_Grade_StudentDetailByPeriod_Result">
+                <ScalarProperty Name="periodGradeStudentId" ColumnName="periodGradeStudentId" />
+                <ScalarProperty Name="periodGradeGroupId" ColumnName="periodGradeGroupId" />
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+                <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+                <ScalarProperty Name="toDate" ColumnName="toDate" />
+                <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
+                <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+                <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="genderId" ColumnName="genderId" />
+                <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
+                <ScalarProperty Name="genderLetter" ColumnName="genderLetter" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Grade_StudentSummaryByPeriod" FunctionName="SchoolModel.Store.proc_Grade_StudentSummaryByPeriod">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_Grade_StudentSummaryByPeriod_Result">
+                <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+                <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+                <ScalarProperty Name="studentCountByGrade" ColumnName="studentCountByGrade" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Period_StudentSummaryByPeriod" FunctionName="SchoolModel.Store.proc_Period_StudentSummaryByPeriod">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_Period_StudentSummaryByPeriod_Result">
+                <ScalarProperty Name="periodYear" ColumnName="periodYear" />
+                <ScalarProperty Name="studentCountByYear" ColumnName="studentCountByYear" />
+                <ScalarProperty Name="periodId" ColumnName="periodId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_PeriodGrade_GetByPeriod" FunctionName="SchoolModel.Store.proc_PeriodGrade_GetByPeriod">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_PeriodGrade_GetByPeriod_Result">
+                <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
+                <ScalarProperty Name="periodId" ColumnName="periodId" />
+                <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+                <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
+                <ScalarProperty Name="yearTo" ColumnName="yearTo" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_PeriodGradeGroup_GetByPeriodGradeId" FunctionName="SchoolModel.Store.proc_PeriodGradeGroup_GetByPeriodGradeId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_PeriodGradeGroup_GetByPeriodGradeId_Result">
+                <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
+                <ScalarProperty Name="periodId" ColumnName="periodId" />
+                <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+                <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
+                <ScalarProperty Name="yearTo" ColumnName="yearTo" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+                <ScalarProperty Name="groupDescription" ColumnName="groupDescription" />
+                <ScalarProperty Name="periodGradeGroupId" ColumnName="periodGradeGroupId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Grade_GetAll" FunctionName="SchoolModel.Store.proc_Grade_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_Grade_GetAll_Result">
+                <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+                <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Grade_ExpenceSummaryByPeriod" FunctionName="SchoolModel.Store.proc_Grade_ExpenceSummaryByPeriod">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_Grade_ExpenceSummaryByPeriod_Result">
+                <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+                <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+                <ScalarProperty Name="payAmount" ColumnName="payAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Student_PaymentAvailable" FunctionName="SchoolModel.Store.proc_Student_PaymentAvailable">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_Student_PaymentAvailable_Result">
+                <ScalarProperty Name="payConfiguration" ColumnName="payConfiguration" />
+                <ScalarProperty Name="payAmount" ColumnName="payAmount" />
+                <ScalarProperty Name="periodGradeStudentId" ColumnName="periodGradeStudentId" />
+                <ScalarProperty Name="periodGradeStudentTranTypeConfigurationId" ColumnName="periodGradeStudentTranTypeConfigurationId" />
+                <ScalarProperty Name="studentPayTransactionId" ColumnName="studentPayTransactionId" />
+                <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+                <ScalarProperty Name="studentPayTransactionDescription" ColumnName="studentPayTransactionDescription" />
+                <ScalarProperty Name="remaining" ColumnName="remaining" />
+                </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_PayTransaction_SubmitPay" FunctionName="SchoolModel.Store.proc_PayTransaction_SubmitPay" />
+          <FunctionImportMapping FunctionImportName="proc_PayTransaction_GetAll" FunctionName="SchoolModel.Store.proc_PayTransaction_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_PayTransaction_GetAll_Result">
+                <ScalarProperty Name="payTransactionId" ColumnName="payTransactionId" />
+                <ScalarProperty Name="payAmount" ColumnName="payAmount" />
+                <ScalarProperty Name="payDate" ColumnName="payDate" />
+                <ScalarProperty Name="studentPayTransactionDescription" ColumnName="studentPayTransactionDescription" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Student_GetById" FunctionName="SchoolModel.Store.proc_Student_GetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_Student_GetById_Result">
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="genderId" ColumnName="genderId" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+                <ScalarProperty Name="stateCode" ColumnName="stateCode" />
+                <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
+                <ScalarProperty Name="genderLetter" ColumnName="genderLetter" />
+                <ScalarProperty Name="cityDescription" ColumnName="cityDescription" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

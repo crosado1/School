@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Dashboard <small>Admin Dashboard</small></h1>
+                @*<div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success" type="button"> <span class="glyphicon glyphicon-filter"> Filter</span></button>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Students by Grades</h3>
+                </div>
+                <div class="panel-body" align="center">
+                    <div class="canvas-holder">
+                        <canvas id="canvas" width="416" height="208" style="width: 416px; height: 208px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Student by Periods</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="canvas-holder">
+                        <canvas id="canvasByPeriods" width="416" height="208" style="width: 416px; height: 208px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Grade Expenses by Period</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="canvas-holder">
+                        <canvas id="canvasExpenseByPeriods" width="416" height="208" style="width: 416px; height: 208px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/chartJs/Chart.bundle.js"></script>
+    <script src="~/Scripts/views/graphic/graphic.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            showGradesByPeriod();
+            showStudentsByPeriod();
+            showGradesExpensesByPeriod();            
+        });
+    </script>
+}
+

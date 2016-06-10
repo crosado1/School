@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "School - Periods";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Periods <small>Periods Information</small></h1>
+                @*<div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-success" type="button"> <span class="glyphicon glyphicon-filter"> Filter</span></button>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="table-responsive">
+                <table id="tblPeriod" class="table">
+                    <thead>
+                        <tr>
+                            <th><strong>Periods Timeline</strong></th>
+                            <th><strong>Active</strong></th>
+                            <th><strong>Actions</strong> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Period 2015 - 2016</td>
+                            <td>
+                                <div class="checkbox checkbox-info checkbox-circle">
+                                    <input class="styled" id="checkbox11" type="checkbox" disabled="" checked="">
+                                    <label for="checkbox11">
+                                        Active
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" type="button">Detail </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Period 2014 - 2015</td>
+                            <td>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" type="button">Detail </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Period 2013 - 2014</td>
+                            <td>
+                                
+                                @*<div class="checkbox checkbox-danger">
+                                    <input id="checkbox5" type="checkbox" checked="">
+                                    <label for="checkbox5">
+                                        Warning
+                                    </label>
+                                </div>*@
+                                @*<div class="checkbox">
+                                    <input type="checkbox" value="">
+                                </div>*@
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" type="button">Detail </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Students by Grades</h3>
+                </div>
+                <div class="panel-body" align="center">
+                    <div class="canvas-holder">                        
+                        <canvas id="canvas" width="416" height="208" style="width: 416px; height: 208px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Student by Periods</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="canvas-holder">
+                        <canvas id="canvasByPeriods" width="416" height="208" style="width: 416px; height: 208px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Summary 3</h3>
+                </div>
+                <div class="panel-body"><span>Panel Body</span></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section scripts{
+<script src="~/Scripts/chartJs/Chart.bundle.js"></script>
+<script src="~/Scripts/views/period/periodSearch.js"></script>
+<script src="~/Scripts/views/graphic/graphic.js"></script>
+    
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        showGradesByPeriod();
+        showStudentsByPeriod();
+        //var data = {
+        //    labels: ["Pre-Kinder", "Kinder", "Primero", "Segundo", "Tercero", "Cuarto", "Quinto","Sexto","Septimo","Octavo","Noveno"],
+        //    datasets: [
+        //        {
+        //            label: "My First dataset",
+        //            backgroundColor: "rgba(255,99,132,0.2)",
+        //            borderColor: "rgba(255,99,132,1)",
+        //            borderWidth: 1,
+        //            hoverBackgroundColor: "rgba(255,99,132,0.4)",
+        //            hoverBorderColor: "rgba(255,99,132,1)",
+        //            data: [65, 59, 80, 81, 56, 55, 40,8,15,25,62],
+        //        }
+        //    ]
+        //};
+
+        //var ctx = document.getElementById("canvas").getContext("2d");
+        
+        //var myBarChart = new Chart(ctx, {
+        //    type: 'bar',
+        //    data: data
+        //});
+
+
+    });
+</script>
+}
+
+
+

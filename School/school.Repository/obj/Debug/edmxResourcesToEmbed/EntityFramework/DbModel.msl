@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer" CdmEntityContainer="SchoolEntities">
+    <EntitySetMapping Name="Genders">
+      <EntityTypeMapping TypeName="SchoolModel.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="genderId" ColumnName="genderId" />
+          <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
+          <ScalarProperty Name="genderLetter" ColumnName="genderLetter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grades">
+      <EntityTypeMapping TypeName="SchoolModel.Grade">
+        <MappingFragment StoreEntitySet="Grade">
+          <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+          <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayTransactions">
+      <EntityTypeMapping TypeName="SchoolModel.PayTransaction">
+        <MappingFragment StoreEntitySet="PayTransaction">
+          <ScalarProperty Name="payTransactionId" ColumnName="payTransactionId" />
+          <ScalarProperty Name="studentPayTransactionId" ColumnName="studentPayTransactionId" />
+          <ScalarProperty Name="payAmount" ColumnName="payAmount" />
+          <ScalarProperty Name="payDate" ColumnName="payDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayTransactionStatusTypes">
+      <EntityTypeMapping TypeName="SchoolModel.PayTransactionStatusType">
+        <MappingFragment StoreEntitySet="PayTransactionStatusType">
+          <ScalarProperty Name="payTransactionStatusTypeId" ColumnName="payTransactionStatusTypeId" />
+          <ScalarProperty Name="payTransactionStatusTypeDescription" ColumnName="payTransactionStatusTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Periods">
+      <EntityTypeMapping TypeName="SchoolModel.Period">
+        <MappingFragment StoreEntitySet="Period">
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="periodId" ColumnName="periodId" />
+          <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
+          <ScalarProperty Name="yearTo" ColumnName="yearTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PeriodGrades">
+      <EntityTypeMapping TypeName="SchoolModel.PeriodGrade">
+        <MappingFragment StoreEntitySet="PeriodGrade">
+          <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
+          <ScalarProperty Name="periodId" ColumnName="periodId" />
+          <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PeriodGradeGroups">
+      <EntityTypeMapping TypeName="SchoolModel.PeriodGradeGroup">
+        <MappingFragment StoreEntitySet="PeriodGradeGroup">
+          <ScalarProperty Name="periodGradeGroupId" ColumnName="periodGradeGroupId" />
+          <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
+          <ScalarProperty Name="groupDescription" ColumnName="groupDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PeriodGradeStudents">
+      <EntityTypeMapping TypeName="SchoolModel.PeriodGradeStudent">
+        <MappingFragment StoreEntitySet="PeriodGradeStudent">
+          <ScalarProperty Name="periodGradeStudentId" ColumnName="periodGradeStudentId" />
+          <ScalarProperty Name="periodGradeGroupId" ColumnName="periodGradeGroupId" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+          <ScalarProperty Name="toDate" ColumnName="toDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PeriodGradeStudentTranTypeConfigurations">
+      <EntityTypeMapping TypeName="SchoolModel.PeriodGradeStudentTranTypeConfiguration">
+        <MappingFragment StoreEntitySet="PeriodGradeStudentTranTypeConfiguration">
+          <ScalarProperty Name="periodGradeStudentTranTypeConfigurationId" ColumnName="periodGradeStudentTranTypeConfigurationId" />
+          <ScalarProperty Name="periodGradeStudentId" ColumnName="periodGradeStudentId" />
+          <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
+          <ScalarProperty Name="payConfiguration" ColumnName="payConfiguration" />
+          <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+          <ScalarProperty Name="toDate" ColumnName="toDate" />
+          <ScalarProperty Name="runScheduleId" ColumnName="runScheduleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RunSchedules">
+      <EntityTypeMapping TypeName="SchoolModel.RunSchedule">
+        <MappingFragment StoreEntitySet="RunSchedule">
+          <ScalarProperty Name="runScheduleId" ColumnName="runScheduleId" />
+          <ScalarProperty Name="runScheduleDescription" ColumnName="runScheduleDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="SchoolModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="middleName" ColumnName="middleName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="genderId" ColumnName="genderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentPayTransactions">
+      <EntityTypeMapping TypeName="SchoolModel.StudentPayTransaction">
+        <MappingFragment StoreEntitySet="StudentPayTransaction">
+          <ScalarProperty Name="studentPayTransactionId" ColumnName="studentPayTransactionId" />
+          <ScalarProperty Name="periodGradeStudentTranTypeConfigurationId" ColumnName="periodGradeStudentTranTypeConfigurationId" />
+          <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+          <ScalarProperty Name="studentPayTransactionDescription" ColumnName="studentPayTransactionDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentPayTransactionStatus">
+      <EntityTypeMapping TypeName="SchoolModel.StudentPayTransactionStatu">
+        <MappingFragment StoreEntitySet="StudentPayTransactionStatus">
+          <ScalarProperty Name="studentPayTransactionStatusId" ColumnName="studentPayTransactionStatusId" />
+          <ScalarProperty Name="studentPayTransactionId" ColumnName="studentPayTransactionId" />
+          <ScalarProperty Name="payTransactionStatusTypeId" ColumnName="payTransactionStatusTypeId" />
+          <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+          <ScalarProperty Name="toDate" ColumnName="toDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionTypes">
+      <EntityTypeMapping TypeName="SchoolModel.TransactionType">
+        <MappingFragment StoreEntitySet="TransactionType">
+          <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
+          <ScalarProperty Name="transactionTypeDescription" ColumnName="transactionTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_Period_GetAll" FunctionName="SchoolModel.Store.proc_Period_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_Period_GetAll_Result">
+          <ScalarProperty Name="periodId" ColumnName="periodId" />
+          <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
+          <ScalarProperty Name="yearTo" ColumnName="yearTo" />
+          <ScalarProperty Name="YearDescription" ColumnName="YearDescription" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Gender_GetAll" FunctionName="SchoolModel.Store.proc_Gender_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_Gender_GetAll_Result">
+          <ScalarProperty Name="genderId" ColumnName="genderId" />
+          <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
+          <ScalarProperty Name="genderLetter" ColumnName="genderLetter" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Grade_StudentDetailByPeriod" FunctionName="SchoolModel.Store.proc_Grade_StudentDetailByPeriod">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_Grade_StudentDetailByPeriod_Result">
+          <ScalarProperty Name="periodGradeStudentId" ColumnName="periodGradeStudentId" />
+          <ScalarProperty Name="periodGradeGroupId" ColumnName="periodGradeGroupId" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+          <ScalarProperty Name="toDate" ColumnName="toDate" />
+          <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
+          <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+          <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="middleName" ColumnName="middleName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="genderId" ColumnName="genderId" />
+          <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
+          <ScalarProperty Name="genderLetter" ColumnName="genderLetter" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Grade_StudentSummaryByPeriod" FunctionName="SchoolModel.Store.proc_Grade_StudentSummaryByPeriod">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_Grade_StudentSummaryByPeriod_Result">
+          <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+          <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+          <ScalarProperty Name="studentCountByGrade" ColumnName="studentCountByGrade" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Period_StudentSummaryByPeriod" FunctionName="SchoolModel.Store.proc_Period_StudentSummaryByPeriod">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_Period_StudentSummaryByPeriod_Result">
+          <ScalarProperty Name="periodYear" ColumnName="periodYear" />
+          <ScalarProperty Name="studentCountByYear" ColumnName="studentCountByYear" />
+          <ScalarProperty Name="periodId" ColumnName="periodId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_PeriodGrade_GetByPeriod" FunctionName="SchoolModel.Store.proc_PeriodGrade_GetByPeriod">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_PeriodGrade_GetByPeriod_Result">
+          <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
+          <ScalarProperty Name="periodId" ColumnName="periodId" />
+          <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+          <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
+          <ScalarProperty Name="yearTo" ColumnName="yearTo" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_PeriodGradeGroup_GetByPeriodGradeId" FunctionName="SchoolModel.Store.proc_PeriodGradeGroup_GetByPeriodGradeId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_PeriodGradeGroup_GetByPeriodGradeId_Result">
+          <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
+          <ScalarProperty Name="periodId" ColumnName="periodId" />
+          <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+          <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
+          <ScalarProperty Name="yearTo" ColumnName="yearTo" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+          <ScalarProperty Name="groupDescription" ColumnName="groupDescription" />
+          <ScalarProperty Name="periodGradeGroupId" ColumnName="periodGradeGroupId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Grade_GetAll" FunctionName="SchoolModel.Store.proc_Grade_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_Grade_GetAll_Result">
+          <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+          <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Grade_ExpenceSummaryByPeriod" FunctionName="SchoolModel.Store.proc_Grade_ExpenceSummaryByPeriod">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_Grade_ExpenceSummaryByPeriod_Result">
+          <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+          <ScalarProperty Name="gradeId" ColumnName="gradeId" />
+          <ScalarProperty Name="payAmount" ColumnName="payAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Student_PaymentAvailable" FunctionName="SchoolModel.Store.proc_Student_PaymentAvailable">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_Student_PaymentAvailable_Result">
+          <ScalarProperty Name="payConfiguration" ColumnName="payConfiguration" />
+          <ScalarProperty Name="payAmount" ColumnName="payAmount" />
+          <ScalarProperty Name="periodGradeStudentId" ColumnName="periodGradeStudentId" />
+          <ScalarProperty Name="periodGradeStudentTranTypeConfigurationId" ColumnName="periodGradeStudentTranTypeConfigurationId" />
+          <ScalarProperty Name="studentPayTransactionId" ColumnName="studentPayTransactionId" />
+          <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+          <ScalarProperty Name="studentPayTransactionDescription" ColumnName="studentPayTransactionDescription" />
+          <ScalarProperty Name="remaining" ColumnName="remaining" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_PayTransaction_SubmitPay" FunctionName="SchoolModel.Store.proc_PayTransaction_SubmitPay" />
+    <FunctionImportMapping FunctionImportName="proc_PayTransaction_GetAll" FunctionName="SchoolModel.Store.proc_PayTransaction_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_PayTransaction_GetAll_Result">
+          <ScalarProperty Name="payTransactionId" ColumnName="payTransactionId" />
+          <ScalarProperty Name="payAmount" ColumnName="payAmount" />
+          <ScalarProperty Name="payDate" ColumnName="payDate" />
+          <ScalarProperty Name="studentPayTransactionDescription" ColumnName="studentPayTransactionDescription" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

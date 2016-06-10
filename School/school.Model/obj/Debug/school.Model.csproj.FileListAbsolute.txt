@@ -1,0 +1,10 @@
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\School\school.Model\bin\Debug\school.Model.dll
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\School\school.Model\bin\Debug\school.Model.pdb
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\School\school.Model\obj\Debug\school.Model.dll
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\School\school.Model\obj\Debug\school.Model.pdb
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\School\school.Model\obj\Debug\school.Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Downloads\School\School\school.Model\bin\Debug\school.Model.dll
+C:\Users\Administrator\Downloads\School\School\school.Model\bin\Debug\school.Model.pdb
+C:\Users\Administrator\Downloads\School\School\school.Model\obj\Debug\school.Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Downloads\School\School\school.Model\obj\Debug\school.Model.dll
+C:\Users\Administrator\Downloads\School\School\school.Model\obj\Debug\school.Model.pdb

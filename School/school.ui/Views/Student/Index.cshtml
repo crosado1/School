@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    
+      
+    
+</style>
+@*modals*@
+<div class="modal fade" id="search-student">
+    <div id="searchHtml">
+
+    </div>   
+    @*@Html.Partial("_search")*@
+</div>
+<div class="modal fade" id="pay-student">
+    <div id="payHtml">
+        @Html.Partial("_pay")
+    </div>   
+</div>
+
+<div class="modal fade" id="profile-student">
+    <div id="profileHtml">
+        @Html.Partial("_profile")
+    </div>
+</div>
+
+@*hidden values*@
+<input id="search_periodId" type="hidden" />
+<input id="search_gradeId" type="hidden" />
+<input id="search_studentCode" type="hidden" />
+<input id="search_firstName" type="hidden" />
+<input id="search_lastName" type="hidden" />
+<input id="search_genderId" type="hidden" />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Students <small>Student List</small></h1>
+                <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success" typeof="btnSearchStudent" data-toggle="modal" data-target="#search-student" type="button"> <span class="glyphicon glyphicon-filter"> Filter</span></button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table id="studentList"  class="table table-striped table-bordered table-hover" data-page-length='10'>
+                    <thead>
+                        <tr>
+                            <th><strong>Period</strong> </th>
+                            <th><strong>Student Full Name</strong></th>
+                            <th><strong>Student Code</strong></th>
+                            <th><strong>Grade</strong> </th>
+                            <th><strong>Group</strong> </th>
+                            <th><strong>Gender</strong> </th>
+                            <th><strong>Actions</strong> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+<script src="~/Scripts/dataTable/datatables.min.js"></script>
+<script src="~/Scripts/dateFormat/date.format.js"></script>
+<script src="~/Scripts/slimscroll/slimscroll.min.js"></script>
+<script src="~/Scripts/views/student/search.js"></script>
+<script src="~/Scripts/views/payTransaction/pay.js"></script>    }
+
+
