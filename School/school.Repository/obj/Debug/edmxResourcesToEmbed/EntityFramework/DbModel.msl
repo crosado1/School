@@ -99,6 +99,11 @@
     <EntitySetMapping Name="Students">
       <EntityTypeMapping TypeName="SchoolModel.Student">
         <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="stateCode" ColumnName="stateCode" />
+          <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
           <ScalarProperty Name="studentId" ColumnName="studentId" />
           <ScalarProperty Name="firstName" ColumnName="firstName" />
           <ScalarProperty Name="middleName" ColumnName="middleName" />
@@ -261,6 +266,25 @@
           <ScalarProperty Name="payAmount" ColumnName="payAmount" />
           <ScalarProperty Name="payDate" ColumnName="payDate" />
           <ScalarProperty Name="studentPayTransactionDescription" ColumnName="studentPayTransactionDescription" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Student_GetById" FunctionName="SchoolModel.Store.proc_Student_GetById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_Student_GetById_Result">
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="middleName" ColumnName="middleName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="genderId" ColumnName="genderId" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+          <ScalarProperty Name="stateCode" ColumnName="stateCode" />
+          <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
+          <ScalarProperty Name="genderLetter" ColumnName="genderLetter" />
+          <ScalarProperty Name="cityDescription" ColumnName="cityDescription" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

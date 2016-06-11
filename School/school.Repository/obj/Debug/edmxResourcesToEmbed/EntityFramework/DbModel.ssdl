@@ -94,6 +94,11 @@
     <Property Name="middleName" Type="varchar" MaxLength="10" />
     <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="genderId" Type="int" Nullable="false" />
+    <Property Name="address1" Type="varchar" MaxLength="200" />
+    <Property Name="address2" Type="varchar" MaxLength="200" />
+    <Property Name="cityId" Type="int" />
+    <Property Name="zipCode" Type="varchar" MaxLength="50" />
+    <Property Name="stateCode" Type="char" MaxLength="2" />
   </EntityType>
   <EntityType Name="StudentPayTransaction">
     <Key>
@@ -313,6 +318,9 @@
   </Function>
   <Function Name="proc_PeriodGradeGroup_GetByPeriodGradeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="periodGradeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_Student_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="studentId" Type="int" Mode="In" />
   </Function>
   <Function Name="proc_Student_PaymentAvailable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />

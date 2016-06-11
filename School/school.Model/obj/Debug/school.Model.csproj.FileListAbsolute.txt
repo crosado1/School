@@ -8,3 +8,8 @@ C:\Users\Administrator\Downloads\School\School\school.Model\bin\Debug\school.Mod
 C:\Users\Administrator\Downloads\School\School\school.Model\obj\Debug\school.Model.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Downloads\School\School\school.Model\obj\Debug\school.Model.dll
 C:\Users\Administrator\Downloads\School\School\school.Model\obj\Debug\school.Model.pdb
+C:\Users\Administrator\Documents\School\School\school.Model\bin\Debug\school.Model.dll
+C:\Users\Administrator\Documents\School\School\school.Model\bin\Debug\school.Model.pdb
+C:\Users\Administrator\Documents\School\School\school.Model\obj\Debug\school.Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\School\School\school.Model\obj\Debug\school.Model.dll
+C:\Users\Administrator\Documents\School\School\school.Model\obj\Debug\school.Model.pdb
