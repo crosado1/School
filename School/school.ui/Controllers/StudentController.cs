@@ -92,10 +92,27 @@ namespace school.ui.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ShowStudentProfile()
+        {
+            return Json(new
+            {
+                Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_profile.cshtml", null),
+
+                Message = "",
+                Status = "OK"
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetStudentById(int studentId)
         {
             var result = _studentRepository.GetById(studentId);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            //return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(new
+            {
+                Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_demographic.cshtml", result.Model),
+                Message = "",
+                Status = "OK"
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

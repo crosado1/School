@@ -42,75 +42,45 @@
     }
 
 </style>
-<div class="modal-dialog modal-lg">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                &times;
-            </button>
-            <h3 class="modal-title">Student Profile</h3>
-        </div>
-        <div class="modal-body">
-            <div class="row profile">
-                <div class="col-md-2">
-                    <div class="profile-sidebar">
-                        <div class="profile-userpic">
-                            <img src="~/Images/avatar_2x.png" class="img-responsive" />
-                            @*<img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">*@
-                        </div>
-                        @*<div class="profile-usertitle">
-                        <div class="profile-usertitle-name">
-                            Carlos Rosado
-                        </div>
-                        <div class="profile-usertitle-job">
-                            Tercer Grado
-                        </div>
-                    </div>*@
-                    </div>
-                </div>
-                <div class="col-md-10">
-                    <div class="profile-content">
-                        <div class="row">
 
-                        </div>
-                        <ul class="nav nav-tabs content-tabs" id="maincontent" role="tablist">
-                            <li class="active"><a href="#demographic" role="tab" data-toggle="tab">Demographic</a></li>
-                            <li><a href="#payTransaction" role="tab" data-toggle="tab">Pay Transactions</a></li>
-                            <li><a href="#grades" role="tab" data-toggle="tab">Grades</a></li>
-                            @*<li class="dropdown">
-                            <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
-                                <li><a href="#dropdown1" tabindex="-1" role="tab" data-toggle="tab"></a></li>
-                                <li><a href="#dropdown2" tabindex="-1" role="tab" data-toggle="tab"></a></li>
-                            </ul>
-                        </li>*@
-                        </ul>
-                        <div class="tab-content">
-
-                            <div class="tab-pane fade in active" id="demographic">
-                                @Html.Partial("_demographic")
-                            </div><!--/.tab-pane -->
-
-                            <div class="tab-pane fade" id="payTransaction">
-                                <p>Profile Content : Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
-                            </div><!--/.tab-pane -->
-
-                            <div class="tab-pane fade" id="grades">
-                                <p>Dropdown1 - Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
-                            </div><!--/.tab-pane -->
-
-                        </div>
-                        @*Some user related content goes here...*@
-                    </div>
-                </div>
+<div class="row profile">
+    <div class="col-md-2">
+        <div class="profile-sidebar">
+            <div class="profile-userpic">
+                <img src="~/Images/avatar_2x.png" class="img-responsive" />
+                @*<img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">*@
             </div>
         </div>
-        <div class="modal-footer">
-            @*<button id="btnSearch" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>*@
-            <button class="btn btn-sm btn-warning" data-dismiss="modal"><i class="icon-remove"></i> Close</button>
+    </div>
+    <div class="col-md-10">
+        <div class="profile-content">
+            <div class="row">
+
+            </div>
+            <ul class="nav nav-tabs content-tabs" id="maincontent" role="tablist">
+                <li class="active"><a class="loadServerSide" data-content="demographic" data-url="/Student/GetStudentById" href="#demographic" role="tab" data-toggle="tab">Demographic</a></li>
+                <li><a href="#payTransaction" class="loadServerSide" data-content="payTransaction" data-url="/Student/GetStudentById" role="tab" data-toggle="tab">Pay Transactions</a></li>
+                <li><a href="#grades" class="loadServerSide" role="tab" data-toggle="tab">Grades</a></li>               
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="demographic">
+                    @*@Html.Partial("_demographic")*@
+                </div><!--/.tab-pane -->
+
+                <div class="tab-pane fade" id="payTransaction">
+                    <p>Profile Content : Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                </div><!--/.tab-pane -->
+
+                <div class="tab-pane fade" id="grades">
+                    <p>Dropdown1 - Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+                </div><!--/.tab-pane -->
+
+            </div>            
         </div>
     </div>
 </div>
+
+
 
 
 @*<style>

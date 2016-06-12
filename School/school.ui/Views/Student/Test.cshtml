@@ -3,6 +3,17 @@
     ViewBag.Title = "Test";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div id="loadProfile">
 
-@Html.Partial("_profile")
+</div>
+
+@section scripts{
+<script src="~/Scripts/views/student/profile.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        loadProfile();
+    })
+</script>
+}
+@*@Html.Partial("_profile")*@
 

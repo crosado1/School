@@ -254,6 +254,7 @@
     <Content Include="Scripts\views\graphic\graphic.js" />
     <Content Include="Scripts\views\period\periodSearch.js" />
     <Content Include="Scripts\views\payTransaction\pay.js" />
+    <Content Include="Scripts\views\student\profile.js" />
     <Content Include="Scripts\views\student\search.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
