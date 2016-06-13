@@ -12,5 +12,7 @@ namespace school.Repository.Abstract
     public interface IStudentRepository : IGenericRepository<StudentModel>, IDisposable
     {
         ServiceResponseModel<StudentModel> GetById(int studentId);
+
+        
     }
 }

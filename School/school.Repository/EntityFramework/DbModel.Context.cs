@@ -190,5 +190,14 @@ namespace school.Repository.EntityFramework
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_Student_GetById_Result>("proc_Student_GetById", studentIdParameter);
         }
+    
+        public virtual ObjectResult<proc_PayTransaction_GetAllByStudent_Result> proc_PayTransaction_GetAllByStudent(Nullable<int> studentId)
+        {
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("studentId", studentId) :
+                new ObjectParameter("studentId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_PayTransaction_GetAllByStudent_Result>("proc_PayTransaction_GetAllByStudent", studentIdParameter);
+        }
     }
 }

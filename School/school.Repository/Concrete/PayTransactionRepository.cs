@@ -97,6 +97,46 @@ namespace school.Repository.Concrete
             }
         }
 
+        public ServiceResponseWithResultset<StudentTransactionModel> GetAllByStudent(int studentId)
+        {
+            try
+            {
+                var result = this._context.proc_PayTransaction_GetAllByStudent(studentId).ToList();
+                List<StudentTransactionModel> collection = new List<StudentTransactionModel>();
+                foreach (var item in result)
+                {
+                    collection.Add(new StudentTransactionModel
+                    {
+                        PayConfiguration = item.payConfiguration,
+                        PayTransactionStatusTypeDescription = item.payTransactionStatusTypeDescription,
+                        PeriodGradeStudentId = item.periodGradeStudentId,
+                        PeriodYear = item.PeriodYear,
+                        Restante = item.restante,
+                        RunScheduleDescription = item.runScheduleDescription,
+                        StudentPayTransactionDescription = item.studentPayTransactionDescription,
+                        TotalAmount = item.TotalAmount,
+                        TransactionTypeDescription = item.transactionTypeDescription
+                    });
+                }
+
+                return new ServiceResponseWithResultset<StudentTransactionModel>
+                {
+                    Response = Model.Enumerator.Enum.ServiceResponses.Success,
+                    Reason = "OK",
+                    Data = collection
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponseWithResultset<StudentTransactionModel>
+                {
+                    Response = Model.Enumerator.Enum.ServiceResponses.Failure,
+                    Reason = "Error on GetAllByStudent method. " + ex.InnerException != null ? ex.InnerException.Message : ex.Message
+
+                };
+            }
+        }
+
         public ServiceResponseWithResultset<PayTransactionModel> GetPayHistory(int periodGradeStudentId)
         {
             try

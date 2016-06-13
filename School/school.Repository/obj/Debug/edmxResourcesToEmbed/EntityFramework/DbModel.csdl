@@ -418,6 +418,9 @@
     <FunctionImport Name="proc_Student_GetById" ReturnType="Collection(SchoolModel.proc_Student_GetById_Result)">
       <Parameter Name="studentId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="proc_PayTransaction_GetAllByStudent" ReturnType="Collection(SchoolModel.proc_PayTransaction_GetAllByStudent_Result)">
+      <Parameter Name="studentId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_Period_GetAll_Result">
     <Property Type="Int32" Name="periodId" Nullable="false" />
@@ -521,5 +524,16 @@
     <Property Type="String" Name="genderDescription" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="genderLetter" Nullable="false" MaxLength="1" />
     <Property Type="String" Name="cityDescription" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="proc_PayTransaction_GetAllByStudent_Result">
+    <Property Type="String" Name="PeriodYear" Nullable="true" MaxLength="11" />
+    <Property Type="Decimal" Name="payConfiguration" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="studentPayTransactionDescription" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="periodGradeStudentId" Nullable="false" />
+    <Property Type="String" Name="runScheduleDescription" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="restante" Nullable="true" Precision="19" />
+    <Property Type="String" Name="payTransactionStatusTypeDescription" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="transactionTypeDescription" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>

@@ -35,7 +35,10 @@ namespace school.ui.Controllers
             var result = _payTranRepo.GetPayHistory(periodGradeStudentId);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
-
+        public JsonResult GetAllByStudent(int studentId)
+        {
+            var result = _payTranRepo.GetAllByStudent(studentId);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

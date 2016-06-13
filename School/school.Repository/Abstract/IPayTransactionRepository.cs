@@ -14,5 +14,7 @@ namespace school.Repository.Abstract
         ServiceResponseWithResultset<PayTransactionModel> GetAllAvailablesPay(int periodGradeStudentId);
         SaveResult SubmitPayment(decimal paymentAmount,decimal balance, int studentPayTransactionId,int submitById);
         ServiceResponseWithResultset<PayTransactionModel> GetPayHistory(int periodGradeStudentId);
+        ServiceResponseWithResultset<StudentTransactionModel> GetAllByStudent(int studentId); 
+
     }
 }

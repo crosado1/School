@@ -122,6 +122,9 @@
     <Compile Include="EntityFramework\proc_Grade_StudentSummaryByPeriod_Result.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityFramework\proc_PayTransaction_GetAllByStudent_Result.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityFramework\proc_PayTransaction_GetAll_Result.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>

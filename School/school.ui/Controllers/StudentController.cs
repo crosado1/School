@@ -103,6 +103,17 @@ namespace school.ui.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ShowStudentTransaction()
+        {
+            return Json(new
+            {
+                Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_payTransactionSummary.cshtml", null),
+
+                Message = "",
+                Status = "OK"
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetStudentById(int studentId)
         {
             var result = _studentRepository.GetById(studentId);

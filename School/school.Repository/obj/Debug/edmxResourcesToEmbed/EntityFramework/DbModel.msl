@@ -288,5 +288,20 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_PayTransaction_GetAllByStudent" FunctionName="SchoolModel.Store.proc_PayTransaction_GetAllByStudent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_PayTransaction_GetAllByStudent_Result">
+          <ScalarProperty Name="PeriodYear" ColumnName="PeriodYear" />
+          <ScalarProperty Name="payConfiguration" ColumnName="payConfiguration" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="studentPayTransactionDescription" ColumnName="studentPayTransactionDescription" />
+          <ScalarProperty Name="periodGradeStudentId" ColumnName="periodGradeStudentId" />
+          <ScalarProperty Name="runScheduleDescription" ColumnName="runScheduleDescription" />
+          <ScalarProperty Name="restante" ColumnName="restante" />
+          <ScalarProperty Name="payTransactionStatusTypeDescription" ColumnName="payTransactionStatusTypeDescription" />
+          <ScalarProperty Name="transactionTypeDescription" ColumnName="transactionTypeDescription" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

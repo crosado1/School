@@ -310,6 +310,9 @@
         <Function Name="proc_PayTransaction_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />
         </Function>
+        <Function Name="proc_PayTransaction_GetAllByStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="In" />
+        </Function>
         <Function Name="proc_PayTransaction_SubmitPay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="studentPayTransactionId" Type="int" Mode="In" />
           <Parameter Name="paymentAmount" Type="money" Mode="In" />
@@ -819,6 +822,9 @@
           <Parameter Name="periodGradeStudentId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_Student_GetById" ReturnType="Collection(SchoolModel.proc_Student_GetById_Result)">
+          <Parameter Name="studentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_PayTransaction_GetAllByStudent" ReturnType="Collection(SchoolModel.proc_PayTransaction_GetAllByStudent_Result)">
             <Parameter Name="studentId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -924,6 +930,17 @@
           <Property Type="String" Name="genderDescription" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="genderLetter" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="cityDescription" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="proc_PayTransaction_GetAllByStudent_Result">
+          <Property Type="String" Name="PeriodYear" Nullable="true" MaxLength="11" />
+          <Property Type="Decimal" Name="payConfiguration" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="19" />
+          <Property Type="String" Name="studentPayTransactionDescription" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="periodGradeStudentId" Nullable="false" />
+          <Property Type="String" Name="runScheduleDescription" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="restante" Nullable="true" Precision="19" />
+          <Property Type="String" Name="payTransactionStatusTypeDescription" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="transactionTypeDescription" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1215,6 +1232,21 @@
                 <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
                 <ScalarProperty Name="genderLetter" ColumnName="genderLetter" />
                 <ScalarProperty Name="cityDescription" ColumnName="cityDescription" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_PayTransaction_GetAllByStudent" FunctionName="SchoolModel.Store.proc_PayTransaction_GetAllByStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_PayTransaction_GetAllByStudent_Result">
+                <ScalarProperty Name="PeriodYear" ColumnName="PeriodYear" />
+                <ScalarProperty Name="payConfiguration" ColumnName="payConfiguration" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="studentPayTransactionDescription" ColumnName="studentPayTransactionDescription" />
+                <ScalarProperty Name="periodGradeStudentId" ColumnName="periodGradeStudentId" />
+                <ScalarProperty Name="runScheduleDescription" ColumnName="runScheduleDescription" />
+                <ScalarProperty Name="restante" ColumnName="restante" />
+                <ScalarProperty Name="payTransactionStatusTypeDescription" ColumnName="payTransactionStatusTypeDescription" />
+                <ScalarProperty Name="transactionTypeDescription" ColumnName="transactionTypeDescription" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

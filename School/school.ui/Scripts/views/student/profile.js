@@ -2,7 +2,7 @@
 {
 
     var init = function () {
-        alert('init');
+       
         //$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         //    var target = $(e.target).attr("href") // activated tab
         //    alert(target);
@@ -26,8 +26,7 @@
     {
         
         let url = tab.data('url');
-        let content = $('#' + tab.data('content'));
-        console.log(content);
+        let content = $('#' + tab.data('content'));      
         let studentId = 7;
         $.ajax({
             dataType: 'json',

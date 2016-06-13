@@ -305,6 +305,9 @@
   <Function Name="proc_PayTransaction_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />
   </Function>
+  <Function Name="proc_PayTransaction_GetAllByStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="studentId" Type="int" Mode="In" />
+  </Function>
   <Function Name="proc_PayTransaction_SubmitPay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="studentPayTransactionId" Type="int" Mode="In" />
     <Parameter Name="paymentAmount" Type="money" Mode="In" />
