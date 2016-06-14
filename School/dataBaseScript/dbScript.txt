@@ -50,3 +50,27 @@ group by pgstc.payConfiguration,
 			ptst.payTransactionStatusTypeDescription,
 			tt.transactionTypeDescription
 END
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE proc_Grade_GetGroups
+	@periodGradeId int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	Select * from dbo.PeriodGradeGroup
+		where periodGradeId = @periodGradeId
+END
+GO
