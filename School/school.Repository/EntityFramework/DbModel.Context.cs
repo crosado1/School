@@ -199,5 +199,14 @@ namespace school.Repository.EntityFramework
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_PayTransaction_GetAllByStudent_Result>("proc_PayTransaction_GetAllByStudent", studentIdParameter);
         }
+    
+        public virtual ObjectResult<proc_Grade_GetGroups_Result> proc_Grade_GetGroups(Nullable<int> periodGradeId)
+        {
+            var periodGradeIdParameter = periodGradeId.HasValue ?
+                new ObjectParameter("periodGradeId", periodGradeId) :
+                new ObjectParameter("periodGradeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_Grade_GetGroups_Result>("proc_Grade_GetGroups", periodGradeIdParameter);
+        }
     }
 }

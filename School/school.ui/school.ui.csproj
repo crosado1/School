@@ -169,6 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\GradeController.cs" />
     <Compile Include="Controllers\GraphicController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -255,6 +256,7 @@
     <Content Include="Scripts\views\payTransaction\payStudentTransaction.js" />
     <Content Include="Scripts\views\period\periodSearch.js" />
     <Content Include="Scripts\views\payTransaction\pay.js" />
+    <Content Include="Scripts\views\student\create.js" />
     <Content Include="Scripts\views\student\profile.js" />
     <Content Include="Scripts\views\student\search.js" />
     <Content Include="Scripts\_references.js" />
@@ -303,6 +305,8 @@
     <Content Include="Views\Student\Test.cshtml" />
     <Content Include="Views\Student\_demographic.cshtml" />
     <Content Include="Views\Student\_payTransactionSummary.cshtml" />
+    <Content Include="Views\Student\_addStudent.cshtml" />
+    <Content Include="Views\Grade\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

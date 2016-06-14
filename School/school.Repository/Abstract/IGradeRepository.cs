@@ -12,5 +12,7 @@ namespace school.Repository.Abstract
     {
         ServiceResponseWithResultset<SummaryResult> GetSummary(int periodId);
         ServiceResponseWithResultset<SummaryAmountResult> GetExpenseSummary(int periodId);
+        ServiceResponseWithResultset<PeriodGradeGroupModel> GetGroups(int periodGradeId);
+        
     }
 }

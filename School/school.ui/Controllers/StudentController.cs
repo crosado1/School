@@ -114,6 +114,31 @@ namespace school.ui.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ShowStudentCreate()
+        {
+            ViewBag.Grade = _gradeRepository.GetAll().Data
+                                                .Select(i => new SelectListItem()
+                                                {
+                                                    Text = i.GradeDescription,
+                                                    Value = i.GradeId.ToString()
+                                                });
+
+            ViewBag.Gender = _genderRepository.GetAll().Data
+                                               .Select(i => new SelectListItem()
+                                               {
+                                                   Text = i.GenderDescription,
+                                                   Value = i.GenderId.ToString()
+                                               });
+
+            return Json(new
+            {
+                Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_addStudent.cshtml", new school.Model.Model.StudentModel()),
+
+                Message = "",
+                Status = "OK"
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetStudentById(int studentId)
         {
             var result = _studentRepository.GetById(studentId);

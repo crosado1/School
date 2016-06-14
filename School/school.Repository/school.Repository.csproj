@@ -116,6 +116,9 @@
     <Compile Include="EntityFramework\proc_Grade_GetAll_Result.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityFramework\proc_Grade_GetGroups_Result.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityFramework\proc_Grade_StudentDetailByPeriod_Result.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>

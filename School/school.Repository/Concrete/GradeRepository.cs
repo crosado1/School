@@ -143,5 +143,38 @@ namespace school.Repository.Concrete
                 };
             }
         }
+
+        public ServiceResponseWithResultset<PeriodGradeGroupModel> GetGroups(int periodGradeId)
+        {
+            try
+            {
+                var result = this._context.proc_Grade_GetGroups(periodGradeId).ToList();
+                List<PeriodGradeGroupModel> collection = new List<PeriodGradeGroupModel>();
+                foreach (var item in result)
+                {
+                    collection.Add(new PeriodGradeGroupModel
+                    {
+                         GroupDescription = item.groupDescription,
+                         PeriodGradeGroupId = item.periodGradeGroupId
+                    });
+                }
+
+                return new ServiceResponseWithResultset<PeriodGradeGroupModel>
+                {
+                    Response = Model.Enumerator.Enum.ServiceResponses.Success,
+                    Reason = "OK",
+                    Data = collection
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponseWithResultset<PeriodGradeGroupModel>
+                {
+                    Response = Model.Enumerator.Enum.ServiceResponses.Failure,
+                    Reason = "Error on GetGroups method. " + ex.InnerException != null ? ex.InnerException.Message : ex.Message
+
+                };
+            }
+        }
     }
 }

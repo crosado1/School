@@ -303,5 +303,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Grade_GetGroups" FunctionName="SchoolModel.Store.proc_Grade_GetGroups">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_Grade_GetGroups_Result">
+          <ScalarProperty Name="periodGradeGroupId" ColumnName="periodGradeGroupId" />
+          <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
+          <ScalarProperty Name="groupDescription" ColumnName="groupDescription" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

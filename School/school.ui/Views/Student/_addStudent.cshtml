@@ -1,0 +1,98 @@
+﻿@model school.Model.Model.StudentModel
+    <style>
+        
+    </style>
+<div class="row">
+    <div class="col-md-12">
+        <form class="form" role="form">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Middle Name</label>
+                        @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Gender</label>
+                        @Html.DropDownList("Grade", (IEnumerable<SelectListItem>)ViewBag.Gender, "", new { @class = "form-control", style = "margin-bottom: 20px" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Address 1</label>
+                        @Html.TextBoxFor(model => model.Address1, new { @class = "form-control" })
+                    </div>                    
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label>Address 2</label>
+                        @Html.TextBoxFor(model => model.Address2, new { @class = "form-control" })
+                    </div>
+                </div>                
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>City</label>
+                        @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>State</label>
+                        @Html.TextBoxFor(model => model.StateCode, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Zip Code</label>
+                        @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            </form>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Student Grade and Group</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            @Html.DropDownList("Grade", (IEnumerable<SelectListItem>)ViewBag.Grade, "", new { @class = "form-control", style = "margin-bottom: 20px",@onchange= "loadGroup(this.value);" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Group</label>
+                            <select id="GradeGroups" class="form-control"></select>
+                            @*@Html.DropDownList("Grade", (IEnumerable<SelectListItem>)ViewBag.Grade, "", new { @class = "form-control", style = "margin-bottom: 20px" })*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Student Pay Configuration</div>
+            <div class="panel-body">
+                Panel content
+            </div>
+        </div>
+    </div>
+</div>

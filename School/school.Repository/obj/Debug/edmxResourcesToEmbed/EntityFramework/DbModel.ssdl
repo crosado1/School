@@ -287,6 +287,9 @@
     <Parameter Name="periodId" Type="int" Mode="In" />
   </Function>
   <Function Name="proc_Grade_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_Grade_GetGroups" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodGradeId" Type="int" Mode="In" />
+  </Function>
   <Function Name="proc_Grade_StudentDetailByPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="periodId" Type="int" Mode="In" />
     <Parameter Name="gradeId" Type="int" Mode="In" />

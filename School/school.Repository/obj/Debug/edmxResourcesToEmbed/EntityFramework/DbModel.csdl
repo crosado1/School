@@ -421,6 +421,9 @@
     <FunctionImport Name="proc_PayTransaction_GetAllByStudent" ReturnType="Collection(SchoolModel.proc_PayTransaction_GetAllByStudent_Result)">
       <Parameter Name="studentId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="proc_Grade_GetGroups" ReturnType="Collection(SchoolModel.proc_Grade_GetGroups_Result)">
+      <Parameter Name="periodGradeId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_Period_GetAll_Result">
     <Property Type="Int32" Name="periodId" Nullable="false" />
@@ -535,5 +538,10 @@
     <Property Type="Decimal" Name="restante" Nullable="true" Precision="19" />
     <Property Type="String" Name="payTransactionStatusTypeDescription" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="transactionTypeDescription" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="proc_Grade_GetGroups_Result">
+    <Property Type="Int32" Name="periodGradeGroupId" Nullable="false" />
+    <Property Type="Int32" Name="periodGradeId" Nullable="false" />
+    <Property Type="String" Name="groupDescription" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>

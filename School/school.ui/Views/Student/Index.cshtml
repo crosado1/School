@@ -23,8 +23,31 @@
 
 <div class="modal fade" id="profile-student">
     <div id="profileHtml">
-        @Html.Partial("_profile")
+        @*@Html.Partial("_profile")*@
     </div>
+</div>
+
+<div class="modal fade" id="new-student">
+    
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h3 class="modal-title">New Student</h3>
+                </div>
+                <div class="modal-body">
+                    <div id="newStudentHtml">
+                        @*@Html.Partial("_addStudent",new school.Model.Model.StudentModel())*@
+                    </div>                 
+                </div>
+                <div class="modal-footer">
+                    @*<button id="btnSearch" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>*@
+                    <button class="btn btn-sm btn-warning" data-dismiss="modal"><i class="icon-remove"></i> Close</button>
+                </div>
+            </div>
+        </div>
 </div>
 
 @*hidden values*@
@@ -43,6 +66,7 @@
                 <div class="row">
                         <div class="col-md-12">
                             <button class="btn btn-success" typeof="btnSearchStudent" data-toggle="modal" data-target="#search-student" type="button"> <span class="glyphicon glyphicon-filter"> Filter</span></button>
+                            <button class="btn btn-primary" typeof="btnNewStudent" onclick="showStudentCreateModal();" data-toggle="modal" @*data-target="#new-student"*@ type="button"> <span class="glyphicon glyphicon-plus"> New Student</span></button>
                         </div>
                     </div>
             </div>
@@ -76,6 +100,8 @@
 <script src="~/Scripts/dateFormat/date.format.js"></script>
 <script src="~/Scripts/slimscroll/slimscroll.min.js"></script>
 <script src="~/Scripts/views/student/search.js"></script>
-<script src="~/Scripts/views/payTransaction/pay.js"></script>    }
+<script src="~/Scripts/views/payTransaction/pay.js"></script>   
+<script src="~/Scripts/views/student/create.js"></script>    
+     }
 
 
