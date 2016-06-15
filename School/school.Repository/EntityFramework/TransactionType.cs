@@ -22,6 +22,8 @@ namespace school.Repository.EntityFramework
     
         public int transactionTypeId { get; set; }
         public string transactionTypeDescription { get; set; }
+        public Nullable<bool> markOfDefault { get; set; }
+        public Nullable<int> runScheduleId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PeriodGradeStudentTranTypeConfiguration> PeriodGradeStudentTranTypeConfigurations { get; set; }

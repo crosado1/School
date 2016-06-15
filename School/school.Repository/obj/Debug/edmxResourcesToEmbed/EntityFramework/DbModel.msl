@@ -136,6 +136,8 @@
     <EntitySetMapping Name="TransactionTypes">
       <EntityTypeMapping TypeName="SchoolModel.TransactionType">
         <MappingFragment StoreEntitySet="TransactionType">
+          <ScalarProperty Name="runScheduleId" ColumnName="runScheduleId" />
+          <ScalarProperty Name="markOfDefault" ColumnName="markOfDefault" />
           <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
           <ScalarProperty Name="transactionTypeDescription" ColumnName="transactionTypeDescription" />
         </MappingFragment>

@@ -151,6 +151,8 @@
     <Property Name="transactionTypeId" Type="Int32" Nullable="false" />
     <Property Name="transactionTypeDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="PeriodGradeStudentTranTypeConfigurations" Relationship="Self.FK_PeriodGradeStudentTranTypeConfiguration_TransactionType" FromRole="TransactionType" ToRole="PeriodGradeStudentTranTypeConfiguration" />
+    <Property Name="markOfDefault" Type="Boolean" />
+    <Property Name="runScheduleId" Type="Int32" />
   </EntityType>
   <Association Name="FK_Student_Gender">
     <End Role="Gender" Type="Self.Gender" Multiplicity="1" />

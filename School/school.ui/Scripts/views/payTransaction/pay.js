@@ -141,11 +141,11 @@
         let valBalance = $('#txtPayAmount_' + id);
 
         if (valBalance.val() == '' || valBalance.val() > balance) {
-            valBalance.addClass('has-error');
+            valBalance.addClass('error');
             return false;
         }
         else {
-            valBalance.removeClass('has-error');
+            valBalance.removeClass('error');
             return true;
         }
             

@@ -59,12 +59,14 @@
     <Compile Include="Abstract\IStudentRepository.cs" />
     <Compile Include="Abstract\IPeriodRepository.cs" />
     <Compile Include="Abstract\IPeriodGradeStudentRepository.cs" />
+    <Compile Include="Abstract\ITransactionTypeRepository.cs" />
     <Compile Include="Concrete\GenderRepository.cs" />
     <Compile Include="Concrete\GradeRepository.cs" />
     <Compile Include="Concrete\PayTransactionRepository.cs" />
     <Compile Include="Concrete\PeriodGradeStudentRepository.cs" />
     <Compile Include="Concrete\StudentRepository.cs" />
     <Compile Include="Concrete\PeriodRepository.cs" />
+    <Compile Include="Concrete\TransactionTypeRepository.cs" />
     <Compile Include="EntityFramework\DbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

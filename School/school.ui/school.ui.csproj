@@ -259,6 +259,7 @@
     <Content Include="Scripts\views\student\create.js" />
     <Content Include="Scripts\views\student\profile.js" />
     <Content Include="Scripts\views\student\search.js" />
+    <Content Include="Scripts\views\transactionType\create.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

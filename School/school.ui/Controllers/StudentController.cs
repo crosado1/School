@@ -19,6 +19,7 @@ namespace school.ui.Controllers
         private GradeRepository _gradeRepository;
         private GenderRepository _genderRepository;
         private StudentRepository _studentRepository;
+        private TransactionTypeRepository _transactionTypeRepository;
         
         public StudentController()
         {
@@ -27,6 +28,7 @@ namespace school.ui.Controllers
             _gradeRepository = new GradeRepository();
             _genderRepository = new GenderRepository();
             _studentRepository = new StudentRepository();
+            _transactionTypeRepository = new TransactionTypeRepository();
         }
         public ActionResult Index()
         {
@@ -130,6 +132,9 @@ namespace school.ui.Controllers
                                                    Value = i.GenderId.ToString()
                                                });
 
+            ViewBag.TransactionType = _transactionTypeRepository.GetAll().Data;
+                                            
+
             return Json(new
             {
                 Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_addStudent.cshtml", new school.Model.Model.StudentModel()),
@@ -146,6 +151,23 @@ namespace school.ui.Controllers
             return Json(new
             {
                 Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_demographic.cshtml", result.Model),
+                Message = "",
+                Status = "OK"
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult Save(Dictionary<string, string> transactions,StudentModel student)
+                                                          //  string firstName,
+                                                          //  string middleName,
+                                                          //  string lastName,
+                                                          //  string genderId
+                                                          //)
+
+        {
+            return Json(new
+            {
+                Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_demographic.cshtml", null),
                 Message = "",
                 Status = "OK"
             }, JsonRequestBehavior.AllowGet);

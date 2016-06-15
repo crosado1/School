@@ -125,6 +125,8 @@
     </Key>
     <Property Name="transactionTypeId" Type="int" Nullable="false" />
     <Property Name="transactionTypeDescription" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="markOfDefault" Type="bit" />
+    <Property Name="runScheduleId" Type="int" />
   </EntityType>
   <Association Name="FK_PayTransaction_StudentPayTransaction">
     <End Role="StudentPayTransaction" Type="Self.StudentPayTransaction" Multiplicity="1" />
