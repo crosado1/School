@@ -21,6 +21,7 @@ namespace school.ui.Controllers
         private GenderRepository _genderRepository;
         private StudentRepository _studentRepository;
         private TransactionTypeRepository _transactionTypeRepository;
+        private PeriodGradeStudentRepository _periodGradeStudentRepository;
         
         public StudentController()
         {
@@ -30,6 +31,7 @@ namespace school.ui.Controllers
             _genderRepository = new GenderRepository();
             _studentRepository = new StudentRepository();
             _transactionTypeRepository = new TransactionTypeRepository();
+            _periodGradeStudentRepository = new PeriodGradeStudentRepository();
         }
         public ActionResult Index()
         {
@@ -152,7 +154,7 @@ namespace school.ui.Controllers
                 Status = "OK"
             }, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult Save(Dictionary<string, string> transactions,StudentModel student)
+        public JsonResult Save(Dictionary<string, string> transactions,StudentModel student,int periodGroupId)
                                                           //  string firstName,
                                                           //  string middleName,
                                                           //  string lastName,
@@ -168,7 +170,11 @@ namespace school.ui.Controllers
 
                     if (studentResult.Status == "OK")
                     {
-
+                        var periodGradeStudentResult = _periodGradeStudentRepository.Add(new PeriodGradeStudentModel
+                        {
+                             StudentModel = new StudentModel {  StudentId= studentResult.Id},
+                              PeriodGradeGroupModel=new PeriodGradeGroupModel {  PeriodGradeGroupId= periodGroupId }
+                        });
                     }
                     else
                         throw new Exception(studentResult.Message);

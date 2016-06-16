@@ -8,6 +8,7 @@ using school.Model.Model;
 using school.Model.Response;
 using school.Repository.EntityFramework;
 using school.Model.Model.Request;
+using System.Data.Entity.Core.Objects;
 
 namespace school.Repository.Concrete
 {
@@ -20,7 +21,27 @@ namespace school.Repository.Concrete
         }
         public SaveResult Add(PeriodGradeStudentModel entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ObjectParameter param1 = new ObjectParameter("periodGradeStudentId", entity.PeriodGradeStudentId);
+                var result = _context.proc_PeriodGradeStudent_Insert(param1,entity.PeriodGradeGroupModel.PeriodGradeGroupId,
+                                                                        entity.StudentModel.StudentId);
+                return new SaveResult
+                {
+                    Id = (int)param1.Value,
+                    Message = "Student Grade was created.",
+                    Status = "OK"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new SaveResult
+                {
+                    Id = 0,
+                    Message = "Error on PeriodGradeStudent Add method. " + ex.InnerException != null ? ex.InnerException.Message : ex.Message,
+                    Status = "ERROR"
+                };
+            }
         }
 
         public SaveResult Delete(PeriodGradeStudentModel entity)

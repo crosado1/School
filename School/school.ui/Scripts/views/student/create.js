@@ -74,7 +74,7 @@
         let cityId = 1;
         let state = $("#StateCode").val();
         let zipCode = $("#ZipCode").val();
-        alert(zipCode);
+        
 
         //Group Info
         let periodGroupId = $("#GradeGroups").val();       
@@ -98,7 +98,8 @@
                         CityId:cityId
                     },
                     StateCode: state,
-                    ZipCode:zipCode
+                    ZipCode: zipCode,
+                    PeriodGroupId: periodGroupId
                 },
                 success: function (response) {
                     alert('ok');
