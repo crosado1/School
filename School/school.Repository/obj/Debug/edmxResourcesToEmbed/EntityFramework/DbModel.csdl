@@ -426,6 +426,29 @@
     <FunctionImport Name="proc_Grade_GetGroups" ReturnType="Collection(SchoolModel.proc_Grade_GetGroups_Result)">
       <Parameter Name="periodGradeId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="proc_PeriodGradeStudent_Insert">
+      <Parameter Name="periodGradeStudentId" Mode="InOut" Type="Int32" />
+      <Parameter Name="periodGradeGroupId" Mode="In" Type="Int32" />
+      <Parameter Name="studentId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_PeriodGradeStudentTranTypeConfiguration_Insert">
+      <Parameter Name="periodGradeStudentTranTypeConfigurationId" Mode="InOut" Type="Int32" />
+      <Parameter Name="periodGradeStudentId" Mode="In" Type="Int32" />
+      <Parameter Name="transactionTypeId" Mode="In" Type="Int32" />
+      <Parameter Name="payConfiguration" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="proc_Student_Insert">
+      <Parameter Name="studentId" Mode="InOut" Type="Int32" />
+      <Parameter Name="firstName" Mode="In" Type="String" />
+      <Parameter Name="middleName" Mode="In" Type="String" />
+      <Parameter Name="lastName" Mode="In" Type="String" />
+      <Parameter Name="genderId" Mode="In" Type="Int32" />
+      <Parameter Name="address1" Mode="In" Type="String" />
+      <Parameter Name="address2" Mode="In" Type="String" />
+      <Parameter Name="cityId" Mode="In" Type="Int32" />
+      <Parameter Name="zipCode" Mode="In" Type="String" />
+      <Parameter Name="stateCode" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_Period_GetAll_Result">
     <Property Type="Int32" Name="periodId" Nullable="false" />

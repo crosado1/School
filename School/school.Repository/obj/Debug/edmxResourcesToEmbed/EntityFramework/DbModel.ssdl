@@ -60,7 +60,7 @@
     <Key>
       <PropertyRef Name="periodGradeStudentId" />
     </Key>
-    <Property Name="periodGradeStudentId" Type="int" Nullable="false" />
+    <Property Name="periodGradeStudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="periodGradeGroupId" Type="int" Nullable="false" />
     <Property Name="studentId" Type="int" Nullable="false" />
     <Property Name="fromDate" Type="datetime" Nullable="false" />
@@ -327,8 +327,31 @@
   <Function Name="proc_PeriodGradeGroup_GetByPeriodGradeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="periodGradeId" Type="int" Mode="In" />
   </Function>
+  <Function Name="proc_PeriodGradeStudent_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodGradeStudentId" Type="int" Mode="InOut" />
+    <Parameter Name="periodGradeGroupId" Type="int" Mode="In" />
+    <Parameter Name="studentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_PeriodGradeStudentTranTypeConfiguration_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodGradeStudentTranTypeConfigurationId" Type="int" Mode="InOut" />
+    <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />
+    <Parameter Name="transactionTypeId" Type="int" Mode="In" />
+    <Parameter Name="payConfiguration" Type="money" Mode="In" />
+  </Function>
   <Function Name="proc_Student_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="studentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_Student_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="studentId" Type="int" Mode="InOut" />
+    <Parameter Name="firstName" Type="varchar" Mode="In" />
+    <Parameter Name="middleName" Type="varchar" Mode="In" />
+    <Parameter Name="lastName" Type="varchar" Mode="In" />
+    <Parameter Name="genderId" Type="int" Mode="In" />
+    <Parameter Name="address1" Type="varchar" Mode="In" />
+    <Parameter Name="address2" Type="varchar" Mode="In" />
+    <Parameter Name="cityId" Type="int" Mode="In" />
+    <Parameter Name="zipCode" Type="varchar" Mode="In" />
+    <Parameter Name="stateCode" Type="char" Mode="In" />
   </Function>
   <Function Name="proc_Student_PaymentAvailable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />

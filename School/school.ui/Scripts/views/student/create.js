@@ -71,9 +71,10 @@
         let gender = $("#Gender").val();
         let address1 = $("#Address1").val();
         let address2 = $("#Address2").val();
-        let city = 1;
+        let cityId = 1;
         let state = $("#StateCode").val();
         let zipCode = $("#ZipCode").val();
+        alert(zipCode);
 
         //Group Info
         let periodGroupId = $("#GradeGroups").val();       
@@ -90,7 +91,14 @@
                     lastName: lastName,
                     GenderModel: {
                         GenderId: gender
-                    }
+                    },
+                    Address1: address1,
+                    Address2: address2,
+                    CityModel: {
+                        CityId:cityId
+                    },
+                    StateCode: state,
+                    ZipCode:zipCode
                 },
                 success: function (response) {
                     alert('ok');

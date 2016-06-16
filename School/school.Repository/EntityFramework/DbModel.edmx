@@ -65,7 +65,7 @@
           <Key>
             <PropertyRef Name="periodGradeStudentId" />
           </Key>
-          <Property Name="periodGradeStudentId" Type="int" Nullable="false" />
+          <Property Name="periodGradeStudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="periodGradeGroupId" Type="int" Nullable="false" />
           <Property Name="studentId" Type="int" Nullable="false" />
           <Property Name="fromDate" Type="datetime" Nullable="false" />
@@ -332,8 +332,31 @@
         <Function Name="proc_PeriodGradeGroup_GetByPeriodGradeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="periodGradeId" Type="int" Mode="In" />
         </Function>
+        <Function Name="proc_PeriodGradeStudent_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="periodGradeStudentId" Type="int" Mode="InOut" />
+          <Parameter Name="periodGradeGroupId" Type="int" Mode="In" />
+          <Parameter Name="studentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_PeriodGradeStudentTranTypeConfiguration_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="periodGradeStudentTranTypeConfigurationId" Type="int" Mode="InOut" />
+          <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />
+          <Parameter Name="transactionTypeId" Type="int" Mode="In" />
+          <Parameter Name="payConfiguration" Type="money" Mode="In" />
+        </Function>
         <Function Name="proc_Student_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="studentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_Student_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentId" Type="int" Mode="InOut" />
+          <Parameter Name="firstName" Type="varchar" Mode="In" />
+          <Parameter Name="middleName" Type="varchar" Mode="In" />
+          <Parameter Name="lastName" Type="varchar" Mode="In" />
+          <Parameter Name="genderId" Type="int" Mode="In" />
+          <Parameter Name="address1" Type="varchar" Mode="In" />
+          <Parameter Name="address2" Type="varchar" Mode="In" />
+          <Parameter Name="cityId" Type="int" Mode="In" />
+          <Parameter Name="zipCode" Type="varchar" Mode="In" />
+          <Parameter Name="stateCode" Type="char" Mode="In" />
         </Function>
         <Function Name="proc_Student_PaymentAvailable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />
@@ -837,6 +860,29 @@
           <FunctionImport Name="proc_Grade_GetGroups" ReturnType="Collection(SchoolModel.proc_Grade_GetGroups_Result)">
           <Parameter Name="periodGradeId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="proc_PeriodGradeStudent_Insert">
+            <Parameter Name="periodGradeStudentId" Mode="InOut" Type="Int32" />
+            <Parameter Name="periodGradeGroupId" Mode="In" Type="Int32" />
+            <Parameter Name="studentId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_PeriodGradeStudentTranTypeConfiguration_Insert">
+            <Parameter Name="periodGradeStudentTranTypeConfigurationId" Mode="InOut" Type="Int32" />
+            <Parameter Name="periodGradeStudentId" Mode="In" Type="Int32" />
+            <Parameter Name="transactionTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="payConfiguration" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Student_Insert">
+            <Parameter Name="studentId" Mode="InOut" Type="Int32" />
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="middleName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="genderId" Mode="In" Type="Int32" />
+            <Parameter Name="address1" Mode="In" Type="String" />
+            <Parameter Name="address2" Mode="In" Type="String" />
+            <Parameter Name="cityId" Mode="In" Type="Int32" />
+            <Parameter Name="zipCode" Mode="In" Type="String" />
+            <Parameter Name="stateCode" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_Period_GetAll_Result">
           <Property Type="Int32" Name="periodId" Nullable="false" />
@@ -1276,6 +1322,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_PeriodGradeStudent_Insert" FunctionName="SchoolModel.Store.proc_PeriodGradeStudent_Insert" />
+          <FunctionImportMapping FunctionImportName="proc_PeriodGradeStudentTranTypeConfiguration_Insert" FunctionName="SchoolModel.Store.proc_PeriodGradeStudentTranTypeConfiguration_Insert" />
+          <FunctionImportMapping FunctionImportName="proc_Student_Insert" FunctionName="SchoolModel.Store.proc_Student_Insert" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

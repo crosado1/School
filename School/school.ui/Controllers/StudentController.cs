@@ -5,6 +5,7 @@ using school.ui.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -93,7 +94,6 @@ namespace school.ui.Controllers
                 Status = "OK"
             }, JsonRequestBehavior.AllowGet);
         }
-
         public JsonResult ShowStudentProfile()
         {
             return Json(new
@@ -104,7 +104,6 @@ namespace school.ui.Controllers
                 Status = "OK"
             }, JsonRequestBehavior.AllowGet);
         }
-
         public JsonResult ShowStudentTransaction()
         {
             return Json(new
@@ -115,7 +114,6 @@ namespace school.ui.Controllers
                 Status = "OK"
             }, JsonRequestBehavior.AllowGet);
         }
-
         public JsonResult ShowStudentCreate()
         {
             ViewBag.Grade = _gradeRepository.GetAll().Data
@@ -143,7 +141,6 @@ namespace school.ui.Controllers
                 Status = "OK"
             }, JsonRequestBehavior.AllowGet);
         }
-
         public JsonResult GetStudentById(int studentId)
         {
             var result = _studentRepository.GetById(studentId);
@@ -155,8 +152,6 @@ namespace school.ui.Controllers
                 Status = "OK"
             }, JsonRequestBehavior.AllowGet);
         }
-
-
         public JsonResult Save(Dictionary<string, string> transactions,StudentModel student)
                                                           //  string firstName,
                                                           //  string middleName,
@@ -165,12 +160,37 @@ namespace school.ui.Controllers
                                                           //)
 
         {
-            return Json(new
+            try
             {
-                Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_demographic.cshtml", null),
-                Message = "",
-                Status = "OK"
-            }, JsonRequestBehavior.AllowGet);
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    var studentResult = _studentRepository.Add(student);
+
+                    if (studentResult.Status == "OK")
+                    {
+
+                    }
+                    else
+                        throw new Exception(studentResult.Message);
+
+
+                    scope.Complete();
+                }
+
+                return Json(new
+                {                   
+                    Message = "Student Configuration was created",
+                    Status = "OK"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    Message = ex.Message,
+                    Status = "OK"
+                }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

@@ -208,5 +208,76 @@ namespace school.Repository.EntityFramework
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_Grade_GetGroups_Result>("proc_Grade_GetGroups", periodGradeIdParameter);
         }
+    
+        public virtual int proc_PeriodGradeStudent_Insert(ObjectParameter periodGradeStudentId, Nullable<int> periodGradeGroupId, Nullable<int> studentId)
+        {
+            var periodGradeGroupIdParameter = periodGradeGroupId.HasValue ?
+                new ObjectParameter("periodGradeGroupId", periodGradeGroupId) :
+                new ObjectParameter("periodGradeGroupId", typeof(int));
+    
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("studentId", studentId) :
+                new ObjectParameter("studentId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_PeriodGradeStudent_Insert", periodGradeStudentId, periodGradeGroupIdParameter, studentIdParameter);
+        }
+    
+        public virtual int proc_PeriodGradeStudentTranTypeConfiguration_Insert(ObjectParameter periodGradeStudentTranTypeConfigurationId, Nullable<int> periodGradeStudentId, Nullable<int> transactionTypeId, Nullable<decimal> payConfiguration)
+        {
+            var periodGradeStudentIdParameter = periodGradeStudentId.HasValue ?
+                new ObjectParameter("periodGradeStudentId", periodGradeStudentId) :
+                new ObjectParameter("periodGradeStudentId", typeof(int));
+    
+            var transactionTypeIdParameter = transactionTypeId.HasValue ?
+                new ObjectParameter("transactionTypeId", transactionTypeId) :
+                new ObjectParameter("transactionTypeId", typeof(int));
+    
+            var payConfigurationParameter = payConfiguration.HasValue ?
+                new ObjectParameter("payConfiguration", payConfiguration) :
+                new ObjectParameter("payConfiguration", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_PeriodGradeStudentTranTypeConfiguration_Insert", periodGradeStudentTranTypeConfigurationId, periodGradeStudentIdParameter, transactionTypeIdParameter, payConfigurationParameter);
+        }
+    
+        public virtual int proc_Student_Insert(ObjectParameter studentId, string firstName, string middleName, string lastName, Nullable<int> genderId, string address1, string address2, Nullable<int> cityId, string zipCode, string stateCode)
+        {
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("firstName", firstName) :
+                new ObjectParameter("firstName", typeof(string));
+    
+            var middleNameParameter = middleName != null ?
+                new ObjectParameter("middleName", middleName) :
+                new ObjectParameter("middleName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("lastName", lastName) :
+                new ObjectParameter("lastName", typeof(string));
+    
+            var genderIdParameter = genderId.HasValue ?
+                new ObjectParameter("genderId", genderId) :
+                new ObjectParameter("genderId", typeof(int));
+    
+            var address1Parameter = address1 != null ?
+                new ObjectParameter("address1", address1) :
+                new ObjectParameter("address1", typeof(string));
+    
+            var address2Parameter = address2 != null ?
+                new ObjectParameter("address2", address2) :
+                new ObjectParameter("address2", typeof(string));
+    
+            var cityIdParameter = cityId.HasValue ?
+                new ObjectParameter("cityId", cityId) :
+                new ObjectParameter("cityId", typeof(int));
+    
+            var zipCodeParameter = zipCode != null ?
+                new ObjectParameter("zipCode", zipCode) :
+                new ObjectParameter("zipCode", typeof(string));
+    
+            var stateCodeParameter = stateCode != null ?
+                new ObjectParameter("stateCode", stateCode) :
+                new ObjectParameter("stateCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Student_Insert", studentId, firstNameParameter, middleNameParameter, lastNameParameter, genderIdParameter, address1Parameter, address2Parameter, cityIdParameter, zipCodeParameter, stateCodeParameter);
+        }
     }
 }

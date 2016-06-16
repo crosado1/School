@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using school.Model.Model;
 using school.Repository.EntityFramework;
 using school.Model.Response;
+using System.Data.Entity.Core.Objects;
 
 namespace school.Repository.Concrete
 {
@@ -20,7 +21,31 @@ namespace school.Repository.Concrete
 
         public SaveResult Add(StudentModel entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ObjectParameter param1 = new ObjectParameter("studentId", entity.StudentId);
+                var result = _context.proc_Student_Insert(param1, entity.FirstName,
+                                                            entity.MiddleName, entity.LastName,
+                                                            entity.GenderModel.GenderId,
+                                                            entity.Address1, entity.Address2,
+                                                            entity.CityModel != null?entity.CityModel.CityId:(int?)null,
+                                                            entity.ZipCode, entity.StateCode);
+                return new SaveResult
+                {
+                    Id = (int)param1.Value,
+                    Message = "Student was created.",
+                    Status="OK"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new SaveResult
+                {
+                    Id = 0,
+                    Message = "Error on Student Add method. " + ex.InnerException != null ? ex.InnerException.Message : ex.Message,
+                    Status = "ERROR"
+                };
+            }
         }
 
         public SaveResult Delete(StudentModel entity)

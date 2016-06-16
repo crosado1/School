@@ -314,5 +314,8 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_PeriodGradeStudent_Insert" FunctionName="SchoolModel.Store.proc_PeriodGradeStudent_Insert" />
+    <FunctionImportMapping FunctionImportName="proc_PeriodGradeStudentTranTypeConfiguration_Insert" FunctionName="SchoolModel.Store.proc_PeriodGradeStudentTranTypeConfiguration_Insert" />
+    <FunctionImportMapping FunctionImportName="proc_Student_Insert" FunctionName="SchoolModel.Store.proc_Student_Insert" />
   </EntityContainerMapping>
 </Mapping>
