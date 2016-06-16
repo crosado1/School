@@ -1,6 +1,6 @@
 ﻿(function () {
 
-    var loadStudent = function () {
+    this.loadStudent = function () {
         $('#studentList').dataTable().fnDestroy();
 
         $('#studentList').DataTable({

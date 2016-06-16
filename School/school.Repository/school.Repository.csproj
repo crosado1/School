@@ -56,6 +56,7 @@
     <Compile Include="Abstract\IGenericRepository.cs" />
     <Compile Include="Abstract\IGradeRepository.cs" />
     <Compile Include="Abstract\IPayTransactionRepository.cs" />
+    <Compile Include="Abstract\IStudentPayConfigurationRepository.cs" />
     <Compile Include="Abstract\IStudentRepository.cs" />
     <Compile Include="Abstract\IPeriodRepository.cs" />
     <Compile Include="Abstract\IPeriodGradeStudentRepository.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Concrete\GradeRepository.cs" />
     <Compile Include="Concrete\PayTransactionRepository.cs" />
     <Compile Include="Concrete\PeriodGradeStudentRepository.cs" />
+    <Compile Include="Concrete\StudentPayConfigurationRepository.cs" />
     <Compile Include="Concrete\StudentRepository.cs" />
     <Compile Include="Concrete\PeriodRepository.cs" />
     <Compile Include="Concrete\TransactionTypeRepository.cs" />

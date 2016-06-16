@@ -22,7 +22,8 @@ namespace school.ui.Controllers
         private StudentRepository _studentRepository;
         private TransactionTypeRepository _transactionTypeRepository;
         private PeriodGradeStudentRepository _periodGradeStudentRepository;
-        
+        private StudentPayConfigurationRepository _studentPayConfigurationRepository;
+
         public StudentController()
         {
             _repository = new PeriodGradeStudentRepository();
@@ -32,6 +33,7 @@ namespace school.ui.Controllers
             _studentRepository = new StudentRepository();
             _transactionTypeRepository = new TransactionTypeRepository();
             _periodGradeStudentRepository = new PeriodGradeStudentRepository();
+            _studentPayConfigurationRepository = new StudentPayConfigurationRepository();
         }
         public ActionResult Index()
         {
@@ -155,12 +157,6 @@ namespace school.ui.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult Save(Dictionary<string, string> transactions,StudentModel student,int periodGroupId)
-                                                          //  string firstName,
-                                                          //  string middleName,
-                                                          //  string lastName,
-                                                          //  string genderId
-                                                          //)
-
         {
             try
             {
@@ -175,6 +171,25 @@ namespace school.ui.Controllers
                              StudentModel = new StudentModel {  StudentId= studentResult.Id},
                               PeriodGradeGroupModel=new PeriodGradeGroupModel {  PeriodGradeGroupId= periodGroupId }
                         });
+
+                        if (periodGradeStudentResult.Status == "OK")
+                        {
+                            foreach (var item in transactions)
+                            {
+                                var configurationResult = _studentPayConfigurationRepository.Add(new StudentPayConfigurationModel
+                                {
+                                    PayConfiguration = Decimal.Parse(item.Value),
+                                    TransactionTypeId = Int32.Parse(item.Key),
+                                    PeriodGradeStudentModel = new PeriodGradeStudentModel { PeriodGradeStudentId = periodGradeStudentResult.Id }
+
+                                });
+
+                                if (configurationResult.Status != "OK")
+                                    throw new Exception(configurationResult.Message);
+                            }
+                        }
+                        else
+                            throw new Exception(periodGradeStudentResult.Message);
                     }
                     else
                         throw new Exception(studentResult.Message);

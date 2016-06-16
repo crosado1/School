@@ -2,10 +2,14 @@
     <style>
         
     </style>
-<button onclick="saveStudent();">Save</button>
+<button class="btn btn-sm btn-success pull-right" onclick="saveStudent();">Save Student</button>
+@*<button class="btn btn-success pull-right" onclick="saveStudent();">Reset</button>*@
+<br/>
+<br />
 <div class="row">
     <div class="col-md-12">
         <form id="form-demographic" class="form" role="form">
+            <h4>Main Information</h4>
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
@@ -32,102 +36,116 @@
                     </div>
                 </div>
             </div>
+            <h4>Address Information</h4>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Address 1</label>
                         @Html.TextBoxFor(model => model.Address1, new { @class = "form-control" })
-                    </div>                    
+                    </div>
                 </div>
-                <div class="col-md-5">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Address 2</label>
                         @Html.TextBoxFor(model => model.Address2, new { @class = "form-control" })
                     </div>
-                </div>                
-                <div class="col-md-3">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>City</label>
-                        @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control" })
+                        @Html.DropDownList("Gender", (IEnumerable<SelectListItem>)ViewBag.Gender, "", new { @class = "form-control", style = "margin-bottom: 20px" })
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>State</label>
                         @Html.TextBoxFor(model => model.StateCode, new { @class = "form-control" })
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Zip Code</label>
                         @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
                     </div>
                 </div>
             </div>
-            </form>
-    </div>
-    <div class="col-md-6">
-        <form id="form-grade">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Student Grade and Group</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Grade</label>
-                                @Html.DropDownList("Grade", (IEnumerable<SelectListItem>)ViewBag.Grade, "", new { @class = "form-control", style = "margin-bottom: 20px", @onchange = "loadGroup(this.value);" })
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Group</label>
-                                <select id="GradeGroups" name="GradeGroups" class="form-control"></select>
-                                @*@Html.DropDownList("Grade", (IEnumerable<SelectListItem>)ViewBag.Grade, "", new { @class = "form-control", style = "margin-bottom: 20px" })*@
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </form>
     </div>
-    <div class="col-md-6">
-        <form id="form-transaction">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Student Pay Configuration<button onclick="validateTransactionType(); return false;">Test</button></div>
-                <div class="panel-body">
-                    <div id="transaction-scroll">
-                        <table id="_transactionType" class="table table-striped table-fixed-header" style="margin-bottom: 0;">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Transaction Type</th>
-                                    <th>Amount To Pay</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var x in ViewBag.TransactionType)
-                                {
-                                    <tr>
-                                        <td>
-                                            @*<input id=@x.TransactionTypeId checked=@x.MarkOfDefault disabled=@x.MarkOfDefault type="checkbox" />*@
-                                            <div class="checkbox checkbox-info checkbox-circle">
-                                                <input class="styled" id=chk_@x.TransactionTypeId data-search=@x.TransactionTypeId type="checkbox" checked=@x.MarkOfDefault disabled=@x.MarkOfDefault>
-                                                <label for=chk_@x.TransactionTypeId>Required</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            @x.TransactionTypeDescription
-                                        </td>
-                                        <td>
-                                            <input class="form-control" id="txt_@x.TransactionTypeId" type="text" />
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h4>Additional Information</h4>
+        <div class="col-md-6">
+            @*<h4>Grade Information</h4>*@
+            <form id="form-grade">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Student Grade and Group</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Grade</label>
+                                    @Html.DropDownList("Grade", (IEnumerable<SelectListItem>)ViewBag.Grade, "", new { @class = "form-control", style = "margin-bottom: 20px", @onchange = "loadGroup(this.value);" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Groups</label>
+                                    <select id="GradeGroups" name="GradeGroups" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-      </form>
-</div>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            @*<h4>Pay Information</h4>*@
+            <form id="form-transaction">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Student Pay Configuration</div>
+                    <div class="panel-body">
+                        <div id="transaction-scroll">
+                            <table id="_transactionType" class="table table-striped table-fixed-header" style="margin-bottom: 0;">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-4"></th>
+                                        <th class="col-md-4">Transaction</th>
+                                        <th class="col-md-4">Pay</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var x in ViewBag.TransactionType)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @*<input id=@x.TransactionTypeId checked=@x.MarkOfDefault disabled=@x.MarkOfDefault type="checkbox" />*@
+                                                <div class="checkbox checkbox-info checkbox-circle">
+                                                    <input class="styled" id=chk_@x.TransactionTypeId data-search=@x.TransactionTypeId type="checkbox" checked=@x.MarkOfDefault disabled=@x.MarkOfDefault>
+                                                    <label for=chk_@x.TransactionTypeId>Required</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @x.TransactionTypeDescription
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input class="form-control " id="txt_@x.TransactionTypeId" type="text" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

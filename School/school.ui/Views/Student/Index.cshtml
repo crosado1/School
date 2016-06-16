@@ -7,6 +7,19 @@
     .error {
         border-color: #b94a48;
     }
+
+    .modal-header {
+   background:linear-gradient(to bottom, #1abde7 0%,#1c9dd1 100%);
+   border-top-left-radius: 5px;
+   border-top-right-radius: 5px;
+   color:#fff;
+}
+
+    .modal-title {
+    margin: 0;
+    line-height: 1.42857143;
+    color:#fff;
+}
       
     
 </style>
@@ -37,7 +50,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h3 class="modal-title">New Student</h3>
+                    <h3 class="modal-title">Student Information</h3>
                 </div>
                 <div class="modal-body">
                     <div id="newStudentHtml">
@@ -66,10 +79,14 @@
             <div class="page-header">
                 <h1>Students <small>Student List</small></h1>
                 <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <button class="btn btn-success" typeof="btnSearchStudent" data-toggle="modal" data-target="#search-student" type="button"> <span class="glyphicon glyphicon-filter"> Filter</span></button>
                             <button class="btn btn-primary" typeof="btnNewStudent" onclick="showStudentCreateModal();" data-toggle="modal" @*data-target="#new-student"*@ type="button"> <span class="glyphicon glyphicon-plus"> New Student</span></button>
                         </div>
+
+                    <div class="col-md-5">
+                        <div id="dvResult" style="display:none" class="alert alert-success" role="alert">...</div>
+                    </div>
                     </div>
             </div>
         </div>

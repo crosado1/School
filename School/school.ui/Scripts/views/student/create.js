@@ -15,6 +15,23 @@
         initGradeValidation();
     }
 
+    var onSuccess = function (response) {
+        let classToApply = 'alert-success';
+        if (response.Status == 'OK')
+            classToApply = 'alert-success';
+        else
+            classToApply = 'alert-danger';
+
+        $('#dvResult').addClass(classToApply);
+
+        $('#new-student').modal('hide');
+        $('#dvResult').html(response.Message);
+        $('#dvResult').show();
+
+        // load Student List
+        loadStudent();
+    }
+
     /************************************************/
 
     /* Global methods */
@@ -102,7 +119,7 @@
                     PeriodGroupId: periodGroupId
                 },
                 success: function (response) {
-                    alert('ok');
+                    onSuccess(response);
                 }
             });
         }
