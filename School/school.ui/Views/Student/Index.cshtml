@@ -37,9 +37,29 @@
 </div>
 
 <div class="modal fade" id="profile-student">
-    <div id="profileHtml">
-        @*@Html.Partial("_profile")*@
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h3 class="modal-title">Student Profile</h3>
+            </div>
+            <div class="modal-body">
+                <form id="t">
+                    <div id="loadProfile">
+                        @Html.Partial("_profile")
+                    </div>
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                @*<button id="btnSearch" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>*@
+                <button class="btn btn-sm btn-warning" data-dismiss="modal"><i class="icon-remove"></i> Close</button>
+            </div>
+        </div>
     </div>
+   
 </div>
 
 <div class="modal fade" id="new-student">
@@ -121,7 +141,8 @@
 <script src="~/Scripts/slimscroll/slimscroll.min.js"></script>
 <script src="~/Scripts/views/student/search.js"></script>
 <script src="~/Scripts/views/payTransaction/pay.js"></script>   
-<script src="~/Scripts/views/student/create.js"></script>    
+<script src="~/Scripts/views/student/create.js"></script>
+<script src="~/Scripts/views/student/profile.js"></script>    
      }
 
 

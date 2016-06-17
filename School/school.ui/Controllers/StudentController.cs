@@ -103,7 +103,6 @@ namespace school.ui.Controllers
             return Json(new
             {
                 Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_profile.cshtml", null),
-
                 Message = "",
                 Status = "OK"
             }, JsonRequestBehavior.AllowGet);

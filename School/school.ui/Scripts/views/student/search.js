@@ -90,19 +90,16 @@
     }
 
     this.getActions = function (row) {
-        //console.log(row);
         let activePeriod = row.PeriodGradeGroupModel.PeriodGradeModel.PeriodModel.Active;
-        //let paybutton = activePeriod?
+        
         let payButton = '';
         
         if (activePeriod) {
             payButton = $('<a>', {
                 text: 'Pay',
                 onclick: 'showPaymentModal(this)',
-                href: '#',               
-                //'data-toggle': 'modal',
+                href: '#',
                 'class': 'btn btn-success btn-sm',
-                //'data-target': '#pay-student',
                 'data-id': row.PeriodGradeStudentId
             }).prop('outerHTML');
         }
@@ -116,26 +113,17 @@
             }).prop('outerHTML');
         }
 
-        let profileButton = $('<a>', {
+        let profileButton = $('<button>', {
             text: 'Profile',
-            onclick: 'viewPaymentInfo(this)',
-            href: '#',
-            'data-toggle': 'modal',
+            onclick: 'showStudentProfileModal(this)',
+            //href: '#',
+            //'data-toggle': 'modal',
             'class': 'btn btn-info btn-sm',
-            'data-target': '#profile-student',
-            'data-id': row.PeriodGradeStudentId
-        }).prop('outerHTML');
+            //'data-target': '#profile-student',
+            'data-id': row.StudentModel.StudentId
+        }).prop('outerHTML');        
         
-        return payButton + ' ' +  profileButton;
-        //return $('<a>', {
-        //    text: 'Pay',
-        //    onclick: 'viewPaymentInfo(this)',
-        //    href: '#',
-        //    'data-toggle': 'modal',
-        //    'class': 'btn btn-success btn-sm',
-        //    'data-target': '#pay-student',
-        //    'data-id': row.PeriodGradeStudentId
-        //}).prop('outerHTML');
+        return payButton + ' ' +  profileButton;        
     }
 
     var loadSearchStudentModal = function () {
