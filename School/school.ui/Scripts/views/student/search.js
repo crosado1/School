@@ -79,10 +79,14 @@
         });
     };
 
+    this.setStudent = function (studentId) {
+        $('#search_studentCode').val(studentId);
+        loadStudent();
+    }
+
     var init = function()
     {
-        loadStudent();
-       
+        loadStudent();       
     }
 
     this.getActions = function (row) {
@@ -162,6 +166,7 @@
         $('#search_lastName').val($('#txtLastName').val());
         $('#search_genderId').val($('#Gender').val());
 
+        $('#dvResult').hide();
         loadStudent();
     }
 

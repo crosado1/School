@@ -158,14 +158,16 @@ namespace school.ui.Controllers
         }
         public JsonResult Save(Dictionary<string, string> transactions,StudentModel student,int periodGroupId)
         {
+            var studentId = 0;
             try
-            {
+            {                
                 using (TransactionScope scope = new TransactionScope())
                 {
                     var studentResult = _studentRepository.Add(student);
 
                     if (studentResult.Status == "OK")
                     {
+                        studentId = studentResult.Id;
                         var periodGradeStudentResult = _periodGradeStudentRepository.Add(new PeriodGradeStudentModel
                         {
                              StudentModel = new StudentModel {  StudentId= studentResult.Id},
@@ -199,7 +201,8 @@ namespace school.ui.Controllers
                 }
 
                 return Json(new
-                {                   
+                {       
+                    StudentId = studentId,
                     Message = "Student Configuration was created",
                     Status = "OK"
                 }, JsonRequestBehavior.AllowGet);
@@ -208,6 +211,7 @@ namespace school.ui.Controllers
             {
                 return Json(new
                 {
+                    StudentId = 0,
                     Message = ex.Message,
                     Status = "OK"
                 }, JsonRequestBehavior.AllowGet);

@@ -29,7 +29,9 @@
         $('#dvResult').show();
 
         // load Student List
-        loadStudent();
+        if (response.StudentId != 0)
+            setStudent(response.StudentId);
+       // loadStudent();
     }
 
     /************************************************/
@@ -94,8 +96,9 @@
         
 
         //Group Info
-        let periodGroupId = $("#GradeGroups").val();       
-                
+        let periodGroupId = $("#GradeGroups").val();
+
+                      
         if (validateForms()) {
             $.ajax({
                 dataType: 'json',
