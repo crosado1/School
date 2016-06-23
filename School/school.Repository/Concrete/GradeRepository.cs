@@ -154,8 +154,10 @@ namespace school.Repository.Concrete
                 {
                     collection.Add(new PeriodGradeGroupModel
                     {
-                         GroupDescription = item.groupDescription,
-                         PeriodGradeGroupId = item.periodGradeGroupId
+                        GroupDescription = item.groupDescription,   
+                        GroupNumber = item.groupNumber,
+                        LeaderId = item.leaderId.HasValue?item.leaderId.Value:0,                      
+                        PeriodGradeGroupId = item.periodGradeGroupId
                     });
                 }
 

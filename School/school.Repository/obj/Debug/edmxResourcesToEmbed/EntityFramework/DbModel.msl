@@ -313,6 +313,8 @@
           <ScalarProperty Name="periodGradeGroupId" ColumnName="periodGradeGroupId" />
           <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
           <ScalarProperty Name="groupDescription" ColumnName="groupDescription" />
+          <ScalarProperty Name="groupNumber" ColumnName="groupNumber" />
+          <ScalarProperty Name="leaderId" ColumnName="leaderId" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

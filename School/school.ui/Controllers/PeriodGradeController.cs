@@ -13,12 +13,16 @@ namespace school.ui.Controllers
         private PeriodGradeRepository _repository;
         private UserRoleRepository _userRepository;
         private GradeGroupRepository _gradeGroupRepository;
+        private GradeRepository _gradeRepository;
 
         public PeriodGradeController()
         {
             _repository = new PeriodGradeRepository();
             _userRepository = new UserRoleRepository();
             _gradeGroupRepository = new GradeGroupRepository();
+            _gradeRepository = new GradeRepository();
+
+
         }
         // GET: PeriodGrade
         public ActionResult Index()
@@ -68,5 +72,14 @@ namespace school.ui.Controllers
             //_gradeGroupRepository.Dispose();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        //public JsonResult GetGroups(int periodGradeId)
+        //{
+        //    GradeController gradeController = new GradeController();
+        //    return gradeController.GetGroups(periodGradeId);
+        //}
+
+
+
     }
 }

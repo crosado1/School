@@ -16,5 +16,7 @@ namespace school.Repository.EntityFramework
         public int periodGradeGroupId { get; set; }
         public int periodGradeId { get; set; }
         public string groupDescription { get; set; }
+        public string groupNumber { get; set; }
+        public Nullable<int> leaderId { get; set; }
     }
 }

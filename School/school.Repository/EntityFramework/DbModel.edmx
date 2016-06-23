@@ -1129,6 +1129,8 @@
           <Property Type="Int32" Name="periodGradeGroupId" Nullable="false" />
           <Property Type="Int32" Name="periodGradeId" Nullable="false" />
           <Property Type="String" Name="groupDescription" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="groupNumber" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="leaderId" Nullable="true" />
         </ComplexType>
         <EntityType Name="City">
           <Key>
@@ -1535,6 +1537,8 @@
                 <ScalarProperty Name="periodGradeGroupId" ColumnName="periodGradeGroupId" />
                 <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
                 <ScalarProperty Name="groupDescription" ColumnName="groupDescription" />
+                <ScalarProperty Name="groupNumber" ColumnName="groupNumber" />
+                <ScalarProperty Name="leaderId" ColumnName="leaderId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
