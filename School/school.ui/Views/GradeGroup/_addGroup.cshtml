@@ -1,0 +1,33 @@
+﻿
+<div class="row">
+    <div class="col-md-12">
+        <form id="form-group" class="form" role="form"> 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Teacher Leader</label>                       
+                        @Html.DropDownList("Leader", (IEnumerable<SelectListItem>)ViewBag.Teachers, "", new { @class = "form-control", style = "margin-bottom: 20px" })
+                        @*@Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })*@
+                    </div>
+                </div>
+            </div>          
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Group Number</label>
+                        <input class="form-control" id="GroupNumber" name="GroupNumber" type="text" />
+                        @*@Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })*@
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Group Description</label>
+                        <textarea  class="form-control" id="GroupDescription" name="GroupDescription" cols="4"></textarea>
+                        @*<input class="form-control" type="text" />*@
+                        @*@Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control" })*@
+                    </div>
+                </div>                
+            </div>
+        </form>
+    </div>
+</div>

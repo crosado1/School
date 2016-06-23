@@ -32,6 +32,13 @@
         <AssociationConnector Association="SchoolModel.FK_PeriodGradeStudentTranTypeConfiguration_TransactionType" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolModel.FK_StudentPayTransaction_PeriodGradeStudentTranTypeConfiguration" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolModel.FK_StudentPayTransactionStatus_StudentPayTransaction" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SchoolModel.City" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="SchoolModel.Role" Width="1.5" PointX="10.375" PointY="8.375" />
+        <EntityTypeShape EntityType="SchoolModel.User" Width="1.5" PointX="10.375" PointY="11" />
+        <EntityTypeShape EntityType="SchoolModel.UserRole" Width="1.5" PointX="12.625" PointY="8" />
+        <AssociationConnector Association="SchoolModel.FK_Student_City" />
+        <AssociationConnector Association="SchoolModel.FK_UserRole_Role" />
+        <AssociationConnector Association="SchoolModel.FK_UserRole_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -58,6 +58,8 @@
     <EntitySetMapping Name="PeriodGradeGroups">
       <EntityTypeMapping TypeName="SchoolModel.PeriodGradeGroup">
         <MappingFragment StoreEntitySet="PeriodGradeGroup">
+          <ScalarProperty Name="leaderId" ColumnName="leaderId" />
+          <ScalarProperty Name="groupNumber" ColumnName="groupNumber" />
           <ScalarProperty Name="periodGradeGroupId" ColumnName="periodGradeGroupId" />
           <ScalarProperty Name="periodGradeId" ColumnName="periodGradeId" />
           <ScalarProperty Name="groupDescription" ColumnName="groupDescription" />
@@ -317,5 +319,60 @@
     <FunctionImportMapping FunctionImportName="proc_PeriodGradeStudent_Insert" FunctionName="SchoolModel.Store.proc_PeriodGradeStudent_Insert" />
     <FunctionImportMapping FunctionImportName="proc_PeriodGradeStudentTranTypeConfiguration_Insert" FunctionName="SchoolModel.Store.proc_PeriodGradeStudentTranTypeConfiguration_Insert" />
     <FunctionImportMapping FunctionImportName="proc_Student_Insert" FunctionName="SchoolModel.Store.proc_Student_Insert" />
+    <FunctionImportMapping FunctionImportName="proc_PeriodGradeGroup_Insert" FunctionName="SchoolModel.Store.proc_PeriodGradeGroup_Insert" />
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="SchoolModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="cityDescription" ColumnName="cityDescription" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="SchoolModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="roleDescription" ColumnName="roleDescription" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SchoolModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="userEmailAddress" ColumnName="userEmailAddress" />
+          <ScalarProperty Name="userFullName" ColumnName="userFullName" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="SchoolModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="toDate" ColumnName="toDate" />
+          <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="userRoleId" ColumnName="userRoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_User_GetUserByRole" FunctionName="SchoolModel.Store.proc_User_GetUserByRole">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_User_GetUserByRole_Result">
+          <ScalarProperty Name="userRoleId" ColumnName="userRoleId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+          <ScalarProperty Name="toDate" ColumnName="toDate" />
+          <ScalarProperty Name="roleDescription" ColumnName="roleDescription" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="userFullName" ColumnName="userFullName" />
+          <ScalarProperty Name="userEmailAddress" ColumnName="userEmailAddress" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -12,22 +12,18 @@ namespace school.Repository.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class PeriodGradeGroup
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PeriodGradeGroup()
+        public Role()
         {
-            this.PeriodGradeStudents = new HashSet<PeriodGradeStudent>();
+            this.UserRoles = new HashSet<UserRole>();
         }
     
-        public int periodGradeGroupId { get; set; }
-        public int periodGradeId { get; set; }
-        public string groupDescription { get; set; }
-        public string groupNumber { get; set; }
-        public Nullable<int> leaderId { get; set; }
+        public int roleId { get; set; }
+        public string roleDescription { get; set; }
     
-        public virtual PeriodGrade PeriodGrade { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PeriodGradeStudent> PeriodGradeStudents { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

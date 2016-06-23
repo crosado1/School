@@ -51,11 +51,14 @@
     <Compile Include="Model\PeriodGradeStudentModel.cs" />
     <Compile Include="Model\PeriodModel.cs" />
     <Compile Include="Model\Request\Search_StudentRequest.cs" />
+    <Compile Include="Model\RoleModel.cs" />
     <Compile Include="Model\StudentModel.cs" />
     <Compile Include="Model\StudentPayConfigurationModel.cs" />
     <Compile Include="Model\StudentPayTransactionModel.cs" />
     <Compile Include="Model\StudentTransactionModel.cs" />
     <Compile Include="Model\TransactionTypeModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
+    <Compile Include="Model\UserRoleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\SaveResult.cs" />
     <Compile Include="Response\ServiceResponse.cs" />

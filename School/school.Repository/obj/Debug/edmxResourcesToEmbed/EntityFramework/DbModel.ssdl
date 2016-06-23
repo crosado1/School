@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="cityId" />
+    </Key>
+    <Property Name="cityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cityDescription" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="Gender">
     <Key>
       <PropertyRef Name="genderId" />
@@ -52,9 +59,11 @@
     <Key>
       <PropertyRef Name="periodGradeGroupId" />
     </Key>
-    <Property Name="periodGradeGroupId" Type="int" Nullable="false" />
+    <Property Name="periodGradeGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="periodGradeId" Type="int" Nullable="false" />
     <Property Name="groupDescription" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="groupNumber" Type="varchar" MaxLength="10" />
+    <Property Name="leaderId" Type="int" />
   </EntityType>
   <EntityType Name="PeriodGradeStudent">
     <Key>
@@ -77,6 +86,13 @@
     <Property Name="fromDate" Type="datetime" Nullable="false" />
     <Property Name="toDate" Type="datetime" />
     <Property Name="runScheduleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleDescription" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="RunSchedule">
     <Key>
@@ -127,6 +143,26 @@
     <Property Name="transactionTypeDescription" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="markOfDefault" Type="bit" />
     <Property Name="runScheduleId" Type="int" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userFullName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="userEmailAddress" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="userRoleId" />
+    </Key>
+    <Property Name="userRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="roleId" Type="int" Nullable="false" />
+    <Property Name="fromDate" Type="datetime" Nullable="false" />
+    <Property Name="toDate" Type="datetime" />
   </EntityType>
   <Association Name="FK_PayTransaction_StudentPayTransaction">
     <End Role="StudentPayTransaction" Type="Self.StudentPayTransaction" Multiplicity="1" />
@@ -236,6 +272,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Student_City">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="cityId" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Student_Gender">
     <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
     <End Role="Student" Type="Self.Student" Multiplicity="*" />
@@ -284,6 +332,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Function Name="proc_Gender_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="proc_Grade_ExpenceSummaryByPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="periodId" Type="int" Mode="In" />
@@ -327,6 +399,13 @@
   <Function Name="proc_PeriodGradeGroup_GetByPeriodGradeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="periodGradeId" Type="int" Mode="In" />
   </Function>
+  <Function Name="proc_PeriodGradeGroup_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodGradeGroupId" Type="int" Mode="InOut" />
+    <Parameter Name="periodGradeId" Type="int" Mode="In" />
+    <Parameter Name="groupNumber" Type="varchar" Mode="In" />
+    <Parameter Name="groupDescription" Type="varchar" Mode="In" />
+    <Parameter Name="leaderId" Type="int" Mode="In" />
+  </Function>
   <Function Name="proc_PeriodGradeStudent_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="periodGradeStudentId" Type="int" Mode="InOut" />
     <Parameter Name="periodGradeGroupId" Type="int" Mode="In" />
@@ -356,7 +435,11 @@
   <Function Name="proc_Student_PaymentAvailable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />
   </Function>
+  <Function Name="proc_User_GetUserByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="roleId" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="SchoolModelStoreContainer">
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PayTransaction" EntityType="Self.PayTransaction" Schema="dbo" store:Type="Tables" />
@@ -366,11 +449,14 @@
     <EntitySet Name="PeriodGradeGroup" EntityType="Self.PeriodGradeGroup" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PeriodGradeStudent" EntityType="Self.PeriodGradeStudent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PeriodGradeStudentTranTypeConfiguration" EntityType="Self.PeriodGradeStudentTranTypeConfiguration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RunSchedule" EntityType="Self.RunSchedule" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentPayTransaction" EntityType="Self.StudentPayTransaction" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentPayTransactionStatus" EntityType="Self.StudentPayTransactionStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_PayTransaction_StudentPayTransaction" Association="Self.FK_PayTransaction_StudentPayTransaction">
       <End Role="StudentPayTransaction" EntitySet="StudentPayTransaction" />
       <End Role="PayTransaction" EntitySet="PayTransaction" />
@@ -407,6 +493,10 @@
       <End Role="TransactionType" EntitySet="TransactionType" />
       <End Role="PeriodGradeStudentTranTypeConfiguration" EntitySet="PeriodGradeStudentTranTypeConfiguration" />
     </AssociationSet>
+    <AssociationSet Name="FK_Student_City" Association="Self.FK_Student_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
     <AssociationSet Name="FK_Student_Gender" Association="Self.FK_Student_Gender">
       <End Role="Gender" EntitySet="Gender" />
       <End Role="Student" EntitySet="Student" />
@@ -422,6 +512,14 @@
     <AssociationSet Name="FK_StudentPayTransactionStatus_StudentPayTransaction" Association="Self.FK_StudentPayTransactionStatus_StudentPayTransaction">
       <End Role="StudentPayTransaction" EntitySet="StudentPayTransaction" />
       <End Role="StudentPayTransactionStatus" EntitySet="StudentPayTransactionStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRole" EntitySet="UserRole" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

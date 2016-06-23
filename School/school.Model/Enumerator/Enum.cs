@@ -13,5 +13,11 @@ namespace school.Model.Enumerator
             Success,
             Failure,
         }
+        public enum UserRoles
+        {
+            Admin = 1,
+            Teacher =2,
+            User=3
+        }
     }
 }

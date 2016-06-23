@@ -65,6 +65,8 @@
     <Property Name="groupDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="PeriodGrade" Relationship="Self.FK_PeriodGradeGroup_PeriodGrade" FromRole="PeriodGradeGroup" ToRole="PeriodGrade" />
     <NavigationProperty Name="PeriodGradeStudents" Relationship="Self.FK_PeriodGradeStudent_PeriodGradeGroup" FromRole="PeriodGradeGroup" ToRole="PeriodGradeStudent" />
+    <Property Name="groupNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="leaderId" Type="Int32" />
   </EntityType>
   <EntityType Name="PeriodGradeStudent">
     <Key>
@@ -119,6 +121,7 @@
     <Property Name="cityId" Type="Int32" />
     <Property Name="zipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="stateCode" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="City" Relationship="SchoolModel.FK_Student_City" FromRole="Student" ToRole="City" />
   </EntityType>
   <EntityType Name="StudentPayTransaction">
     <Key>
@@ -449,6 +452,32 @@
       <Parameter Name="zipCode" Mode="In" Type="String" />
       <Parameter Name="stateCode" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="proc_PeriodGradeGroup_Insert">
+      <Parameter Name="periodGradeGroupId" Mode="InOut" Type="Int32" />
+      <Parameter Name="periodGradeId" Mode="In" Type="Int32" />
+      <Parameter Name="groupNumber" Mode="In" Type="String" />
+      <Parameter Name="groupDescription" Mode="In" Type="String" />
+      <Parameter Name="leaderId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Cities" EntityType="SchoolModel.City" />
+    <EntitySet Name="Roles" EntityType="SchoolModel.Role" />
+    <EntitySet Name="Users" EntityType="SchoolModel.User" />
+    <EntitySet Name="UserRoles" EntityType="SchoolModel.UserRole" />
+    <AssociationSet Name="FK_Student_City" Association="SchoolModel.FK_Student_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="SchoolModel.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="SchoolModel.FK_UserRole_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <FunctionImport Name="proc_User_GetUserByRole" ReturnType="Collection(SchoolModel.proc_User_GetUserByRole_Result)">
+      <Parameter Name="roleId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_Period_GetAll_Result">
     <Property Type="Int32" Name="periodId" Nullable="false" />
@@ -568,5 +597,92 @@
     <Property Type="Int32" Name="periodGradeGroupId" Nullable="false" />
     <Property Type="Int32" Name="periodGradeId" Nullable="false" />
     <Property Type="String" Name="groupDescription" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="cityId" />
+    </Key>
+    <Property Name="cityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cityDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Students" Relationship="SchoolModel.FK_Student_City" FromRole="City" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserRoles" Relationship="SchoolModel.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userFullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="userEmailAddress" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserRoles" Relationship="SchoolModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="userRoleId" />
+    </Key>
+    <Property Name="userRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="roleId" Type="Int32" Nullable="false" />
+    <Property Name="fromDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="toDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Role" Relationship="SchoolModel.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="SchoolModel.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Student_City">
+    <End Type="SchoolModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="SchoolModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="cityId" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Type="SchoolModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="SchoolModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User">
+    <End Type="SchoolModel.User" Role="User" Multiplicity="1" />
+    <End Type="SchoolModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="proc_User_GetUserByRole_Result">
+    <Property Type="Int32" Name="userRoleId" Nullable="false" />
+    <Property Type="Int32" Name="userId" Nullable="false" />
+    <Property Type="Int32" Name="roleId" Nullable="false" />
+    <Property Type="DateTime" Name="fromDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="toDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="roleDescription" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="userName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="userPassword" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="userFullName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="userEmailAddress" Nullable="false" MaxLength="200" />
   </ComplexType>
 </Schema>

@@ -176,7 +176,9 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PayTransactionController.cs" />
     <Compile Include="Controllers\PeriodController.cs" />
+    <Compile Include="Controllers\PeriodGradeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -255,6 +257,8 @@
     <Content Include="Scripts\slimscroll\slimscroll.min.js" />
     <Content Include="Scripts\views\graphic\graphic.js" />
     <Content Include="Scripts\views\payTransaction\payStudentTransaction.js" />
+    <Content Include="Scripts\views\periodGrade\create.js" />
+    <Content Include="Scripts\views\periodGrade\search.js" />
     <Content Include="Scripts\views\period\periodSearch.js" />
     <Content Include="Scripts\views\payTransaction\pay.js" />
     <Content Include="Scripts\views\student\create.js" />
@@ -309,10 +313,13 @@
     <Content Include="Views\Student\_payTransactionSummary.cshtml" />
     <Content Include="Views\Student\_addStudent.cshtml" />
     <Content Include="Views\Grade\Index.cshtml" />
+    <Content Include="Views\PeriodGrade\Index.cshtml" />
+    <Content Include="Views\GradeGroup\_addGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\PayTransaction\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

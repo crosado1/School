@@ -41,6 +41,10 @@ namespace school.Repository.EntityFramework
         public virtual DbSet<StudentPayTransaction> StudentPayTransactions { get; set; }
         public virtual DbSet<StudentPayTransactionStatu> StudentPayTransactionStatus { get; set; }
         public virtual DbSet<TransactionType> TransactionTypes { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
     
         public virtual ObjectResult<proc_Period_GetAll_Result> proc_Period_GetAll()
         {
@@ -278,6 +282,36 @@ namespace school.Repository.EntityFramework
                 new ObjectParameter("stateCode", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Student_Insert", studentId, firstNameParameter, middleNameParameter, lastNameParameter, genderIdParameter, address1Parameter, address2Parameter, cityIdParameter, zipCodeParameter, stateCodeParameter);
+        }
+    
+        public virtual int proc_PeriodGradeGroup_Insert(ObjectParameter periodGradeGroupId, Nullable<int> periodGradeId, string groupNumber, string groupDescription, Nullable<int> leaderId)
+        {
+            var periodGradeIdParameter = periodGradeId.HasValue ?
+                new ObjectParameter("periodGradeId", periodGradeId) :
+                new ObjectParameter("periodGradeId", typeof(int));
+    
+            var groupNumberParameter = groupNumber != null ?
+                new ObjectParameter("groupNumber", groupNumber) :
+                new ObjectParameter("groupNumber", typeof(string));
+    
+            var groupDescriptionParameter = groupDescription != null ?
+                new ObjectParameter("groupDescription", groupDescription) :
+                new ObjectParameter("groupDescription", typeof(string));
+    
+            var leaderIdParameter = leaderId.HasValue ?
+                new ObjectParameter("leaderId", leaderId) :
+                new ObjectParameter("leaderId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_PeriodGradeGroup_Insert", periodGradeGroupId, periodGradeIdParameter, groupNumberParameter, groupDescriptionParameter, leaderIdParameter);
+        }
+    
+        public virtual ObjectResult<proc_User_GetUserByRole_Result> proc_User_GetUserByRole(Nullable<int> roleId)
+        {
+            var roleIdParameter = roleId.HasValue ?
+                new ObjectParameter("roleId", roleId) :
+                new ObjectParameter("roleId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_User_GetUserByRole_Result>("proc_User_GetUserByRole", roleIdParameter);
         }
     }
 }

@@ -11,5 +11,7 @@ namespace school.Model.Model
         public int PeriodGradeGroupId { get; set; }
         public PeriodGradeModel PeriodGradeModel { get; set; }
         public string GroupDescription { get; set; }
+        public string GroupNumber { get; set; }
+        public int LeaderId { get; set; }
     }
 }

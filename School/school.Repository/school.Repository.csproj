@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IGradeGroupRepository.cs" />
+    <Compile Include="Abstract\IPeriodGradeRepository.cs" />
     <Compile Include="Abstract\IGenderRepository.cs" />
     <Compile Include="Abstract\IGenericRepository.cs" />
     <Compile Include="Abstract\IGradeRepository.cs" />
@@ -61,6 +63,9 @@
     <Compile Include="Abstract\IPeriodRepository.cs" />
     <Compile Include="Abstract\IPeriodGradeStudentRepository.cs" />
     <Compile Include="Abstract\ITransactionTypeRepository.cs" />
+    <Compile Include="Abstract\IUserRoleRepository.cs" />
+    <Compile Include="Concrete\GradeGroupRepository.cs" />
+    <Compile Include="Concrete\PeriodGradeRepository.cs" />
     <Compile Include="Concrete\GenderRepository.cs" />
     <Compile Include="Concrete\GradeRepository.cs" />
     <Compile Include="Concrete\PayTransactionRepository.cs" />
@@ -69,6 +74,10 @@
     <Compile Include="Concrete\StudentRepository.cs" />
     <Compile Include="Concrete\PeriodRepository.cs" />
     <Compile Include="Concrete\TransactionTypeRepository.cs" />
+    <Compile Include="Concrete\UserRoleRepository.cs" />
+    <Compile Include="EntityFramework\City.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityFramework\DbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,6 +162,12 @@
     <Compile Include="EntityFramework\proc_Student_PaymentAvailable_Result.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityFramework\proc_User_GetUserByRole_Result.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Role.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityFramework\RunSchedule.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
@@ -166,6 +181,12 @@
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\TransactionType.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\User.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\UserRole.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
