@@ -18,5 +18,9 @@ namespace school.Repository.EntityFramework
         public int yearTo { get; set; }
         public string YearDescription { get; set; }
         public Nullable<bool> active { get; set; }
+        public System.DateTime fromDate { get; set; }
+        public Nullable<System.DateTime> toDate { get; set; }
+        public int periodStatusTypeId { get; set; }
+        public string periodStatusTypeDesc { get; set; }
     }
 }

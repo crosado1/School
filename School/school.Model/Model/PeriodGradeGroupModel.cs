@@ -13,5 +13,7 @@ namespace school.Model.Model
         public string GroupDescription { get; set; }
         public string GroupNumber { get; set; }
         public int LeaderId { get; set; }
+        public string LeaderFullName { get; set; }
+        public int StudentCount { get; set; }
     }
 }

@@ -13,5 +13,7 @@ namespace school.Model.Model
         public int YearTo { get; set; }
         public string YearDescription { get; set; }
         public bool Active { get; set; }
+
+        public PeriodStatusTypeModel PeriodStatusTypeModel { get; set; }
     }
 }

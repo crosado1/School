@@ -18,5 +18,9 @@ namespace school.Repository.EntityFramework
         public string groupDescription { get; set; }
         public string groupNumber { get; set; }
         public Nullable<int> leaderId { get; set; }
+        public Nullable<int> userId { get; set; }
+        public string userFullName { get; set; }
+        public Nullable<int> userRoleId { get; set; }
+        public Nullable<int> studentCount { get; set; }
     }
 }

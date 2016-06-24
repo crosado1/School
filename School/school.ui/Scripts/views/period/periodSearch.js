@@ -25,6 +25,7 @@
                         $('#tblPeriod > tbody').append($('<tr></tr>')
                             .append($('<td></td>').text(cell.YearDescription))
                             .append($('<td></td>').html(getActivePeriod(cell.Active)))
+                            .append($('<td></td>').html(cell.PeriodStatusTypeModel.PeriodStatusTypeDesc))
                             .append($('<td></td>').append($('<button>', {
                                 text: 'Details',
                                 onclick: 'viewDetail(this)',

@@ -4,11 +4,43 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="modal fade" id="add-period">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Period Configuration</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form-save-period">
+                    <div id="addPeriodHtml">
+                        @*@Html.Partial("~/Views/Period/_create.cshtml")*@
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button onclick="savePeriod();" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
                 <h1>Periods <small>Periods Information</small></h1>
+                <div class="row">
+                    <div class="col-md-4">
+                        @*<button class="btn btn-success" typeof="btnSearchStudent" data-toggle="modal" data-target="#search-student" type="button"> <span class="glyphicon glyphicon-filter"> Filter</span></button>*@
+                        <button class="btn btn-primary" typeof="btnNewPeriod" onclick="showCreatePeriod();" data-toggle="modal" @*data-target="#add-period"*@ type="button"> <span class="glyphicon glyphicon-plus"> Period</span></button>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div id="dvResult" style="display:none" class="alert alert-success" role="alert">...</div>
+                    </div>
+                </div>
                 @*<div class="row">
                     <div class="col-md-12">
                         <button class="btn btn-success" type="button"> <span class="glyphicon glyphicon-filter"> Filter</span></button>
@@ -18,62 +50,23 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-12">
             <div class="table-responsive">
                 <table id="tblPeriod" class="table">
                     <thead>
                         <tr>
                             <th><strong>Periods Timeline</strong></th>
-                            <th><strong>Active</strong></th>
+                            <th><strong>Active</strong></th>   
+                            <th><strong>Status</strong></th>                         
                             <th><strong>Actions</strong> </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Period 2015 - 2016</td>
-                            <td>
-                                <div class="checkbox checkbox-info checkbox-circle">
-                                    <input class="styled" id="checkbox11" type="checkbox" disabled="" checked="">
-                                    <label for="checkbox11">
-                                        Active
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary" type="button">Detail </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Period 2014 - 2015</td>
-                            <td>
-                            </td>
-                            <td>
-                                <button class="btn btn-primary" type="button">Detail </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Period 2013 - 2014</td>
-                            <td>
-                                
-                                @*<div class="checkbox checkbox-danger">
-                                    <input id="checkbox5" type="checkbox" checked="">
-                                    <label for="checkbox5">
-                                        Warning
-                                    </label>
-                                </div>*@
-                                @*<div class="checkbox">
-                                    <input type="checkbox" value="">
-                                </div>*@
-                            </td>
-                            <td>
-                                <button class="btn btn-primary" type="button">Detail </button>
-                            </td>
-                        </tr>
+                    <tbody>                        
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="col-md-5">
+        @*<div class="col-md-5">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">Students by Grades</h3>
@@ -100,21 +93,21 @@
                 </div>
                 <div class="panel-body"><span>Panel Body</span></div>
             </div>
-        </div>
+        </div>*@
 
     </div>
 </div>
 @section scripts{
 <script src="~/Scripts/chartJs/Chart.bundle.js"></script>
 <script src="~/Scripts/views/period/periodSearch.js"></script>
-<script src="~/Scripts/views/graphic/graphic.js"></script>
-    
+<script src="~/Scripts/views/graphic/graphic.js"></script>    
+<script src="~/Scripts/views/period/create.js"></script>
 
 
 <script type="text/javascript">
     $(document).ready(function () {
-        showGradesByPeriod();
-        showStudentsByPeriod();
+        //showGradesByPeriod();
+        //showStudentsByPeriod();
         //var data = {
         //    labels: ["Pre-Kinder", "Kinder", "Primero", "Segundo", "Tercero", "Cuarto", "Quinto","Sexto","Septimo","Octavo","Noveno"],
         //    datasets: [

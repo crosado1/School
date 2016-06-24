@@ -65,7 +65,12 @@ namespace school.Repository.Concrete
                         PeriodId = item.periodId,
                         YearDescription = item.YearDescription,
                         YearFrom = item.yearFrom,
-                        YearTo = item.yearTo
+                        YearTo = item.yearTo,
+                        PeriodStatusTypeModel = new PeriodStatusTypeModel
+                        {
+                            PeriodStatusTypeId = item.periodStatusTypeId,
+                            PeriodStatusTypeDesc = item.periodStatusTypeDesc
+                        }
                     });
                 }
 

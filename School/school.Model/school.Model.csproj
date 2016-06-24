@@ -50,6 +50,7 @@
     <Compile Include="Model\PeriodGradeModel.cs" />
     <Compile Include="Model\PeriodGradeStudentModel.cs" />
     <Compile Include="Model\PeriodModel.cs" />
+    <Compile Include="Model\PeriodStatusTypeModel.cs" />
     <Compile Include="Model\Request\Search_StudentRequest.cs" />
     <Compile Include="Model\RoleModel.cs" />
     <Compile Include="Model\StudentModel.cs" />

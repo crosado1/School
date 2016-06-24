@@ -154,10 +154,13 @@ namespace school.Repository.Concrete
                 {
                     collection.Add(new PeriodGradeGroupModel
                     {
-                        GroupDescription = item.groupDescription,   
+                        GroupDescription = item.groupDescription,
                         GroupNumber = item.groupNumber,
-                        LeaderId = item.leaderId.HasValue?item.leaderId.Value:0,                      
-                        PeriodGradeGroupId = item.periodGradeGroupId
+                        LeaderId = item.leaderId.HasValue ? item.leaderId.Value : 0,
+                        PeriodGradeGroupId = item.periodGradeGroupId,
+                        LeaderFullName = item.userFullName,
+                        StudentCount = item.studentCount.HasValue?item.studentCount.Value:0
+
                     });
                 }
 

@@ -1,0 +1,41 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <form id="form-period" class="form" role="form">            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>From Description</label>
+                        <input class="form-control" id="From" name="From" type="text" />
+                        @*@Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })*@
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>To Description</label>
+                        <input class="form-control" id="To" name="To" type="text" />
+                        @*<input class="form-control" type="text" />*@
+                        @*@Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control" })*@
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="checkboxes">
+                        @foreach (var item in ViewBag.Grade)
+                        {
+                            <div class="checkbox checkbox-warning">
+                                <input class="styled" id=@item.GradeId type="checkbox" />
+                                <label for=@item.GradeId>@item.GradeDescription</label>
+                            </div>
+                        }
+                        
+                        @*<input type="checkbox" /> Some label<br />
+                        <input type="checkbox" /> Some other label<br />*@
+                    </div>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

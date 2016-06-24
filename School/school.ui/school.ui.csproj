@@ -259,6 +259,7 @@
     <Content Include="Scripts\views\payTransaction\payStudentTransaction.js" />
     <Content Include="Scripts\views\periodGrade\create.js" />
     <Content Include="Scripts\views\periodGrade\search.js" />
+    <Content Include="Scripts\views\period\create.js" />
     <Content Include="Scripts\views\period\periodSearch.js" />
     <Content Include="Scripts\views\payTransaction\pay.js" />
     <Content Include="Scripts\views\student\create.js" />
@@ -315,6 +316,7 @@
     <Content Include="Views\Grade\Index.cshtml" />
     <Content Include="Views\PeriodGrade\Index.cshtml" />
     <Content Include="Views\GradeGroup\_addGroup.cshtml" />
+    <Content Include="Views\Period\_create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

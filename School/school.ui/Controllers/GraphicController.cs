@@ -93,5 +93,29 @@ namespace school.ui.Controllers
 
             return Json(jsonData, JsonRequestBehavior.AllowGet);
         }
+
+
+        //public JsonResult GetGradeGroupByPeriod()
+        //{
+        //    //var result = _gradeRepository.GetGroups(4);
+
+        //    string[] labels = new string[] { "Pre-Kinder", "Kinder", "Primero", "Segundo", "Tercero" };
+        //    int[] information = new int[result.Data.Count()]; //= { 65, 59, 80, 81, 56, 55, 40, 8, 15, 25, 62 };
+
+        //    //for (int i = 0; i < result.Data.Count(); i++)
+        //    //{
+        //    //    labels[i] = result.Data[i].Description;
+        //    //    information[i] = result.Data[i].Count;
+
+        //    //}
+        //    var jsonData = new
+        //    {
+        //        labelInfo = labels,
+        //        dataInfo = information,
+        //        labelTitle = "Grades by period " + _period
+        //    };
+
+        //    return Json(jsonData, JsonRequestBehavior.AllowGet);
+        //}
     }
 }

@@ -153,6 +153,10 @@
           <ScalarProperty Name="yearTo" ColumnName="yearTo" />
           <ScalarProperty Name="YearDescription" ColumnName="YearDescription" />
           <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+          <ScalarProperty Name="toDate" ColumnName="toDate" />
+          <ScalarProperty Name="periodStatusTypeId" ColumnName="periodStatusTypeId" />
+          <ScalarProperty Name="periodStatusTypeDesc" ColumnName="periodStatusTypeDesc" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -315,6 +319,10 @@
           <ScalarProperty Name="groupDescription" ColumnName="groupDescription" />
           <ScalarProperty Name="groupNumber" ColumnName="groupNumber" />
           <ScalarProperty Name="leaderId" ColumnName="leaderId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="userFullName" ColumnName="userFullName" />
+          <ScalarProperty Name="userRoleId" ColumnName="userRoleId" />
+          <ScalarProperty Name="studentCount" ColumnName="studentCount" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

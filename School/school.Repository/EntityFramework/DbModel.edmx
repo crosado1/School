@@ -1008,7 +1008,7 @@
             <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
           <FunctionImport Name="proc_User_GetUserByRole" ReturnType="Collection(SchoolModel.proc_User_GetUserByRole_Result)">
-            <Parameter Name="roleId" Mode="In" Type="Int32" />
+          <Parameter Name="roleId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_Period_GetAll_Result">
@@ -1017,6 +1017,10 @@
           <Property Type="Int32" Name="yearTo" Nullable="false" />
           <Property Type="String" Name="YearDescription" Nullable="true" MaxLength="8000" />
           <Property Type="Boolean" Name="active" Nullable="true" />
+          <Property Type="DateTime" Name="fromDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="toDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="periodStatusTypeId" Nullable="false" />
+          <Property Type="String" Name="periodStatusTypeDesc" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="proc_Gender_GetAll_Result">
           <Property Type="Int32" Name="genderId" Nullable="false" />
@@ -1131,6 +1135,10 @@
           <Property Type="String" Name="groupDescription" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="groupNumber" Nullable="true" MaxLength="10" />
           <Property Type="Int32" Name="leaderId" Nullable="true" />
+          <Property Type="Int32" Name="userId" Nullable="true" />
+          <Property Type="String" Name="userFullName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="userRoleId" Nullable="true" />
+          <Property Type="Int32" Name="studentCount" Nullable="true" />
         </ComplexType>
         <EntityType Name="City">
           <Key>
@@ -1377,6 +1385,10 @@
                 <ScalarProperty Name="yearTo" ColumnName="yearTo" />
                 <ScalarProperty Name="YearDescription" ColumnName="YearDescription" />
                 <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+                <ScalarProperty Name="toDate" ColumnName="toDate" />
+                <ScalarProperty Name="periodStatusTypeId" ColumnName="periodStatusTypeId" />
+                <ScalarProperty Name="periodStatusTypeDesc" ColumnName="periodStatusTypeDesc" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1539,6 +1551,10 @@
                 <ScalarProperty Name="groupDescription" ColumnName="groupDescription" />
                 <ScalarProperty Name="groupNumber" ColumnName="groupNumber" />
                 <ScalarProperty Name="leaderId" ColumnName="leaderId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="userFullName" ColumnName="userFullName" />
+                <ScalarProperty Name="userRoleId" ColumnName="userRoleId" />
+                <ScalarProperty Name="studentCount" ColumnName="studentCount" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

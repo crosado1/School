@@ -485,6 +485,10 @@
     <Property Type="Int32" Name="yearTo" Nullable="false" />
     <Property Type="String" Name="YearDescription" Nullable="true" MaxLength="8000" />
     <Property Type="Boolean" Name="active" Nullable="true" />
+    <Property Type="DateTime" Name="fromDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="toDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="periodStatusTypeId" Nullable="false" />
+    <Property Type="String" Name="periodStatusTypeDesc" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="proc_Gender_GetAll_Result">
     <Property Type="Int32" Name="genderId" Nullable="false" />
@@ -599,6 +603,10 @@
     <Property Type="String" Name="groupDescription" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="groupNumber" Nullable="true" MaxLength="10" />
     <Property Type="Int32" Name="leaderId" Nullable="true" />
+    <Property Type="Int32" Name="userId" Nullable="true" />
+    <Property Type="String" Name="userFullName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="userRoleId" Nullable="true" />
+    <Property Type="Int32" Name="studentCount" Nullable="true" />
   </ComplexType>
   <EntityType Name="City">
     <Key>
