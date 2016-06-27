@@ -18,7 +18,7 @@ namespace school.ui.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountControlle()
+        public AccountController()
         {
         }
 
