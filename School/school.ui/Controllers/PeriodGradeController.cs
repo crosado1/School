@@ -1,8 +1,10 @@
-﻿using school.Repository.Concrete;
+﻿using school.Model.Model;
+using school.Repository.Concrete;
 using school.ui.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -33,6 +35,18 @@ namespace school.ui.Controllers
             return View();
         }
 
+        public JsonResult ShowGradeAvailables(int periodId = 0)
+        {
+            ViewBag.Grade = _gradeRepository.GetAll().Data;
+
+            return Json(new
+            {
+                Html = RenderPartial.RenderPartialView(this, "~/Views/PeriodGrade/_create.cshtml", null),
+                Message = "",
+                Status = "OK"
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetAllByPeriod(int periodId = 0)
         {
             var result = _repository.GetAllByPeriod(periodId);            
@@ -58,7 +72,6 @@ namespace school.ui.Controllers
 
             
         }
-
         public JsonResult SaveGroup(int periodGradeId,int leader,string group, string description)
         {
             var result = _gradeGroupRepository.Add(new Model.Model.PeriodGradeGroupModel
@@ -75,6 +88,57 @@ namespace school.ui.Controllers
             //_gradeGroupRepository.Dispose();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult Save(int periodId, List<int> gradesIds)
+        {
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {                    
+
+                    List<PeriodGradeModel> periodGradeCollection = new List<PeriodGradeModel>();
+
+                    foreach (var item in gradesIds)
+                    {
+                        periodGradeCollection.Add(new PeriodGradeModel
+                        {
+                            PeriodModel = new PeriodModel
+                            {
+                                PeriodId = periodId,
+                            },
+                            GradeModel = new GradeModel
+                            {
+                                GradeId = item
+                            }
+                        });
+                    }
+
+                    var result = _repository.Add(periodGradeCollection);
+
+
+
+                    scope.Complete();
+
+                    return Json(new
+                    {
+                        Message = result.Message,
+                        Status = "OK"
+                    }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    Message = ex.Message,
+                    Status = "ERROR"
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
+
+        
 
         //public JsonResult GetGroups(int periodGradeId)
         //{

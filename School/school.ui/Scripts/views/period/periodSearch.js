@@ -92,8 +92,7 @@
         return gradeButton;
     }
 
-    this.goToGradePage = function (button) {
-        alert('goToGradePage');
+    this.goToGradePage = function (button) {        
         let periodId = $(button).data('id');
         window.location.href = '/PeriodGrade/?periodId=' + periodId
     }

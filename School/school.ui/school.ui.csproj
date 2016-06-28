@@ -319,6 +319,7 @@
     <Content Include="Views\PeriodGrade\Index.cshtml" />
     <Content Include="Views\GradeGroup\_addGroup.cshtml" />
     <Content Include="Views\Period\_create.cshtml" />
+    <Content Include="Views\PeriodGrade\_create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

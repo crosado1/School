@@ -27,6 +27,7 @@
     }
 
     var createAccordion = function (response) {
+        $('#_periodGradeAccordion').empty();
         $.each(response.Data, function (key, cell) {
             let accordionTable = '<div class="row">';
             accordionTable += '<div class="col-md-12">';
@@ -72,7 +73,7 @@
         })
     }
 
-    var loadPeriodGrade = function () {
+    this.loadPeriodGrade = function () {
         let periodId = $('#hvPeriodId').val();
 
         $.ajax({
@@ -98,7 +99,7 @@
     }
 
     this.loadGroupGrades = function (periodGradeId) {
-        //alert('load');
+        $('#add-group').modal('hide');
         $('#_groupTable_' + periodGradeId +'> tbody').empty();
         $.ajax({
             dataType: 'json',
