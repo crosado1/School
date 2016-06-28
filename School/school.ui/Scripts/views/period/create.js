@@ -7,6 +7,23 @@
         $('#add-period').modal('show');        
     }
 
+    var onCompleted = function (response) {
+        $('#add-period').modal('hide');
+        loadTable();
+
+        var result = $('#dvResult');
+        if (response.Status == "OK")
+        {
+            result.addClass('alert alert-success');
+            $('#btnNewPeriod').attr('disabled', true);
+        }            
+        else
+            result.addClass('alert alert-danger');
+
+        result.html(response.Message);
+        result.show();
+    }
+
     this.showCreatePeriod = function () {
         $.ajax({
             dataType: 'json',
@@ -19,8 +36,6 @@
     }
 
     this.savePeriod = function () {
-        alert('savePeriod');
-
         let from = $('#From').val();
         let to = $('#To').val();
         
@@ -42,11 +57,7 @@
                 gradesIds: chkselected
             },
             success: function (response) {
-                alert('Save Ok');
-                //if (response.Status == 'OK') {
-                //    $('#addGroupHtml').html(response.Html);
-                //    $('#add-group').modal('show');
-                //}
+                onCompleted(response);
             }
         });
         }

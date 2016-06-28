@@ -3,7 +3,7 @@
         loadTable();
     }
 
-    var loadTable = function () {
+    this.loadTable = function () {
 
         // Clean Table
         $('#tblPeriod > tbody').empty();
@@ -26,16 +26,12 @@
                             .append($('<td></td>').text(cell.YearDescription))
                             .append($('<td></td>').html(getActivePeriod(cell.Active)))
                             .append($('<td></td>').html(cell.PeriodStatusTypeModel.PeriodStatusTypeDesc))
-                            .append($('<td></td>').append($('<button>', {
-                                text: 'Details',
-                                onclick: 'viewDetail(this)',
-                                'class': 'btn btn-sm btn-success'//,
-                                //'data-date': appointmentDate,
-                                //'data-comment': cell.Comment,
-                                //'data-answered': cell.WhoAnswer,
-                                //'data-action': cell.CallActionTypeResponseModel.CallActionTypeModel.CallActionTypeDesc,
-                                //'data-response': cell.CallActionTypeResponseModel.ResponseTypeModel.ResponseTypeDesc
-                            }).prop('outerHTML'))));
+                            .append($('<td></td>').html(setPeriodActions(cell))));
+                            //.append($('<td></td>').append($('<button>', {
+                            //    text: 'Details',
+                            //    onclick: 'viewDetail(this)',
+                            //    'class': 'btn btn-sm btn-success'
+                            //}).prop('outerHTML'))));
                     });
 
                 } else {
@@ -48,8 +44,58 @@
         });
     }
 
-    this.viewDetail = function (button) {
-        alert('viewDetail');
+    this.setPeriodActions = function (row) {        
+        let periodStatusTypeId = row.PeriodStatusTypeModel.PeriodStatusTypeId;
+        let gradeButton = '';
+
+        switch (periodStatusTypeId) {
+            case 1:
+            case 2:
+            case 3:
+                gradeButton = $('<a>', {
+                    text: 'Grades',
+                    onclick: 'goToGradePage(this)',
+                    href: '#',
+                    'class': 'btn btn-success btn-sm',
+                    'data-id': row.PeriodId
+                }).prop('outerHTML');
+                break;
+
+        }
+
+        //if (activePeriod) {
+        //    payButton = $('<a>', {
+        //        text: 'Pay',
+        //        onclick: 'showPaymentModal(this)',
+        //        href: '#',
+        //        'class': 'btn btn-success btn-sm',
+        //        'data-id': row.PeriodGradeStudentId
+        //    }).prop('outerHTML');
+        //}
+        //else {
+        //    payButton = $('<a>', {
+        //        text: 'Pay',
+        //        href: '#',
+        //        disabled: true,
+        //        'class': 'btn btn-success btn-sm',
+        //        'data-id': row.PeriodGradeStudentId
+        //    }).prop('outerHTML');
+        //}
+
+        //let profileButton = $('<button>', {
+        //    text: 'Profile',
+        //    onclick: 'showStudentProfileModal(this)',            
+        //    'class': 'btn btn-info btn-sm',            
+        //    'data-id': row.StudentModel.StudentId
+        //}).prop('outerHTML');
+
+        return gradeButton;
+    }
+
+    this.goToGradePage = function (button) {
+        alert('goToGradePage');
+        let periodId = $(button).data('id');
+        window.location.href = '/PeriodGrade/?periodId=' + periodId
     }
 
     var getActivePeriod = function (activeValue) {

@@ -19,5 +19,13 @@ namespace school.Model.Enumerator
             Teacher =2,
             User=3
         }
+
+        public enum PeriodStatusTypes
+        {
+            InConfigurationStep=1,
+            ConfigurationCompleted=2,
+            ActivePeriod=3,
+            PeriodCompleted=4
+        }
     }
 }

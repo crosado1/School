@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="SchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="SchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="City">
     <Key>
       <PropertyRef Name="cityId" />
@@ -185,18 +185,6 @@
       </Principal>
       <Dependent Role="PeriodGrade">
         <PropertyRef Name="gradeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PeriodGrade_Period">
-    <End Role="Period" Type="Self.Period" Multiplicity="1" />
-    <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Period">
-        <PropertyRef Name="periodId" />
-      </Principal>
-      <Dependent Role="PeriodGrade">
-        <PropertyRef Name="periodId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -392,6 +380,14 @@
     <Parameter Name="submitById" Type="int" Mode="In" />
   </Function>
   <Function Name="proc_Period_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_Period_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodId" Type="int" Mode="InOut" />
+    <Parameter Name="yearFrom" Type="int" Mode="In" />
+    <Parameter Name="yearTo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_Period_ReadyToAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodIsReady" Type="bit" Mode="InOut" />
+  </Function>
   <Function Name="proc_Period_StudentSummaryByPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="proc_PeriodGrade_GetByPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="periodId" Type="int" Mode="In" />
@@ -416,6 +412,11 @@
     <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />
     <Parameter Name="transactionTypeId" Type="int" Mode="In" />
     <Parameter Name="payConfiguration" Type="money" Mode="In" />
+  </Function>
+  <Function Name="proc_PeriodStatus_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodStatusId" Type="int" Mode="InOut" />
+    <Parameter Name="periodId" Type="int" Mode="In" />
+    <Parameter Name="periodStatusTypeId" Type="int" Mode="In" />
   </Function>
   <Function Name="proc_Student_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="studentId" Type="int" Mode="In" />
@@ -463,10 +464,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_PeriodGrade_Grade" Association="Self.FK_PeriodGrade_Grade">
       <End Role="Grade" EntitySet="Grade" />
-      <End Role="PeriodGrade" EntitySet="PeriodGrade" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PeriodGrade_Period" Association="Self.FK_PeriodGrade_Period">
-      <End Role="Period" EntitySet="Period" />
       <End Role="PeriodGrade" EntitySet="PeriodGrade" />
     </AssociationSet>
     <AssociationSet Name="FK_PeriodGradeGroup_PeriodGrade" Association="Self.FK_PeriodGradeGroup_PeriodGrade">

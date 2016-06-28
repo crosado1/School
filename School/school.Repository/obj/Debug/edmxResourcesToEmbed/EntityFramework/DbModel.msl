@@ -384,5 +384,8 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Period_ReadyToAdd" FunctionName="SchoolModel.Store.proc_Period_ReadyToAdd" />
+    <FunctionImportMapping FunctionImportName="proc_Period_Insert" FunctionName="SchoolModel.Store.proc_Period_Insert" />
+    <FunctionImportMapping FunctionImportName="proc_PeriodStatus_Insert" FunctionName="SchoolModel.Store.proc_PeriodStatus_Insert" />
   </EntityContainerMapping>
 </Mapping>

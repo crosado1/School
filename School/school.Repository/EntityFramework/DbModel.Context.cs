@@ -313,5 +313,36 @@ namespace school.Repository.EntityFramework
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_User_GetUserByRole_Result>("proc_User_GetUserByRole", roleIdParameter);
         }
+    
+        public virtual int proc_Period_ReadyToAdd(ObjectParameter periodIsReady)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Period_ReadyToAdd", periodIsReady);
+        }
+    
+        public virtual int proc_Period_Insert(ObjectParameter periodId, Nullable<int> yearFrom, Nullable<int> yearTo)
+        {
+            var yearFromParameter = yearFrom.HasValue ?
+                new ObjectParameter("yearFrom", yearFrom) :
+                new ObjectParameter("yearFrom", typeof(int));
+    
+            var yearToParameter = yearTo.HasValue ?
+                new ObjectParameter("yearTo", yearTo) :
+                new ObjectParameter("yearTo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Period_Insert", periodId, yearFromParameter, yearToParameter);
+        }
+    
+        public virtual int proc_PeriodStatus_Insert(ObjectParameter periodStatusId, Nullable<int> periodId, Nullable<int> periodStatusTypeId)
+        {
+            var periodIdParameter = periodId.HasValue ?
+                new ObjectParameter("periodId", periodId) :
+                new ObjectParameter("periodId", typeof(int));
+    
+            var periodStatusTypeIdParameter = periodStatusTypeId.HasValue ?
+                new ObjectParameter("periodStatusTypeId", periodStatusTypeId) :
+                new ObjectParameter("periodStatusTypeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_PeriodStatus_Insert", periodStatusId, periodIdParameter, periodStatusTypeIdParameter);
+        }
     }
 }

@@ -24,9 +24,12 @@ namespace school.ui.Controllers
 
 
         }
+
+         
         // GET: PeriodGrade
-        public ActionResult Index()
+        public ActionResult Index(int periodId=0)
         {
+            ViewBag.PeriodId = periodId;
             return View();
         }
 

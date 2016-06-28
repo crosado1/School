@@ -73,7 +73,7 @@
     }
 
     var loadPeriodGrade = function () {
-        let periodId = 4;
+        let periodId = $('#hvPeriodId').val();
 
         $.ajax({
             dataType: 'json',

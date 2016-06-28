@@ -152,5 +152,35 @@ namespace school.Repository.Concrete
         //{
         //    throw new NotImplementedException();
         //}
+
+
+        public SaveResult Add(List<PeriodGradeModel> periodGradeModelList)
+        {
+            try
+            {
+                foreach (var item in periodGradeModelList)
+                {
+                    var periodGradeToAdd = new PeriodGrade { gradeId = item.GradeModel.GradeId, periodId = item.PeriodModel.PeriodId };
+                    _context.Entry(periodGradeToAdd).State = System.Data.Entity.EntityState.Added;
+                    _context.SaveChanges();
+                }
+
+                
+                return new SaveResult
+                {
+                    Message = "Period Grades selected was created successfully!",
+                    Status = "OK"
+                };
+            }
+            catch(Exception ex)
+            {
+                return new SaveResult
+                {
+                    Message = "Error on PeriodGrade Add method. " + ex.InnerException != null ? ex.InnerException.Message : ex.Message,
+                    Status = "ERROR"
+                };
+            }
+            
+        }
     }
 }

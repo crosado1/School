@@ -478,6 +478,19 @@
     <FunctionImport Name="proc_User_GetUserByRole" ReturnType="Collection(SchoolModel.proc_User_GetUserByRole_Result)">
       <Parameter Name="roleId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="proc_Period_ReadyToAdd">
+      <Parameter Name="periodIsReady" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="proc_Period_Insert">
+      <Parameter Name="periodId" Mode="InOut" Type="Int32" />
+      <Parameter Name="yearFrom" Mode="In" Type="Int32" />
+      <Parameter Name="yearTo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_PeriodStatus_Insert">
+      <Parameter Name="periodStatusId" Mode="InOut" Type="Int32" />
+      <Parameter Name="periodId" Mode="In" Type="Int32" />
+      <Parameter Name="periodStatusTypeId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_Period_GetAll_Result">
     <Property Type="Int32" Name="periodId" Nullable="false" />

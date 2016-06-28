@@ -11,6 +11,7 @@ namespace school.Repository.Abstract
 {
     public interface IPeriodGradeRepository : IGenericRepository<PeriodGradeModel>, IDisposable
     {
-        ServiceResponseWithResultset<PeriodGradeModel> GetAllByPeriod(int periodId);        
+        ServiceResponseWithResultset<PeriodGradeModel> GetAllByPeriod(int periodId);
+        SaveResult Add(List<PeriodGradeModel> periodGradeModelList);
     }
 }

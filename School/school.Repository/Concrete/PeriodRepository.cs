@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using school.Model.Model;
 using school.Repository.EntityFramework;
 using school.Model.Response;
+using System.Data.Entity.Core.Objects;
 
 namespace school.Repository.Concrete
 {
@@ -17,7 +18,7 @@ namespace school.Repository.Concrete
         {
             _context = new SchoolEntities();
         }
-        public SaveResult Add(PeriodModel entity)
+        public SaveResult Add(PeriodModel entity, Model.Enumerator.Enum.PeriodStatusTypes periodStatusType)
         {
             throw new NotImplementedException();
         }
@@ -124,6 +125,52 @@ namespace school.Repository.Concrete
                 };
             }
            
+        }
+        public bool IsReadyToAdd()
+        {
+            try
+            {                
+                ObjectParameter param1 = new ObjectParameter("periodIsReady", false);
+                var returnAction = _context.proc_Period_ReadyToAdd(param1);
+                return (bool)param1.Value;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        public SaveResult Add(PeriodModel entity)
+        {
+            try
+            {
+                ObjectParameter param1 = new ObjectParameter("periodId", entity.PeriodId);
+
+                if (IsReadyToAdd())
+                {
+                    var result = _context.proc_Period_Insert(param1, entity.YearFrom,
+                                                            entity.YearTo);
+                    return new SaveResult
+                    {
+                        Id = (int)param1.Value,
+                        Message = "Period was created and ready to configured.",
+                        Status = "OK"
+                    };
+                }
+                else
+                    throw new Exception("The transaction hasn't complete at this moment.");
+                
+            }
+            catch (Exception ex)
+            {
+                return new SaveResult
+                {
+                    Id = 0,
+                    Message = "Error on Period Add method. " + ex.InnerException != null ? ex.InnerException.Message : ex.Message,
+                    Status = "ERROR"
+                };
+            }
         }
     }
 }

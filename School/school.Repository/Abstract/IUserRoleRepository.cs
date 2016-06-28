@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static school.Model.Enumerator.Enum;
+
 
 namespace school.Repository.Abstract
 {
     interface IUserRoleRepository: IGenericRepository<UserRoleModel>, IDisposable
     {
-        ServiceResponseWithResultset<UserRoleModel> GetUserByRole(UserRoles userRole);
+        ServiceResponseWithResultset<UserRoleModel> GetUserByRole(school.Model.Enumerator.Enum.UserRoles userRole);
     }
 }

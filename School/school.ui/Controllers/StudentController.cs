@@ -210,9 +210,8 @@ namespace school.ui.Controllers
             {
                 return Json(new
                 {
-                    StudentId = 0,
                     Message = ex.Message,
-                    Status = "OK"
+                    Status = "ERROR"
                 }, JsonRequestBehavior.AllowGet);
             }
         }
