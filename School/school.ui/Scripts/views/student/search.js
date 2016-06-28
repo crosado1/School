@@ -91,6 +91,9 @@
 
     this.getActions = function (row) {
         let activePeriod = row.PeriodGradeGroupModel.PeriodGradeModel.PeriodModel.Active;
+        let isReadyToNextYear = row.StudentModel.IsReadyToNextYear;
+
+        console.log(isReadyToNextYear);
         
         let payButton = '';
         
@@ -121,9 +124,23 @@
             'class': 'btn btn-info btn-sm',
             //'data-target': '#profile-student',
             'data-id': row.StudentModel.StudentId
-        }).prop('outerHTML');        
+        }).prop('outerHTML');
+
+        let readyToNextYearButton = '';
+
+        readyToNextYearButton = $('<button>', {
+            text: 'Matriculate',
+            //onclick: 'showStudentProfileModal(this)',
+            //href: '#',
+            //'data-toggle': 'modal',
+            'class': 'btn btn-warning btn-sm',
+            //'data-target': '#profile-student',
+            'data-id': row.StudentModel.StudentId
+        }).prop('outerHTML');
+
+
         
-        return payButton + ' ' +  profileButton;        
+        return payButton + ' ' + profileButton + ' ' + readyToNextYearButton;
     }
 
     var loadSearchStudentModal = function () {

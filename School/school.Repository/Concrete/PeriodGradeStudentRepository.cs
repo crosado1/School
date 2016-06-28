@@ -105,7 +105,8 @@ namespace school.Repository.Concrete
                                 GenderDescription = item.genderDescription,
                                 GenderLetter = item.genderLetter,
                                 GenderId = item.genderId
-                            }
+                            },
+                             IsReadyToNextYear = true
                         },
                         PeriodGradeGroupModel = new PeriodGradeGroupModel
                         {

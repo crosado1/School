@@ -1,6 +1,8 @@
 ﻿(function () {
     var init = function () {
         loadPeriodGrade();
+        //alert('init 1');
+        
     };
 
     this.showAddGradeGroups = function(button)
@@ -50,7 +52,7 @@
             panelInfo += '</h4>';
             //panelInfo += '</div>';
             panelInfo += '<button onclick="showAddGradeGroups(this);" data-value="' + cell.PeriodGradeId + '" class="btn btn-primary btn-sm pull-right">Add Group</button><div class="clearfix"></div></div>'
-            panelInfo += '<div id="' + cell.PeriodGradeId + '" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">';
+            panelInfo += '<div id="' + cell.PeriodGradeId + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">';
             panelInfo += '<div class="panel-body">';
             //panelInfo += '<button onclick="showAddGradeGroups(this);" data-value="' + cell.PeriodGradeId + '" class="btn btn-primary btn-sm pull-right">Add Group</button><div class="clearfix"></div>'
             panelInfo += accordionTable;
@@ -60,6 +62,8 @@
 
             $('#_periodGradeAccordion').append(panelInfo);
         });
+
+        //$('.panel-collapse.in').collapse('hide');
 
         let firtPeriodGradePanelId = $('#_periodGradeAccordion .panel .panel-collapse').first().attr('id');
         loadGroupGrades(firtPeriodGradePanelId);

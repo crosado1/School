@@ -22,5 +22,7 @@ namespace school.Model.Model
 
         public string ZipCode { get; set; }
         public string StateCode { get; set; }
+
+        public bool IsReadyToNextYear { get; set; }
     }
 }
