@@ -28,9 +28,10 @@ namespace school.Repository.EntityFramework
         public string genderDescription { get; set; }
         public string genderLetter { get; set; }
         public int periodId { get; set; }
-        public int yearFrom { get; set; }
-        public int yearTo { get; set; }
-        public string yearDescription { get; set; }
+        public string YearFrom { get; set; }
+        public string YearTo { get; set; }
+        public string YearDescription { get; set; }
+        public int IsReadyToNextYear { get; set; }
         public int TotalRecord { get; set; }
     }
 }

@@ -18,14 +18,17 @@ namespace school.Repository.EntityFramework
         public Period()
         {
             this.PeriodGrades = new HashSet<PeriodGrade>();
+            this.PeriodStatus = new HashSet<PeriodStatu>();
         }
     
         public int periodId { get; set; }
-        public int yearFrom { get; set; }
-        public int yearTo { get; set; }
+        public string yearFrom { get; set; }
+        public string yearTo { get; set; }
         public Nullable<bool> active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PeriodGrade> PeriodGrades { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PeriodStatu> PeriodStatus { get; set; }
     }
 }

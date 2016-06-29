@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="cityId" />
@@ -48,8 +48,8 @@
             <PropertyRef Name="periodId" />
           </Key>
           <Property Name="periodId" Type="int" Nullable="false" />
-          <Property Name="yearFrom" Type="int" Nullable="false" />
-          <Property Name="yearTo" Type="int" Nullable="false" />
+          <Property Name="yearFrom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="yearTo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="active" Type="bit" />
         </EntityType>
         <EntityType Name="PeriodGrade">
@@ -91,6 +91,23 @@
           <Property Name="fromDate" Type="datetime" Nullable="false" />
           <Property Name="toDate" Type="datetime" />
           <Property Name="runScheduleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PeriodStatus">
+          <Key>
+            <PropertyRef Name="periodStatusId" />
+          </Key>
+          <Property Name="periodStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="periodId" Type="int" Nullable="false" />
+          <Property Name="periodStatusTypeId" Type="int" Nullable="false" />
+          <Property Name="fromDate" Type="datetime" Nullable="false" />
+          <Property Name="toDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PeriodStatusType">
+          <Key>
+            <PropertyRef Name="periodStatusTypeId" />
+          </Key>
+          <Property Name="periodStatusTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="periodStatusTypeDesc" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -193,6 +210,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PeriodGrade_Period">
+          <End Role="Period" Type="Self.Period" Multiplicity="1" />
+          <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="periodId" />
+            </Principal>
+            <Dependent Role="PeriodGrade">
+              <PropertyRef Name="periodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PeriodGradeGroup_PeriodGrade">
           <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="1" />
           <End Role="PeriodGradeGroup" Type="Self.PeriodGradeGroup" Multiplicity="*" />
@@ -262,6 +291,18 @@
             </Principal>
             <Dependent Role="PeriodGradeStudentTranTypeConfiguration">
               <PropertyRef Name="transactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodStatus_Period">
+          <End Role="Period" Type="Self.Period" Multiplicity="1" />
+          <End Role="PeriodStatus" Type="Self.PeriodStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="periodId" />
+            </Principal>
+            <Dependent Role="PeriodStatus">
+              <PropertyRef Name="periodId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -387,8 +428,8 @@
         <Function Name="proc_Period_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="proc_Period_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="periodId" Type="int" Mode="InOut" />
-          <Parameter Name="yearFrom" Type="int" Mode="In" />
-          <Parameter Name="yearTo" Type="int" Mode="In" />
+          <Parameter Name="yearFrom" Type="varchar" Mode="In" />
+          <Parameter Name="yearTo" Type="varchar" Mode="In" />
         </Function>
         <Function Name="proc_Period_ReadyToAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="periodIsReady" Type="bit" Mode="InOut" />
@@ -419,7 +460,6 @@
           <Parameter Name="payConfiguration" Type="money" Mode="In" />
         </Function>
         <Function Name="proc_PeriodStatus_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="periodStatusId" Type="int" Mode="InOut" />
           <Parameter Name="periodId" Type="int" Mode="In" />
           <Parameter Name="periodStatusTypeId" Type="int" Mode="In" />
         </Function>
@@ -455,6 +495,8 @@
           <EntitySet Name="PeriodGradeGroup" EntityType="Self.PeriodGradeGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PeriodGradeStudent" EntityType="Self.PeriodGradeStudent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PeriodGradeStudentTranTypeConfiguration" EntityType="Self.PeriodGradeStudentTranTypeConfiguration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeriodStatus" EntityType="Self.PeriodStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PeriodStatusType" EntityType="Self.PeriodStatusType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RunSchedule" EntityType="Self.RunSchedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
@@ -469,6 +511,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_PeriodGrade_Grade" Association="Self.FK_PeriodGrade_Grade">
             <End Role="Grade" EntitySet="Grade" />
+            <End Role="PeriodGrade" EntitySet="PeriodGrade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodGrade_Period" Association="Self.FK_PeriodGrade_Period">
+            <End Role="Period" EntitySet="Period" />
             <End Role="PeriodGrade" EntitySet="PeriodGrade" />
           </AssociationSet>
           <AssociationSet Name="FK_PeriodGradeGroup_PeriodGrade" Association="Self.FK_PeriodGradeGroup_PeriodGrade">
@@ -494,6 +540,10 @@
           <AssociationSet Name="FK_PeriodGradeStudentTranTypeConfiguration_TransactionType" Association="Self.FK_PeriodGradeStudentTranTypeConfiguration_TransactionType">
             <End Role="TransactionType" EntitySet="TransactionType" />
             <End Role="PeriodGradeStudentTranTypeConfiguration" EntitySet="PeriodGradeStudentTranTypeConfiguration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodStatus_Period" Association="Self.FK_PeriodStatus_Period">
+            <End Role="Period" EntitySet="Period" />
+            <End Role="PeriodStatus" EntitySet="PeriodStatus" />
           </AssociationSet>
           <AssociationSet Name="FK_Student_City" Association="Self.FK_Student_City">
             <End Role="City" EntitySet="City" />
@@ -563,16 +613,6 @@
           <Property Name="payTransactionStatusTypeDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="StudentPayTransactionStatus" Relationship="Self.FK_StudentPayTransactionStatus_PayTransactionStatusType" FromRole="PayTransactionStatusType" ToRole="StudentPayTransactionStatus" />
         </EntityType>
-        <EntityType Name="Period">
-          <Key>
-            <PropertyRef Name="periodId" />
-          </Key>
-          <Property Name="periodId" Type="Int32" Nullable="false" />
-          <Property Name="yearFrom" Type="Int32" Nullable="false" />
-          <Property Name="yearTo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PeriodGrades" Relationship="Self.FK_PeriodGrade_Period" FromRole="Period" ToRole="PeriodGrade" />
-          <Property Name="active" Type="Boolean" />
-        </EntityType>
         <EntityType Name="PeriodGrade">
           <Key>
             <PropertyRef Name="periodGradeId" />
@@ -581,8 +621,8 @@
           <Property Name="periodId" Type="Int32" Nullable="false" />
           <Property Name="gradeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Grade" Relationship="Self.FK_PeriodGrade_Grade" FromRole="PeriodGrade" ToRole="Grade" />
-          <NavigationProperty Name="Period" Relationship="Self.FK_PeriodGrade_Period" FromRole="PeriodGrade" ToRole="Period" />
           <NavigationProperty Name="PeriodGradeGroups" Relationship="Self.FK_PeriodGradeGroup_PeriodGrade" FromRole="PeriodGrade" ToRole="PeriodGradeGroup" />
+          <NavigationProperty Name="Period" Relationship="SchoolModel.FK_PeriodGrade_Period" FromRole="PeriodGrade" ToRole="Period" />
         </EntityType>
         <EntityType Name="PeriodGradeGroup">
           <Key>
@@ -733,18 +773,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PeriodGrade_Period">
-          <End Role="Period" Type="Self.Period" Multiplicity="1" />
-          <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Period">
-              <PropertyRef Name="periodId" />
-            </Principal>
-            <Dependent Role="PeriodGrade">
-              <PropertyRef Name="periodId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PeriodGradeGroup_PeriodGrade">
           <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="1" />
           <End Role="PeriodGradeGroup" Type="Self.PeriodGradeGroup" Multiplicity="*" />
@@ -846,7 +874,6 @@
           <EntitySet Name="Grades" EntityType="Self.Grade" />
           <EntitySet Name="PayTransactions" EntityType="Self.PayTransaction" />
           <EntitySet Name="PayTransactionStatusTypes" EntityType="Self.PayTransactionStatusType" />
-          <EntitySet Name="Periods" EntityType="Self.Period" />
           <EntitySet Name="PeriodGrades" EntityType="Self.PeriodGrade" />
           <EntitySet Name="PeriodGradeGroups" EntityType="Self.PeriodGradeGroup" />
           <EntitySet Name="PeriodGradeStudents" EntityType="Self.PeriodGradeStudent" />
@@ -871,10 +898,6 @@
           <AssociationSet Name="FK_StudentPayTransactionStatus_PayTransactionStatusType" Association="Self.FK_StudentPayTransactionStatus_PayTransactionStatusType">
             <End Role="PayTransactionStatusType" EntitySet="PayTransactionStatusTypes" />
             <End Role="StudentPayTransactionStatus" EntitySet="StudentPayTransactionStatus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PeriodGrade_Period" Association="Self.FK_PeriodGrade_Period">
-            <End Role="Period" EntitySet="Periods" />
-            <End Role="PeriodGrade" EntitySet="PeriodGrades" />
           </AssociationSet>
           <AssociationSet Name="FK_PeriodGradeGroup_PeriodGrade" Association="Self.FK_PeriodGradeGroup_PeriodGrade">
             <End Role="PeriodGrade" EntitySet="PeriodGrades" />
@@ -1012,19 +1035,29 @@
           </FunctionImport>
           <FunctionImport Name="proc_Period_Insert">
             <Parameter Name="periodId" Mode="InOut" Type="Int32" />
-            <Parameter Name="yearFrom" Mode="In" Type="Int32" />
-            <Parameter Name="yearTo" Mode="In" Type="Int32" />
+            <Parameter Name="yearFrom" Mode="In" Type="String" />
+            <Parameter Name="yearTo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_PeriodStatus_Insert">
-            <Parameter Name="periodStatusId" Mode="InOut" Type="Int32" />
             <Parameter Name="periodId" Mode="In" Type="Int32" />
             <Parameter Name="periodStatusTypeId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="PeriodStatus" EntityType="SchoolModel.PeriodStatu" />
+          <EntitySet Name="PeriodStatusTypes" EntityType="SchoolModel.PeriodStatusType" />
+          <EntitySet Name="Periods" EntityType="SchoolModel.Period" />
+          <AssociationSet Name="FK_PeriodGrade_Period" Association="SchoolModel.FK_PeriodGrade_Period">
+            <End Role="Period" EntitySet="Periods" />
+            <End Role="PeriodGrade" EntitySet="PeriodGrades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PeriodStatus_Period" Association="SchoolModel.FK_PeriodStatus_Period">
+            <End Role="Period" EntitySet="Periods" />
+            <End Role="PeriodStatu" EntitySet="PeriodStatus" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="proc_Period_GetAll_Result">
           <Property Type="Int32" Name="periodId" Nullable="false" />
-          <Property Type="Int32" Name="yearFrom" Nullable="false" />
-          <Property Type="Int32" Name="yearTo" Nullable="false" />
+          <Property Type="String" Name="yearFrom" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="yearTo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="YearDescription" Nullable="true" MaxLength="8000" />
           <Property Type="Boolean" Name="active" Nullable="true" />
           <Property Type="DateTime" Name="fromDate" Nullable="false" Precision="23" />
@@ -1053,11 +1086,12 @@
           <Property Type="String" Name="genderDescription" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="genderLetter" Nullable="false" MaxLength="1" />
           <Property Type="Int32" Name="periodId" Nullable="false" />
-          <Property Type="Int32" Name="yearFrom" Nullable="false" />
-          <Property Type="Int32" Name="yearTo" Nullable="false" />
-          <Property Type="String" Name="yearDescription" Nullable="false" />
+          <Property Type="String" Name="YearFrom" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="YearTo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="YearDescription" Nullable="false" MaxLength="103" />
+          <Property Type="Int32" Name="IsReadyToNextYear" Nullable="false" />
           <Property Type="Int32" Name="TotalRecord" Nullable="false" />
-        </ComplexType>
+          </ComplexType>
         <ComplexType Name="proc_Grade_StudentSummaryByPeriod_Result">
           <Property Type="String" Name="gradeDescription" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="gradeId" Nullable="false" />
@@ -1072,8 +1106,8 @@
           <Property Type="Int32" Name="periodGradeId" Nullable="false" />
           <Property Type="Int32" Name="periodId" Nullable="false" />
           <Property Type="Int32" Name="gradeId" Nullable="false" />
-          <Property Type="Int32" Name="yearFrom" Nullable="false" />
-          <Property Type="Int32" Name="yearTo" Nullable="false" />
+          <Property Type="String" Name="yearFrom" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="yearTo" Nullable="false" MaxLength="50" />
           <Property Type="Boolean" Name="active" Nullable="true" />
           <Property Type="String" Name="gradeDescription" Nullable="false" MaxLength="50" />
         </ComplexType>
@@ -1237,6 +1271,59 @@
           <Property Type="String" Name="userFullName" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="userEmailAddress" Nullable="false" MaxLength="200" />
         </ComplexType>
+        <EntityType Name="PeriodStatu">
+          <Key>
+            <PropertyRef Name="periodStatusId" />
+          </Key>
+          <Property Name="periodStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="periodId" Type="Int32" Nullable="false" />
+          <Property Name="periodStatusTypeId" Type="Int32" Nullable="false" />
+          <Property Name="fromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="toDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Period" Relationship="SchoolModel.FK_PeriodStatus_Period" FromRole="PeriodStatu" ToRole="Period" />
+        </EntityType>
+        <EntityType Name="PeriodStatusType">
+          <Key>
+            <PropertyRef Name="periodStatusTypeId" />
+          </Key>
+          <Property Name="periodStatusTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="periodStatusTypeDesc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Period">
+          <Key>
+            <PropertyRef Name="periodId" />
+          </Key>
+          <Property Name="periodId" Type="Int32" Nullable="false" />
+          <Property Name="yearFrom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="yearTo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="active" Type="Boolean" />
+          <NavigationProperty Name="PeriodGrades" Relationship="SchoolModel.FK_PeriodGrade_Period" FromRole="Period" ToRole="PeriodGrade" />
+          <NavigationProperty Name="PeriodStatus" Relationship="SchoolModel.FK_PeriodStatus_Period" FromRole="Period" ToRole="PeriodStatu" />
+        </EntityType>
+        <Association Name="FK_PeriodGrade_Period">
+          <End Type="SchoolModel.Period" Role="Period" Multiplicity="1" />
+          <End Type="SchoolModel.PeriodGrade" Role="PeriodGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="periodId" />
+            </Principal>
+            <Dependent Role="PeriodGrade">
+              <PropertyRef Name="periodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PeriodStatus_Period">
+          <End Type="SchoolModel.Period" Role="Period" Multiplicity="1" />
+          <End Type="SchoolModel.PeriodStatu" Role="PeriodStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="periodId" />
+            </Principal>
+            <Dependent Role="PeriodStatu">
+              <PropertyRef Name="periodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1275,16 +1362,6 @@
               <MappingFragment StoreEntitySet="PayTransactionStatusType">
                 <ScalarProperty Name="payTransactionStatusTypeId" ColumnName="payTransactionStatusTypeId" />
                 <ScalarProperty Name="payTransactionStatusTypeDescription" ColumnName="payTransactionStatusTypeDescription" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Periods">
-            <EntityTypeMapping TypeName="SchoolModel.Period">
-              <MappingFragment StoreEntitySet="Period">
-                <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="periodId" ColumnName="periodId" />
-                <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
-                <ScalarProperty Name="yearTo" ColumnName="yearTo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1428,6 +1505,11 @@
                 <ScalarProperty Name="genderId" ColumnName="genderId" />
                 <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
                 <ScalarProperty Name="genderLetter" ColumnName="genderLetter" />
+                <ScalarProperty Name="periodId" ColumnName="periodId" />
+                <ScalarProperty Name="YearFrom" ColumnName="YearFrom" />
+                <ScalarProperty Name="YearTo" ColumnName="YearTo" />
+                <ScalarProperty Name="YearDescription" ColumnName="YearDescription" />
+                <ScalarProperty Name="IsReadyToNextYear" ColumnName="IsReadyToNextYear" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1629,6 +1711,35 @@
           <FunctionImportMapping FunctionImportName="proc_Period_ReadyToAdd" FunctionName="SchoolModel.Store.proc_Period_ReadyToAdd" />
           <FunctionImportMapping FunctionImportName="proc_Period_Insert" FunctionName="SchoolModel.Store.proc_Period_Insert" />
           <FunctionImportMapping FunctionImportName="proc_PeriodStatus_Insert" FunctionName="SchoolModel.Store.proc_PeriodStatus_Insert" />
+          <EntitySetMapping Name="PeriodStatus">
+            <EntityTypeMapping TypeName="SchoolModel.PeriodStatu">
+              <MappingFragment StoreEntitySet="PeriodStatus">
+                <ScalarProperty Name="toDate" ColumnName="toDate" />
+                <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+                <ScalarProperty Name="periodStatusTypeId" ColumnName="periodStatusTypeId" />
+                <ScalarProperty Name="periodId" ColumnName="periodId" />
+                <ScalarProperty Name="periodStatusId" ColumnName="periodStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PeriodStatusTypes">
+            <EntityTypeMapping TypeName="SchoolModel.PeriodStatusType">
+              <MappingFragment StoreEntitySet="PeriodStatusType">
+                <ScalarProperty Name="periodStatusTypeDesc" ColumnName="periodStatusTypeDesc" />
+                <ScalarProperty Name="periodStatusTypeId" ColumnName="periodStatusTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Periods">
+            <EntityTypeMapping TypeName="SchoolModel.Period">
+              <MappingFragment StoreEntitySet="Period">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="yearTo" ColumnName="yearTo" />
+                <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
+                <ScalarProperty Name="periodId" ColumnName="periodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

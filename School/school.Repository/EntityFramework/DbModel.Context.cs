@@ -31,7 +31,6 @@ namespace school.Repository.EntityFramework
         public virtual DbSet<Grade> Grades { get; set; }
         public virtual DbSet<PayTransaction> PayTransactions { get; set; }
         public virtual DbSet<PayTransactionStatusType> PayTransactionStatusTypes { get; set; }
-        public virtual DbSet<Period> Periods { get; set; }
         public virtual DbSet<PeriodGrade> PeriodGrades { get; set; }
         public virtual DbSet<PeriodGradeGroup> PeriodGradeGroups { get; set; }
         public virtual DbSet<PeriodGradeStudent> PeriodGradeStudents { get; set; }
@@ -45,6 +44,9 @@ namespace school.Repository.EntityFramework
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<PeriodStatu> PeriodStatus { get; set; }
+        public virtual DbSet<PeriodStatusType> PeriodStatusTypes { get; set; }
+        public virtual DbSet<Period> Periods { get; set; }
     
         public virtual ObjectResult<proc_Period_GetAll_Result> proc_Period_GetAll()
         {
@@ -319,20 +321,20 @@ namespace school.Repository.EntityFramework
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Period_ReadyToAdd", periodIsReady);
         }
     
-        public virtual int proc_Period_Insert(ObjectParameter periodId, Nullable<int> yearFrom, Nullable<int> yearTo)
+        public virtual int proc_Period_Insert(ObjectParameter periodId, string yearFrom, string yearTo)
         {
-            var yearFromParameter = yearFrom.HasValue ?
+            var yearFromParameter = yearFrom != null ?
                 new ObjectParameter("yearFrom", yearFrom) :
-                new ObjectParameter("yearFrom", typeof(int));
+                new ObjectParameter("yearFrom", typeof(string));
     
-            var yearToParameter = yearTo.HasValue ?
+            var yearToParameter = yearTo != null ?
                 new ObjectParameter("yearTo", yearTo) :
-                new ObjectParameter("yearTo", typeof(int));
+                new ObjectParameter("yearTo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Period_Insert", periodId, yearFromParameter, yearToParameter);
         }
     
-        public virtual int proc_PeriodStatus_Insert(ObjectParameter periodStatusId, Nullable<int> periodId, Nullable<int> periodStatusTypeId)
+        public virtual int proc_PeriodStatus_Insert(Nullable<int> periodId, Nullable<int> periodStatusTypeId)
         {
             var periodIdParameter = periodId.HasValue ?
                 new ObjectParameter("periodId", periodId) :
@@ -342,7 +344,7 @@ namespace school.Repository.EntityFramework
                 new ObjectParameter("periodStatusTypeId", periodStatusTypeId) :
                 new ObjectParameter("periodStatusTypeId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_PeriodStatus_Insert", periodStatusId, periodIdParameter, periodStatusTypeIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_PeriodStatus_Insert", periodIdParameter, periodStatusTypeIdParameter);
         }
     }
 }

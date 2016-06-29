@@ -1,41 +1,59 @@
 ﻿<div class="row">
     <div class="col-md-12">
-        <form id="form-period" class="form" role="form">            
+        <form id="form-period" class="form" role="form"> 
+            <h4>Period Description</h4>           
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>From Description</label>
-                        <input class="form-control" id="From" name="From" type="text" />
-                        @*@Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })*@
+                        <div class='input-group date datepicker' id='datetimepicker10'>
+                            <input type='text' id="From" name="From" class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar">
+                                </span>
+                            </span>
+                        </div>
+                        @*<label>From Description</label>
+                        <input class="form-control" id="From" name="From" type="text" />*@                      
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>To Description</label>
-                        <input class="form-control" id="To" name="To" type="text" />
+                        <div class='input-group date datepicker' id='datetimepicker11'>
+                            <input type='text' id="To" name="To" class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar">
+                                </span>
+                            </span>
+                        </div>
+                        @*<input class="form-control" id="To" name="To" type="text" />*@
                         @*<input class="form-control" type="text" />*@
                         @*@Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control" })*@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="checkboxes">
-                        @foreach (var item in ViewBag.Grade)
-                        {
-                            <div class="checkbox checkbox-warning">
-                                <input class="styled" id=@item.GradeId type="checkbox" />
-                                <label for=@item.GradeId>@item.GradeDescription</label>
-                            </div>
-                        }
-                        
-                        @*<input type="checkbox" /> Some label<br />
+            <h4>Grade Configuration</h4> 
+            <div class="form-horizontal">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="checkboxes">
+                            @foreach (var item in ViewBag.Grade)
+                            {
+                                <div class="checkbox checkbox-warning checkbox-inline">
+                                    <input class="styled" id=@item.GradeId type="checkbox" />
+                                    <label for=@item.GradeId>@item.GradeDescription</label>
+                                </div>
+                            }
+
+                            @*<input type="checkbox" /> Some label<br />
                         <input type="checkbox" /> Some other label<br />*@
+                        </div>
+
                     </div>
 
                 </div>
-
             </div>
-        </form>
+</form>
     </div>
 </div>

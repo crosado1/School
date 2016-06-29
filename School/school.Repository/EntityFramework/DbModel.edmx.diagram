@@ -4,12 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="07039d6c15f143ab842133b477b0e148" Name="Diagram1" ZoomLevel="68">
+      <Diagram DiagramId="07039d6c15f143ab842133b477b0e148" Name="Diagram1" ZoomLevel="100">
         <EntityTypeShape EntityType="SchoolModel.Gender" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="SchoolModel.Grade" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SchoolModel.PayTransaction" Width="1.5" PointX="14.25" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="SchoolModel.PayTransactionStatusType" Width="1.5" PointX="12" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SchoolModel.Period" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="SchoolModel.PeriodGrade" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SchoolModel.PeriodGradeGroup" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="SchoolModel.PeriodGradeStudent" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
@@ -23,7 +22,6 @@
         <AssociationConnector Association="SchoolModel.FK_PeriodGrade_Grade" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolModel.FK_PayTransaction_StudentPayTransaction" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolModel.FK_StudentPayTransactionStatus_PayTransactionStatusType" ManuallyRouted="false" />
-        <AssociationConnector Association="SchoolModel.FK_PeriodGrade_Period" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolModel.FK_PeriodGradeGroup_PeriodGrade" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolModel.FK_PeriodGradeStudent_PeriodGradeGroup" ManuallyRouted="false" />
         <AssociationConnector Association="SchoolModel.FK_PeriodGradeStudent_Student" ManuallyRouted="false" />
@@ -39,6 +37,11 @@
         <AssociationConnector Association="SchoolModel.FK_Student_City" />
         <AssociationConnector Association="SchoolModel.FK_UserRole_Role" />
         <AssociationConnector Association="SchoolModel.FK_UserRole_User" />
+        <EntityTypeShape EntityType="SchoolModel.PeriodStatu" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SchoolModel.PeriodStatusType" Width="1.5" PointX="7.375" PointY="10.75" />
+        <EntityTypeShape EntityType="SchoolModel.Period" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="SchoolModel.FK_PeriodGrade_Period" />
+        <AssociationConnector Association="SchoolModel.FK_PeriodStatus_Period" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

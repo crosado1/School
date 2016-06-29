@@ -16,8 +16,8 @@ namespace school.Repository.EntityFramework
         public int periodGradeId { get; set; }
         public int periodId { get; set; }
         public int gradeId { get; set; }
-        public int yearFrom { get; set; }
-        public int yearTo { get; set; }
+        public string yearFrom { get; set; }
+        public string yearTo { get; set; }
         public Nullable<bool> active { get; set; }
         public string gradeDescription { get; set; }
     }

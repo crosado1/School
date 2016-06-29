@@ -124,9 +124,9 @@ namespace school.Repository.Concrete
                                 {
                                     Active = true,
                                     PeriodId = item.periodId,
-                                    YearDescription = item.yearDescription,
-                                    YearFrom = item.yearFrom,
-                                    YearTo = item.yearTo
+                                    YearDescription = item.YearDescription,
+                                    YearFrom = item.YearFrom,
+                                    YearTo = item.YearTo
                                 }
                             }
                         }

@@ -35,16 +35,6 @@
     <Property Name="payTransactionStatusTypeDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="StudentPayTransactionStatus" Relationship="Self.FK_StudentPayTransactionStatus_PayTransactionStatusType" FromRole="PayTransactionStatusType" ToRole="StudentPayTransactionStatus" />
   </EntityType>
-  <EntityType Name="Period">
-    <Key>
-      <PropertyRef Name="periodId" />
-    </Key>
-    <Property Name="periodId" Type="Int32" Nullable="false" />
-    <Property Name="yearFrom" Type="Int32" Nullable="false" />
-    <Property Name="yearTo" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="PeriodGrades" Relationship="Self.FK_PeriodGrade_Period" FromRole="Period" ToRole="PeriodGrade" />
-    <Property Name="active" Type="Boolean" />
-  </EntityType>
   <EntityType Name="PeriodGrade">
     <Key>
       <PropertyRef Name="periodGradeId" />
@@ -53,8 +43,8 @@
     <Property Name="periodId" Type="Int32" Nullable="false" />
     <Property Name="gradeId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Grade" Relationship="Self.FK_PeriodGrade_Grade" FromRole="PeriodGrade" ToRole="Grade" />
-    <NavigationProperty Name="Period" Relationship="Self.FK_PeriodGrade_Period" FromRole="PeriodGrade" ToRole="Period" />
     <NavigationProperty Name="PeriodGradeGroups" Relationship="Self.FK_PeriodGradeGroup_PeriodGrade" FromRole="PeriodGrade" ToRole="PeriodGradeGroup" />
+    <NavigationProperty Name="Period" Relationship="SchoolModel.FK_PeriodGrade_Period" FromRole="PeriodGrade" ToRole="Period" />
   </EntityType>
   <EntityType Name="PeriodGradeGroup">
     <Key>
@@ -205,18 +195,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PeriodGrade_Period">
-    <End Role="Period" Type="Self.Period" Multiplicity="1" />
-    <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Period">
-        <PropertyRef Name="periodId" />
-      </Principal>
-      <Dependent Role="PeriodGrade">
-        <PropertyRef Name="periodId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_PeriodGradeGroup_PeriodGrade">
     <End Role="PeriodGrade" Type="Self.PeriodGrade" Multiplicity="1" />
     <End Role="PeriodGradeGroup" Type="Self.PeriodGradeGroup" Multiplicity="*" />
@@ -318,7 +296,6 @@
     <EntitySet Name="Grades" EntityType="Self.Grade" />
     <EntitySet Name="PayTransactions" EntityType="Self.PayTransaction" />
     <EntitySet Name="PayTransactionStatusTypes" EntityType="Self.PayTransactionStatusType" />
-    <EntitySet Name="Periods" EntityType="Self.Period" />
     <EntitySet Name="PeriodGrades" EntityType="Self.PeriodGrade" />
     <EntitySet Name="PeriodGradeGroups" EntityType="Self.PeriodGradeGroup" />
     <EntitySet Name="PeriodGradeStudents" EntityType="Self.PeriodGradeStudent" />
@@ -343,10 +320,6 @@
     <AssociationSet Name="FK_StudentPayTransactionStatus_PayTransactionStatusType" Association="Self.FK_StudentPayTransactionStatus_PayTransactionStatusType">
       <End Role="PayTransactionStatusType" EntitySet="PayTransactionStatusTypes" />
       <End Role="StudentPayTransactionStatus" EntitySet="StudentPayTransactionStatus" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PeriodGrade_Period" Association="Self.FK_PeriodGrade_Period">
-      <End Role="Period" EntitySet="Periods" />
-      <End Role="PeriodGrade" EntitySet="PeriodGrades" />
     </AssociationSet>
     <AssociationSet Name="FK_PeriodGradeGroup_PeriodGrade" Association="Self.FK_PeriodGradeGroup_PeriodGrade">
       <End Role="PeriodGrade" EntitySet="PeriodGrades" />
@@ -483,19 +456,29 @@
     </FunctionImport>
     <FunctionImport Name="proc_Period_Insert">
       <Parameter Name="periodId" Mode="InOut" Type="Int32" />
-      <Parameter Name="yearFrom" Mode="In" Type="Int32" />
-      <Parameter Name="yearTo" Mode="In" Type="Int32" />
+      <Parameter Name="yearFrom" Mode="In" Type="String" />
+      <Parameter Name="yearTo" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="proc_PeriodStatus_Insert">
-      <Parameter Name="periodStatusId" Mode="InOut" Type="Int32" />
       <Parameter Name="periodId" Mode="In" Type="Int32" />
       <Parameter Name="periodStatusTypeId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="PeriodStatus" EntityType="SchoolModel.PeriodStatu" />
+    <EntitySet Name="PeriodStatusTypes" EntityType="SchoolModel.PeriodStatusType" />
+    <EntitySet Name="Periods" EntityType="SchoolModel.Period" />
+    <AssociationSet Name="FK_PeriodGrade_Period" Association="SchoolModel.FK_PeriodGrade_Period">
+      <End Role="Period" EntitySet="Periods" />
+      <End Role="PeriodGrade" EntitySet="PeriodGrades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PeriodStatus_Period" Association="SchoolModel.FK_PeriodStatus_Period">
+      <End Role="Period" EntitySet="Periods" />
+      <End Role="PeriodStatu" EntitySet="PeriodStatus" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="proc_Period_GetAll_Result">
     <Property Type="Int32" Name="periodId" Nullable="false" />
-    <Property Type="Int32" Name="yearFrom" Nullable="false" />
-    <Property Type="Int32" Name="yearTo" Nullable="false" />
+    <Property Type="String" Name="yearFrom" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="yearTo" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="YearDescription" Nullable="true" MaxLength="8000" />
     <Property Type="Boolean" Name="active" Nullable="true" />
     <Property Type="DateTime" Name="fromDate" Nullable="false" Precision="23" />
@@ -524,9 +507,10 @@
     <Property Type="String" Name="genderDescription" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="genderLetter" Nullable="false" MaxLength="1" />
     <Property Type="Int32" Name="periodId" Nullable="false" />
-    <Property Type="Int32" Name="yearFrom" Nullable="false" />
-    <Property Type="Int32" Name="yearTo" Nullable="false" />
-    <Property Type="String" Name="yearDescription" Nullable="false" />
+    <Property Type="String" Name="YearFrom" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="YearTo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="YearDescription" Nullable="false" MaxLength="103" />
+    <Property Type="Int32" Name="IsReadyToNextYear" Nullable="false" />
     <Property Type="Int32" Name="TotalRecord" Nullable="false" />
   </ComplexType>
   <ComplexType Name="proc_Grade_StudentSummaryByPeriod_Result">
@@ -543,8 +527,8 @@
     <Property Type="Int32" Name="periodGradeId" Nullable="false" />
     <Property Type="Int32" Name="periodId" Nullable="false" />
     <Property Type="Int32" Name="gradeId" Nullable="false" />
-    <Property Type="Int32" Name="yearFrom" Nullable="false" />
-    <Property Type="Int32" Name="yearTo" Nullable="false" />
+    <Property Type="String" Name="yearFrom" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="yearTo" Nullable="false" MaxLength="50" />
     <Property Type="Boolean" Name="active" Nullable="true" />
     <Property Type="String" Name="gradeDescription" Nullable="false" MaxLength="50" />
   </ComplexType>
@@ -708,4 +692,57 @@
     <Property Type="String" Name="userFullName" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="userEmailAddress" Nullable="false" MaxLength="200" />
   </ComplexType>
+  <EntityType Name="PeriodStatu">
+    <Key>
+      <PropertyRef Name="periodStatusId" />
+    </Key>
+    <Property Name="periodStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="periodId" Type="Int32" Nullable="false" />
+    <Property Name="periodStatusTypeId" Type="Int32" Nullable="false" />
+    <Property Name="fromDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="toDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Period" Relationship="SchoolModel.FK_PeriodStatus_Period" FromRole="PeriodStatu" ToRole="Period" />
+  </EntityType>
+  <EntityType Name="PeriodStatusType">
+    <Key>
+      <PropertyRef Name="periodStatusTypeId" />
+    </Key>
+    <Property Name="periodStatusTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="periodStatusTypeDesc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Period">
+    <Key>
+      <PropertyRef Name="periodId" />
+    </Key>
+    <Property Name="periodId" Type="Int32" Nullable="false" />
+    <Property Name="yearFrom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="yearTo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="PeriodGrades" Relationship="SchoolModel.FK_PeriodGrade_Period" FromRole="Period" ToRole="PeriodGrade" />
+    <NavigationProperty Name="PeriodStatus" Relationship="SchoolModel.FK_PeriodStatus_Period" FromRole="Period" ToRole="PeriodStatu" />
+  </EntityType>
+  <Association Name="FK_PeriodGrade_Period">
+    <End Type="SchoolModel.Period" Role="Period" Multiplicity="1" />
+    <End Type="SchoolModel.PeriodGrade" Role="PeriodGrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Period">
+        <PropertyRef Name="periodId" />
+      </Principal>
+      <Dependent Role="PeriodGrade">
+        <PropertyRef Name="periodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PeriodStatus_Period">
+    <End Type="SchoolModel.Period" Role="Period" Multiplicity="1" />
+    <End Type="SchoolModel.PeriodStatu" Role="PeriodStatu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Period">
+        <PropertyRef Name="periodId" />
+      </Principal>
+      <Dependent Role="PeriodStatu">
+        <PropertyRef Name="periodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

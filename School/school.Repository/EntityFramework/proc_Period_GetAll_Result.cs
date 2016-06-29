@@ -14,8 +14,8 @@ namespace school.Repository.EntityFramework
     public partial class proc_Period_GetAll_Result
     {
         public int periodId { get; set; }
-        public int yearFrom { get; set; }
-        public int yearTo { get; set; }
+        public string yearFrom { get; set; }
+        public string yearTo { get; set; }
         public string YearDescription { get; set; }
         public Nullable<bool> active { get; set; }
         public System.DateTime fromDate { get; set; }

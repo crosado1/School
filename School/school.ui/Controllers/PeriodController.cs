@@ -56,8 +56,8 @@ namespace school.ui.Controllers
                 {
                     var result = _repository.Add(new Model.Model.PeriodModel
                     {
-                        YearTo = Int32.Parse(to),
-                        YearFrom = Int32.Parse(from)
+                        YearTo =to,
+                        YearFrom = from
                     });
 
                     List<PeriodGradeModel> periodGradeCollection = new List<PeriodGradeModel>();

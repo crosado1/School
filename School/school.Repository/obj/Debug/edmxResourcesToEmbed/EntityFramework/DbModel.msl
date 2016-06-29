@@ -36,16 +36,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Periods">
-      <EntityTypeMapping TypeName="SchoolModel.Period">
-        <MappingFragment StoreEntitySet="Period">
-          <ScalarProperty Name="active" ColumnName="active" />
-          <ScalarProperty Name="periodId" ColumnName="periodId" />
-          <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
-          <ScalarProperty Name="yearTo" ColumnName="yearTo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="PeriodGrades">
       <EntityTypeMapping TypeName="SchoolModel.PeriodGrade">
         <MappingFragment StoreEntitySet="PeriodGrade">
@@ -186,6 +176,11 @@
           <ScalarProperty Name="genderId" ColumnName="genderId" />
           <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
           <ScalarProperty Name="genderLetter" ColumnName="genderLetter" />
+          <ScalarProperty Name="periodId" ColumnName="periodId" />
+          <ScalarProperty Name="YearFrom" ColumnName="YearFrom" />
+          <ScalarProperty Name="YearTo" ColumnName="YearTo" />
+          <ScalarProperty Name="YearDescription" ColumnName="YearDescription" />
+          <ScalarProperty Name="IsReadyToNextYear" ColumnName="IsReadyToNextYear" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -387,5 +382,34 @@
     <FunctionImportMapping FunctionImportName="proc_Period_ReadyToAdd" FunctionName="SchoolModel.Store.proc_Period_ReadyToAdd" />
     <FunctionImportMapping FunctionImportName="proc_Period_Insert" FunctionName="SchoolModel.Store.proc_Period_Insert" />
     <FunctionImportMapping FunctionImportName="proc_PeriodStatus_Insert" FunctionName="SchoolModel.Store.proc_PeriodStatus_Insert" />
+    <EntitySetMapping Name="PeriodStatus">
+      <EntityTypeMapping TypeName="SchoolModel.PeriodStatu">
+        <MappingFragment StoreEntitySet="PeriodStatus">
+          <ScalarProperty Name="toDate" ColumnName="toDate" />
+          <ScalarProperty Name="fromDate" ColumnName="fromDate" />
+          <ScalarProperty Name="periodStatusTypeId" ColumnName="periodStatusTypeId" />
+          <ScalarProperty Name="periodId" ColumnName="periodId" />
+          <ScalarProperty Name="periodStatusId" ColumnName="periodStatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PeriodStatusTypes">
+      <EntityTypeMapping TypeName="SchoolModel.PeriodStatusType">
+        <MappingFragment StoreEntitySet="PeriodStatusType">
+          <ScalarProperty Name="periodStatusTypeDesc" ColumnName="periodStatusTypeDesc" />
+          <ScalarProperty Name="periodStatusTypeId" ColumnName="periodStatusTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Periods">
+      <EntityTypeMapping TypeName="SchoolModel.Period">
+        <MappingFragment StoreEntitySet="Period">
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="yearTo" ColumnName="yearTo" />
+          <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
+          <ScalarProperty Name="periodId" ColumnName="periodId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

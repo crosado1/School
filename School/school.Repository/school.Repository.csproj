@@ -120,6 +120,12 @@
     <Compile Include="EntityFramework\PeriodGradeStudentTranTypeConfiguration.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityFramework\PeriodStatu.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\PeriodStatusType.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityFramework\proc_Gender_GetAll_Result.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>

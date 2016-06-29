@@ -134,8 +134,9 @@ namespace school.Repository.Concrete
                 var returnAction = _context.proc_Period_ReadyToAdd(param1);
                 return (bool)param1.Value;
             }
-            catch
+            catch(Exception ex)
             {
+                var x = ex;
                 return false;
             }
         }
