@@ -1,9 +1,46 @@
 ﻿(function () {
     var init = function () {
-        loadPeriodGrade();
-        //alert('init 1');
-        
+        showAddGrade();
+        loadPeriodGrade();        
     };
+
+   
+
+    var beforeSendGradeRequest = function () {        
+        let htmlBind = $('#addGradeHtml');
+        htmlBind.html('');
+    }
+    var onShowGrade = function (response) {
+        let htmlBind = $('#addGradeHtml');        
+        if (response.Status == 'OK') {
+            htmlBind.html(response.Html);
+            let saveButton = $('#btnSaveGrade');
+
+            if (response.TotalRecords > 0) {
+                saveButton.prop('disabled', false);
+            }
+            else {
+                saveButton.prop('disabled', true);
+            }
+        }
+    }
+
+    this.showAddGrade = function () {
+
+        let periodId = $('#hvPeriodId').val();
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '/PeriodGrade/ShowGradeAvailables',
+            beforeSend:beforeSendGradeRequest(),
+            data: {
+                periodId: periodId
+            },
+            success: function (response) {
+                onShowGrade(response);
+            }
+        });
+    }
 
     this.showAddGradeGroups = function(button)
     {
@@ -31,6 +68,7 @@
     var createAccordion = function (response) {
         $('#_periodGradeAccordion').empty();
         $.each(response.Data, function (key, cell) {
+            let buttonAddGroup = '<button onclick="showAddGradeGroups(this);" data-value="' + cell.PeriodGradeId + '" class="btn btn-success btn-sm pull-right">Add Group</button><div class="clearfix"></div>';
             let accordionTable = '<div class="row">';
             accordionTable += '<div class="col-md-12">';
             accordionTable += '<div id="_groupScroll_' + cell.PeriodGradeId + '" class="groupScroll">';
@@ -39,19 +77,19 @@
             accordionTable += '<th>Group Number</th>';
             accordionTable += '<th>Group Description</th>';
             accordionTable += '<th>Leader</th>';
-            accordionTable += '<th>Student Count</th></tr></thead>';
+            accordionTable += '<th>Student Count</th><th>' + buttonAddGroup + '</th></tr></thead>';
             accordionTable += '<tbody></tbody></table></div></div></div>'
 
 
 
             let panelInfo = '<div id=panelInfo_' + cell.PeriodGradeId + ' class="panel panel-default">';
             panelInfo += '<div class="panel-heading" role="tab" id="heading_' + cell.GradeModel.GradeDescription + '">';
-            panelInfo += '<h4 class="panel-title pull-left">';
+            panelInfo += '<h4 class="panel-title">';
             panelInfo += '<a role="button" data-toggle="collapse" data-parent="#_periodGradeAccordion" href="#' + cell.PeriodGradeId + '" aria-expanded="true" aria-controls="' + cell.PeriodGradeId + '">' + cell.GradeModel.GradeDescription + '</a>';
             //panelInfo += '<a role="button" onclick="loadGroupGrades(' + cell.PeriodGradeId + ')" data-toggle="collapse" data-parent="#_periodGradeAccordion" href="#' + cell.PeriodGradeId + '" aria-expanded="true" aria-controls="' + cell.PeriodGradeId + '">' + cell.GradeModel.GradeDescription + '</a>';
             panelInfo += '</h4>';
             //panelInfo += '</div>';
-            panelInfo += '<button onclick="showAddGradeGroups(this);" data-value="' + cell.PeriodGradeId + '" class="btn btn-default btn-sm pull-right">Add Group</button><div class="clearfix"></div></div>'
+            panelInfo += '</div>'
             panelInfo += '<div id="' + cell.PeriodGradeId + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">';
             panelInfo += '<div class="panel-body">';
             //panelInfo += '<button onclick="showAddGradeGroups(this);" data-value="' + cell.PeriodGradeId + '" class="btn btn-primary btn-sm pull-right">Add Group</button><div class="clearfix"></div>'
@@ -87,13 +125,16 @@
             data: {
                 periodId: periodId
             },
-            success: function (response) {
-                //console.log(response.Data);
-                if (response.Data.length > 0) {
-                    createAccordion(response);
-                } else {
-                    alert('data not found');  
+            success: function (response) {                
+                if (response.Reason == 'OK') {
+                    if (response.Data.length > 0) {
+                        //showAddGrade();
+                        createAccordion(response);
+                    } else {
+                        alert('data not found');
+                    }
                 }
+                
             }
         });
     }
@@ -120,7 +161,8 @@
                         .append($('<td></td>').text(cell.GroupNumber))
                         .append($('<td></td>').text(cell.GroupDescription))
                         .append($('<td></td>').text(cell.LeaderFullName))
-                        .append($('<td></td>').text(cell.StudentCount)))                        
+                        .append($('<td></td>').text(cell.StudentCount))
+                        .append($('<td></td>').text('')))
                 });
             }
         });

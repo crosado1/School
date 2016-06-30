@@ -129,7 +129,7 @@
         let readyToNextYearButton = '';
 
         readyToNextYearButton = $('<button>', {
-            text: 'Matriculate',
+            text: 'Enrollment',
             //onclick: 'showStudentProfileModal(this)',
             //href: '#',
             //'data-toggle': 'modal',

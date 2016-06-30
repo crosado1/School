@@ -1,7 +1,16 @@
 ﻿
 <div class="row">
     <div class="panel panel-default">
-        <div class="panel-heading">Period Configuration <button disabled type="button" class="btn btn-default btn-sm pull-right">Add New Period</button><div class="clearfix"></div></div>
+        <div class="panel-heading">Period Configuration 
+        @if (ViewBag.IsReadyToAdd)
+        {
+            <button onclick="savePeriod();" type="button" class="btn btn-default btn-sm pull-right">Add New Period</button><div class="clearfix"></div>
+        }
+        else
+        {
+            <button disabled type="button" class="btn btn-default btn-sm pull-right">Add New Period</button><div class="clearfix"></div>
+        }
+        </div>
         <div class="panel-body">
             <div class="col-md-12">
                 <form id="form-period" class="form" role="form">

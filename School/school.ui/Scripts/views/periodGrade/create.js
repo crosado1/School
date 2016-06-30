@@ -19,23 +19,7 @@
                 loadGroupGrades(periodGradeId);
             }
         });
-    }
-
-    this.showAddGrade = function () {
-        
-        let periodId = $('#hvPeriodId').val ();
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '/PeriodGrade/ShowGradeAvailables',
-            data: {
-                periodId: periodId
-            },
-            success: function (response) {
-                onShowGrade(response);
-            }
-        });
-    }
+    }    
 
     this.saveGrade = function () {
         let periodId = $('#hvPeriodId').val();
@@ -62,27 +46,20 @@
     }
 
     var onCompleted = function (response) {
-        $('#add-grade').modal('hide');
+        showAddGrade();
         loadPeriodGrade();
 
-        var result = $('#dvResult');
-        if (response.Status == "OK") {
-            result.addClass('alert alert-success');
-            //$('#btnNewPeriod').attr('disabled', true);
-        }
-        else
-            result.addClass('alert alert-danger');
+        //var result = $('#dvResult');
+        //if (response.Status == "OK") {
+        //    result.addClass('alert alert-success');
+        //    //$('#btnNewPeriod').attr('disabled', true);
+        //}
+        //else
+        //    result.addClass('alert alert-danger');
 
-        result.html(response.Message);
-        result.show();
+        //result.html(response.Message);
+        //result.show();
     }
 
-    var onShowGrade = function (response) {
-        let modalObj = $('#add-grade');
-        let htmlBind = $('#addGradeHtml');
-        if (response.Status == 'OK') {
-            htmlBind.html(response.Html);
-            modalObj.modal('show');
-        }
-    }
+  
 }());

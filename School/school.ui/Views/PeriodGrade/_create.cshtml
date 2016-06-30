@@ -1,17 +1,33 @@
 ﻿<div class="row">
-    <div class="col-md-12">        
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="checkboxes">
-                        @foreach (var item in ViewBag.Grade)
+    <div class="panel panel-default">
+        <div class="panel-heading">Grades Available<button id="btnSaveGrade" onclick="saveGrade();"  type="button" class="btn btn-default btn-sm pull-right">Add Grade To Period</button><div class="clearfix"></div></div>
+        <div class="panel-body">
+            @*<div id="dvResult" style="display:none" role="alert">...</div>*@
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (ViewBag.Grade != null && ViewBag.Grade.Count > 0)
                         {
-                            <div class="checkbox checkbox-warning">
-                                <input class="styled" id=@item.GradeId type="checkbox" />
-                                <label for=@item.GradeId>@item.GradeDescription</label>
+                            <div id="checkboxes">
+                                @foreach (var item in ViewBag.Grade)
+                                {
+                                    <div class="checkbox checkbox-warning">
+                                        <input class="styled" id=@item.GradeId type="checkbox" />
+                                        <label for=@item.GradeId>@item.GradeDescription</label>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info">
+                                Grades not Availables.
                             </div>
                         }
                     </div>
                 </div>
-            </div>        
+            </div>
+        </div>
     </div>
+   
 </div>

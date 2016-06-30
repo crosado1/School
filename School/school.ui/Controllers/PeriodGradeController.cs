@@ -37,13 +37,15 @@ namespace school.ui.Controllers
 
         public JsonResult ShowGradeAvailables(int periodId = 0)
         {
-            ViewBag.Grade = _gradeRepository.GetAll(periodId).Data;
+            var grades = _gradeRepository.GetAll(periodId).Data;
+            ViewBag.Grade = grades;            
 
             return Json(new
             {
                 Html = RenderPartial.RenderPartialView(this, "~/Views/PeriodGrade/_create.cshtml", null),
                 Message = "",
-                Status = "OK"
+                Status = "OK",
+                TotalRecords = grades.Count()
             }, JsonRequestBehavior.AllowGet);
         }
 
