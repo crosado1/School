@@ -51,7 +51,7 @@
             //panelInfo += '<a role="button" onclick="loadGroupGrades(' + cell.PeriodGradeId + ')" data-toggle="collapse" data-parent="#_periodGradeAccordion" href="#' + cell.PeriodGradeId + '" aria-expanded="true" aria-controls="' + cell.PeriodGradeId + '">' + cell.GradeModel.GradeDescription + '</a>';
             panelInfo += '</h4>';
             //panelInfo += '</div>';
-            panelInfo += '<button onclick="showAddGradeGroups(this);" data-value="' + cell.PeriodGradeId + '" class="btn btn-primary btn-sm pull-right">Add Group</button><div class="clearfix"></div></div>'
+            panelInfo += '<button onclick="showAddGradeGroups(this);" data-value="' + cell.PeriodGradeId + '" class="btn btn-default btn-sm pull-right">Add Group</button><div class="clearfix"></div></div>'
             panelInfo += '<div id="' + cell.PeriodGradeId + '" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">';
             panelInfo += '<div class="panel-body">';
             //panelInfo += '<button onclick="showAddGradeGroups(this);" data-value="' + cell.PeriodGradeId + '" class="btn btn-primary btn-sm pull-right">Add Group</button><div class="clearfix"></div>'

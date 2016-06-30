@@ -47,7 +47,7 @@
           <Key>
             <PropertyRef Name="periodId" />
           </Key>
-          <Property Name="periodId" Type="int" Nullable="false" />
+          <Property Name="periodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="yearFrom" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="yearTo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="active" Type="bit" />
@@ -394,7 +394,9 @@
         <Function Name="proc_Grade_ExpenceSummaryByPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="periodId" Type="int" Mode="In" />
         </Function>
-        <Function Name="proc_Grade_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_Grade_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="periodId" Type="int" Mode="In" />
+        </Function>
         <Function Name="proc_Grade_GetGroups" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="periodGradeId" Type="int" Mode="In" />
         </Function>
@@ -956,7 +958,9 @@
           <FunctionImport Name="proc_PeriodGradeGroup_GetByPeriodGradeId" ReturnType="Collection(SchoolModel.proc_PeriodGradeGroup_GetByPeriodGradeId_Result)">
           <Parameter Name="periodGradeId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="proc_Grade_GetAll" ReturnType="Collection(SchoolModel.proc_Grade_GetAll_Result)" />
+          <FunctionImport Name="proc_Grade_GetAll" ReturnType="Collection(SchoolModel.proc_Grade_GetAll_Result)" >
+            <Parameter Name="periodId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="proc_Grade_ExpenceSummaryByPeriod" ReturnType="Collection(SchoolModel.proc_Grade_ExpenceSummaryByPeriod_Result)">
           <Parameter Name="periodId" Mode="In" Type="Int32" />
           </FunctionImport>

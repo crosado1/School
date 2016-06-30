@@ -37,7 +37,7 @@ namespace school.ui.Controllers
 
         public JsonResult ShowGradeAvailables(int periodId = 0)
         {
-            ViewBag.Grade = _gradeRepository.GetAll().Data;
+            ViewBag.Grade = _gradeRepository.GetAll(periodId).Data;
 
             return Json(new
             {

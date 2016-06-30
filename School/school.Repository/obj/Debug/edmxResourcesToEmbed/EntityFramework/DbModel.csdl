@@ -377,7 +377,9 @@
     <FunctionImport Name="proc_PeriodGradeGroup_GetByPeriodGradeId" ReturnType="Collection(SchoolModel.proc_PeriodGradeGroup_GetByPeriodGradeId_Result)">
       <Parameter Name="periodGradeId" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="proc_Grade_GetAll" ReturnType="Collection(SchoolModel.proc_Grade_GetAll_Result)" />
+    <FunctionImport Name="proc_Grade_GetAll" ReturnType="Collection(SchoolModel.proc_Grade_GetAll_Result)">
+      <Parameter Name="periodId" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="proc_Grade_ExpenceSummaryByPeriod" ReturnType="Collection(SchoolModel.proc_Grade_ExpenceSummaryByPeriod_Result)">
       <Parameter Name="periodId" Mode="In" Type="Int32" />
     </FunctionImport>

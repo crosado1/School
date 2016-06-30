@@ -52,11 +52,11 @@ namespace school.Repository.Concrete
            
         }
         
-        public Model.Response.ServiceResponseWithResultset<GradeModel> GetAll()
+        public Model.Response.ServiceResponseWithResultset<GradeModel> GetAll(int periodId)
         {
             try
             {
-                var result = this._context.proc_Grade_GetAll().ToList();
+                var result = this._context.proc_Grade_GetAll(periodId).ToList();
                 List<GradeModel> collection = new List<GradeModel>();
                 foreach (var item in result)
                 {
@@ -180,6 +180,11 @@ namespace school.Repository.Concrete
 
                 };
             }
+        }
+
+        public ServiceResponseWithResultset<GradeModel> GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

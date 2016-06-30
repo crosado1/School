@@ -14,15 +14,15 @@
                 <h4 class="modal-title">Period Configuration</h4>
             </div>
             <div class="modal-body">
-                <form id="form-save-period">
+                @*<form id="form-save-period">
                     <div id="addPeriodHtml">
-                        @*@Html.Partial("~/Views/Period/_create.cshtml")*@
+                        @Html.Partial("~/Views/Period/_create.cshtml")
                     </div>
-                </form>
+                </form>*@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button onclick="savePeriod();" type="button" class="btn btn-success">Save Period</button>
+                @*<button onclick="savePeriod();" type="button" class="btn btn-success">Save Period</button>*@
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -35,10 +35,10 @@
                 <h1>Periods <small>Periods Information</small></h1>
                 <div class="row">
                     <div class="col-md-4">
-                        @if (ViewBag.IsReadyToAdd)
+                        @*@if (ViewBag.IsReadyToAdd)
                         {
                             <button class="btn btn-primary" id="btnNewPeriod" onclick="showCreatePeriod();" data-toggle="modal" type="button"> <span class="glyphicon glyphicon-plus"></span> Period</button>
-                        }                       
+                        }*@                       
                             
                     </div>
 
@@ -55,7 +55,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4">
+            <form id="form-save-period">
+                <div id="addPeriodHtml">
+                    @*@Html.Partial("~/Views/Period/_create.cshtml")*@
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8">
             <div class="table-responsive">
                 <table id="tblPeriod" class="table table-bordered table-sm">
                     <thead>

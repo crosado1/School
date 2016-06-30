@@ -25,8 +25,7 @@ namespace school.ui.Controllers
             _periodGradeRepository = new PeriodGradeRepository();
         }
         public ActionResult Index()
-        {
-            ViewBag.IsReadyToAdd = _repository.IsReadyToAdd();
+        {            
             return View();
         }
 
@@ -36,9 +35,10 @@ namespace school.ui.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ShowPeriodModal()
+        public JsonResult ShowPeriodModal(int periodId)
         {
-            ViewBag.Grade = _gradeRepository.GetAll().Data;
+            ViewBag.Grade = _gradeRepository.GetAll(periodId).Data;
+            ViewBag.IsReadyToAdd = _repository.IsReadyToAdd();
 
             return Json(new
             {

@@ -1,13 +1,15 @@
 ﻿(function () {
-    var init = function () {        
+    var init = function () {
+        showCreatePeriod();
     };
 
     var onShowModal = function (response) {
         $('#addPeriodHtml').html(response.Html);
-        $('#add-period').modal('show');
+        setControls();
+        //$('#add-period').modal('show');
     }
 
-    $('#add-period').on('shown.bs.modal', function () {
+    var setControls = function () {
         $('.datepicker').datepicker({
             format: 'M-yyyy',
             viewMode: "months",
@@ -15,10 +17,20 @@
         }).on('changeDate', function (e) {
             $(this).datepicker('hide');
         });
-    });
+    }
+
+    //$('#add-period').on('shown.bs.modal', function () {
+    //    $('.datepicker').datepicker({
+    //        format: 'M-yyyy',
+    //        viewMode: "months",
+    //        minViewMode: "months"
+    //    }).on('changeDate', function (e) {
+    //        $(this).datepicker('hide');
+    //    });
+    //});
 
     var onCompleted = function (response) {
-        $('#add-period').modal('hide');
+        //$('#add-period').modal('hide');
         loadTable();
 
         var result = $('#dvResult');
@@ -39,6 +51,10 @@
             dataType: 'json',
             type: 'POST',
             url: '/Period/ShowPeriodModal',
+            data:
+            {
+                periodId: 0
+            },
             success: function (response) {
                 onShowModal(response);
             }

@@ -135,9 +135,13 @@ namespace school.Repository.EntityFramework
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_PeriodGradeGroup_GetByPeriodGradeId_Result>("proc_PeriodGradeGroup_GetByPeriodGradeId", periodGradeIdParameter);
         }
     
-        public virtual ObjectResult<proc_Grade_GetAll_Result> proc_Grade_GetAll()
+        public virtual ObjectResult<proc_Grade_GetAll_Result> proc_Grade_GetAll(Nullable<int> periodId)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_Grade_GetAll_Result>("proc_Grade_GetAll");
+            var periodIdParameter = periodId.HasValue ?
+                new ObjectParameter("periodId", periodId) :
+                new ObjectParameter("periodId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_Grade_GetAll_Result>("proc_Grade_GetAll", periodIdParameter);
         }
     
         public virtual ObjectResult<proc_Grade_ExpenceSummaryByPeriod_Result> proc_Grade_ExpenceSummaryByPeriod(Nullable<int> periodId)
