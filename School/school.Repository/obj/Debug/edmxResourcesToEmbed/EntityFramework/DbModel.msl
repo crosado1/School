@@ -411,5 +411,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_Student_GetAll" FunctionName="SchoolModel.Store.proc_Student_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SchoolModel.proc_Student_GetAll_Result">
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="middleName" ColumnName="middleName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="genderId" ColumnName="genderId" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+          <ScalarProperty Name="stateCode" ColumnName="stateCode" />
+          <ScalarProperty Name="GenderDescription" ColumnName="GenderDescription" />
+          <ScalarProperty Name="CityDescription" ColumnName="CityDescription" />
+          <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

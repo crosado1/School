@@ -1,4 +1,5 @@
 ﻿using school.Model.Model;
+using school.Model.Model.Request;
 using school.Model.Response;
 using school.Repository.Abstract;
 using System;
@@ -13,6 +14,7 @@ namespace school.Repository.Abstract
     {
         ServiceResponseModel<StudentModel> GetById(int studentId);
 
-        
+        ServiceResponseWithResultset<StudentModel> Search(Search_StudentRequest request);
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using school.Model.Model;
 using school.Model.Model.Request;
+using school.Model.Response;
 using school.Repository.Concrete;
 using school.ui.Utility;
 using System;
@@ -23,6 +24,7 @@ namespace school.ui.Controllers
         private TransactionTypeRepository _transactionTypeRepository;
         private PeriodGradeStudentRepository _periodGradeStudentRepository;
         private StudentPayConfigurationRepository _studentPayConfigurationRepository;
+        private CityRepository _cityRepository;
 
         public StudentController()
         {
@@ -34,6 +36,7 @@ namespace school.ui.Controllers
             _transactionTypeRepository = new TransactionTypeRepository();
             _periodGradeStudentRepository = new PeriodGradeStudentRepository();
             _studentPayConfigurationRepository = new StudentPayConfigurationRepository();
+            _cityRepository = new CityRepository();
         }
         public ActionResult Index()
         {
@@ -46,8 +49,7 @@ namespace school.ui.Controllers
         }
         public JsonResult GetAll(Search_StudentRequest request)
         {
-
-            var result = _repository.GetAll(request);
+            var result = _studentRepository.Search(request);
 
             if (result.Response == Model.Enumerator.Enum.ServiceResponses.Success)
             {
@@ -70,19 +72,19 @@ namespace school.ui.Controllers
         public JsonResult ShowSearch()
         {
           
-            ViewBag.Period = _periodRepository.GetAll().Data
-                                                .Select(i => new SelectListItem()
-                                                {   
-                                                    Text = i.YearFrom.ToString() + " - " + i.YearTo.ToString(),
-                                                    Value = i.PeriodId.ToString()
-                                                });
+            //ViewBag.Period = _periodRepository.GetAll().Data
+            //                                    .Select(i => new SelectListItem()
+            //                                    {   
+            //                                        Text = i.YearFrom.ToString() + " - " + i.YearTo.ToString(),
+            //                                        Value = i.PeriodId.ToString()
+            //                                    });
 
-            ViewBag.Grade = _gradeRepository.GetAll().Data
-                                                .Select(i => new SelectListItem()
-                                                {
-                                                    Text =i.GradeDescription,
-                                                    Value = i.GradeId.ToString()
-                                                });
+            //ViewBag.Grade = _gradeRepository.GetAll(0).Data
+            //                                    .Select(i => new SelectListItem()
+            //                                    {
+            //                                        Text =i.GradeDescription,
+            //                                        Value = i.GradeId.ToString()
+            //                                    });
 
             ViewBag.Gender = _genderRepository.GetAll().Data
                                                .Select(i => new SelectListItem()
@@ -90,6 +92,14 @@ namespace school.ui.Controllers
                                                    Text = i.GenderDescription,
                                                    Value = i.GenderId.ToString()
                                                });
+
+            ViewBag.City = _cityRepository.GetAll().Data
+                                               .Select(i => new SelectListItem()
+                                               {
+                                                   Text = i.CityDescription,
+                                                   Value = i.CityId.ToString()
+                                               });
+
             return Json(new
             {
                 Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_search.cshtml",null),
@@ -117,32 +127,70 @@ namespace school.ui.Controllers
                 Status = "OK"
             }, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult ShowStudentCreate()
+        public JsonResult ShowStudentCreate(int studentId)
         {
-            ViewBag.Grade = _gradeRepository.GetAll().Data
+            try
+            {
+                ViewBag.Period = _periodRepository.GetAll().Data
+                    .Select(i => new SelectListItem()
+                    {
+                        Text = i.YearFrom + ' ' + i.YearTo,
+                        Value = i.PeriodId.ToString()
+                    });
+
+                ViewBag.Grade = _gradeRepository.GetAll(0).Data
                                                 .Select(i => new SelectListItem()
                                                 {
                                                     Text = i.GradeDescription,
                                                     Value = i.GradeId.ToString()
                                                 });
 
-            ViewBag.Gender = _genderRepository.GetAll().Data
-                                               .Select(i => new SelectListItem()
-                                               {
-                                                   Text = i.GenderDescription,
-                                                   Value = i.GenderId.ToString()
-                                               });
+                ViewBag.Gender = _genderRepository.GetAll().Data
+                                                   .Select(i => new SelectListItem()
+                                                   {
+                                                       Text = i.GenderDescription,
+                                                       Value = i.GenderId.ToString()
+                                                   });
 
-            ViewBag.TransactionType = _transactionTypeRepository.GetAll().Data;
-                                            
+                ViewBag.TransactionType = _transactionTypeRepository.GetAll().Data;
 
-            return Json(new
+
+                ViewBag.Cities = _cityRepository.GetAll().Data
+                                                    .Select(i => new SelectListItem()
+                                                    {
+                                                        Text = i.CityDescription,
+                                                        Value = i.CityId.ToString()
+                                                    });
+
+                // Get Student Info
+                var studentResponse = new ServiceResponseModel<StudentModel>();
+                if (studentId != 0)
+                {
+                    studentResponse = _studentRepository.GetById(studentId);
+
+                    if (studentResponse.Response == Model.Enumerator.Enum.ServiceResponses.Failure)
+                        throw new Exception(studentResponse.Reason);
+                    
+                }
+
+                return Json(new
+                {
+                    Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_addStudent.cshtml", studentResponse.Model),
+
+                    Message = "",
+                    Status = "OK"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
             {
-                Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_addStudent.cshtml", new school.Model.Model.StudentModel()),
+                return Json(new
+                { 
+                    Message = ex.Message,
+                    Status = "ERROR"
+                }, JsonRequestBehavior.AllowGet);
+            }
 
-                Message = "",
-                Status = "OK"
-            }, JsonRequestBehavior.AllowGet);
+            
         }
         public JsonResult GetStudentById(int studentId)
         {
@@ -157,37 +205,29 @@ namespace school.ui.Controllers
         }
         public JsonResult Save(Dictionary<string, string> transactions,StudentModel student,int periodGroupId)
         {
-            var studentId = 0;
+            var studentId = student.StudentId;
             try
-            {                
+            {
+                SaveResult studentResult = new SaveResult { Status = "OK" };
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    var studentResult = _studentRepository.Add(student);
+                    if (studentId <= 0)
+                    {
+                        studentResult = _studentRepository.Add(student);
+                        studentId = studentResult.Id;
+                    }                   
 
                     if (studentResult.Status == "OK")
                     {
-                        studentId = studentResult.Id;
-                        var periodGradeStudentResult = _periodGradeStudentRepository.Add(new PeriodGradeStudentModel
-                        {
-                             StudentModel = new StudentModel {  StudentId= studentResult.Id},
-                              PeriodGradeGroupModel=new PeriodGradeGroupModel {  PeriodGradeGroupId= periodGroupId }
-                        });
+                        var periodGradeStudentResult = this.SaveGradeGroup(studentId, periodGroupId);
 
                         if (periodGradeStudentResult.Status == "OK")
                         {
-                            foreach (var item in transactions)
-                            {
-                                var configurationResult = _studentPayConfigurationRepository.Add(new StudentPayConfigurationModel
-                                {
-                                    PayConfiguration = Decimal.Parse(item.Value),
-                                    TransactionTypeId = Int32.Parse(item.Key),
-                                    PeriodGradeStudentModel = new PeriodGradeStudentModel { PeriodGradeStudentId = periodGradeStudentResult.Id }
+                            var configurationResult = this.SaveStudentConfiguration(transactions, periodGradeStudentResult.Id);
 
-                                });
+                            if (configurationResult.Status != "OK")
+                                throw new Exception(configurationResult.Message);
 
-                                if (configurationResult.Status != "OK")
-                                    throw new Exception(configurationResult.Message);
-                            }
                         }
                         else
                             throw new Exception(periodGradeStudentResult.Message);
@@ -214,6 +254,50 @@ namespace school.ui.Controllers
                     Status = "ERROR"
                 }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        private SaveResult SaveGradeGroup(int studentId,int periodGroupId)
+        {
+            return _periodGradeStudentRepository.Add(new PeriodGradeStudentModel
+            {
+                StudentModel = new StudentModel { StudentId = studentId },
+                PeriodGradeGroupModel = new PeriodGradeGroupModel { PeriodGradeGroupId = periodGroupId }
+            });
+        }
+
+        private SaveResult SaveStudentConfiguration(Dictionary<string, string> transactions,int periodGradeStudentId)
+        {
+            try
+            {
+                foreach (var item in transactions)
+                {
+                    var configurationResult = _studentPayConfigurationRepository.Add(new StudentPayConfigurationModel
+                    {
+                        PayConfiguration = Decimal.Parse(item.Value),
+                        TransactionTypeId = Int32.Parse(item.Key),
+                        PeriodGradeStudentModel = new PeriodGradeStudentModel { PeriodGradeStudentId = periodGradeStudentId }
+
+                    });
+
+                    if (configurationResult.Status != "OK")
+                        throw new Exception(configurationResult.Message);
+                }
+
+                return new SaveResult
+                {
+                    Message = "Student Configuration was saved successfully!",
+                    Status = "OK"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new SaveResult
+                {
+                    Message = ex.Message,
+                    Status = "ERROR"
+                };
+            }
+            
         }
     }
 }

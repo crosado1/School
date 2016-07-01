@@ -1,7 +1,5 @@
 ﻿@model school.Model.Model.StudentModel
-    <style>
-        
-    </style>
+   
 <button class="btn btn-sm btn-success pull-right" onclick="saveStudent();">Save Student</button>
 @*<button class="btn btn-success pull-right" onclick="saveStudent();">Reset</button>*@
 <br/>
@@ -9,6 +7,7 @@
 <div class="row">
     <div class="col-md-12">
         <form id="form-demographic" class="form" role="form">
+            <input type="hidden" id="hvStudentId" />
             <h4>Main Information</h4>
             <div class="row">
                 <div class="col-md-3">
@@ -32,7 +31,8 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Gender</label>
-                        @Html.DropDownList("Gender", (IEnumerable<SelectListItem>)ViewBag.Gender, "", new { @class = "form-control", style = "margin-bottom: 20px" })
+                        @Html.DropDownListFor(model => model.GenderModel.GenderId, (IEnumerable<SelectListItem>)ViewBag.Gender,"", new {@id="Gender",Name="Gender", @class = "form-control" })
+                        @*@Html.DropDownList("Gender", (IEnumerable<SelectListItem>)ViewBag.Gender, "", new { @class = "form-control", style = "margin-bottom: 20px" })*@
                     </div>
                 </div>
             </div>
@@ -57,7 +57,8 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>City</label>
-                        @Html.DropDownList("City", (IEnumerable<SelectListItem>)ViewBag.Gender, "", new { @class = "form-control", style = "margin-bottom: 20px" })
+                        @Html.DropDownListFor(model => model.CityModel.CityId, (IEnumerable<SelectListItem>)ViewBag.Cities, "", new { @id = "City", Name = "City", @class = "form-control" })
+                        @*@Html.DropDownList("City", (IEnumerable<SelectListItem>)ViewBag.Cities, "", new { @class = "form-control", style = "margin-bottom: 20px" })*@
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -86,13 +87,19 @@
                     <div class="panel-heading">Student Grade and Group</div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Period</label>
+                                    @Html.DropDownList("Period", (IEnumerable<SelectListItem>)ViewBag.Period, "", new { @class = "form-control", style = "margin-bottom: 20px", @onchange = "loadGrade(this.value);" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Grade</label>
                                     @Html.DropDownList("Grade", (IEnumerable<SelectListItem>)ViewBag.Grade, "", new { @class = "form-control", style = "margin-bottom: 20px", @onchange = "loadGroup(this.value);" })
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Groups</label>
                                     <select id="GradeGroups" name="GradeGroups" class="form-control"></select>

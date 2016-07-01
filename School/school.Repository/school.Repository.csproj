@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IGradeGroupRepository.cs" />
+    <Compile Include="Abstract\ICityRepository.cs" />
     <Compile Include="Abstract\IPeriodGradeRepository.cs" />
     <Compile Include="Abstract\IGenderRepository.cs" />
     <Compile Include="Abstract\IGenericRepository.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Abstract\IPeriodGradeStudentRepository.cs" />
     <Compile Include="Abstract\ITransactionTypeRepository.cs" />
     <Compile Include="Abstract\IUserRoleRepository.cs" />
+    <Compile Include="Concrete\CityRepository.cs" />
     <Compile Include="Concrete\GradeGroupRepository.cs" />
     <Compile Include="Concrete\PeriodGradeRepository.cs" />
     <Compile Include="Concrete\GenderRepository.cs" />
@@ -160,6 +162,9 @@
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\proc_Period_StudentSummaryByPeriod_Result.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\proc_Student_GetAll_Result.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\proc_Student_GetById_Result.cs">

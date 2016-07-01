@@ -460,6 +460,17 @@
     <Parameter Name="periodId" Type="int" Mode="In" />
     <Parameter Name="periodStatusTypeId" Type="int" Mode="In" />
   </Function>
+  <Function Name="proc_Student_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="firstName" Type="varchar" Mode="In" />
+    <Parameter Name="lastName" Type="varchar" Mode="In" />
+    <Parameter Name="genderId" Type="int" Mode="In" />
+    <Parameter Name="studentCode" Type="varchar(max)" Mode="In" />
+    <Parameter Name="cityId" Type="int" Mode="In" />
+    <Parameter Name="pageIndex" Type="int" Mode="In" />
+    <Parameter Name="pageCount" Type="int" Mode="In" />
+    <Parameter Name="sortBy" Type="varchar" Mode="In" />
+    <Parameter Name="sortOrder" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="proc_Student_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="studentId" Type="int" Mode="In" />
   </Function>

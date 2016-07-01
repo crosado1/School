@@ -8,6 +8,7 @@ using school.Model.Model;
 using school.Repository.EntityFramework;
 using school.Model.Response;
 using System.Data.Entity.Core.Objects;
+using school.Model.Model.Request;
 
 namespace school.Repository.Concrete
 {
@@ -114,6 +115,64 @@ namespace school.Repository.Concrete
                 {
                     Response = Model.Enumerator.Enum.ServiceResponses.Failure,
                     Reason = "Error on GetById method. " + ex.InnerException != null ? ex.InnerException.Message : ex.Message
+
+                };
+            }
+        }
+
+        public ServiceResponseWithResultset<StudentModel> Search(Search_StudentRequest request)
+        {
+            try
+            {
+                var result = this._context.proc_Student_GetAll(request.FirstName,
+                                                                  request.LastName,
+                                                                  request.GenderId,
+                                                                  request.StudentCode,
+                                                                  request.CityId,
+                                                                  request.PageIndex,
+                                                                   request.PageSize.Equals(0) ? 10 : request.PageSize,
+                                                                  request.SortColumn,
+                                                                  "ASC").ToList();
+
+                List<StudentModel> collection = new List<StudentModel>();
+                var totalRecords = result.First().TotalRecord;
+                foreach (var item in result)
+                {
+                    collection.Add(new StudentModel 
+                        {
+                            FirstName = item.firstName,
+                            MiddleName = item.middleName,
+                            LastName = item.lastName,
+                            StudentId = item.studentId,
+                            StudentCode = "123456",
+                            GenderModel = new GenderModel
+                            {
+                                GenderDescription = item.GenderDescription,
+                                GenderId = item.genderId
+                            },
+                            CityModel = new CityModel
+                            {
+                                 CityDescription = item.CityDescription,
+                                 CityId = item.cityId.HasValue?item.cityId.Value:0
+                            }
+                    });
+                }
+
+
+                return new ServiceResponseWithResultset<StudentModel>
+                {
+                    Response = Model.Enumerator.Enum.ServiceResponses.Success,
+                    Reason = "OK",
+                    Data = collection,
+                    TotalRecords = totalRecords
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponseWithResultset<StudentModel>
+                {
+                    Response = Model.Enumerator.Enum.ServiceResponses.Failure,
+                    Reason = "Error on Search method. " + ex.InnerException != null ? ex.InnerException.Message : ex.Message
 
                 };
             }

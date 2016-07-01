@@ -30,6 +30,11 @@ namespace school.ui.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetGrades(int periodId)
+        {
+            var result = _gradeRepository.GetAll(periodId);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
         //public JsonResult GetAll()
         //{
         //    var result = _gradeRepository.GetAll();           

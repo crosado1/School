@@ -207,6 +207,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\3d-doughnut-chart-large.png" />
     <Content Include="Images\avatar_2x.png" />
+    <Content Include="Images\Jane_Hall_profile.jpg" />
     <Content Include="Images\javascript_dynamic_column_chart.png" />
     <Content Include="Images\loading.gif" />
     <Content Include="Content\bower_components\Font-Awesome\fonts\fontawesome-webfont.eot" />
@@ -406,7 +407,7 @@
     <Content Include="Views\Dashboard\_adminDashboard.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Graphic\_studentByGrades.cshtml" />
-    <Content Include="Views\Student\_profile.cshtml" />
+    <Content Include="Views\Student\_profile_bak.cshtml" />
     <Content Include="Views\Student\Test.cshtml" />
     <Content Include="Views\Student\_demographic.cshtml" />
     <Content Include="Views\Student\_payTransactionSummary.cshtml" />
@@ -416,6 +417,7 @@
     <Content Include="Views\GradeGroup\_addGroup.cshtml" />
     <Content Include="Views\Period\_create.cshtml" />
     <Content Include="Views\PeriodGrade\_create.cshtml" />
+    <Content Include="Views\Student\_profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

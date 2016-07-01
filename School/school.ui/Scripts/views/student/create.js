@@ -7,12 +7,27 @@
     var init = function () {
     }
 
+    var setStudentMode = function (studentId) {
+        if (studentId > 0) {
+            $('#form-demographic .form-control').attr('disabled', true);           
+        }
+
+        $('#hvStudentId').val(studentId);
+           
+    }
+
+    var initGradeOptions = function () {
+        $('#GradeGroups').prop('disabled', 'disabled');
+        $('#Grade').prop('disabled', 'disabled');
+    }
+
     var onShowModal = function(response)
     {
         $('#newStudentHtml').html(response.Html);
         $('#new-student').modal('show');
         initDemographicValidation();
         initGradeValidation();
+        initGradeOptions();
     }
 
     var onSuccess = function (response) {
@@ -37,20 +52,28 @@
     /************************************************/
 
     /* Global methods */
-    this.showStudentCreateModal = function () {
+    this.showStudentCreateModal = function (button) {
+        let buttonObj = $(button);
+        let id = buttonObj.data('id'); 
+
         $.ajax({
             dataType: 'json',
             type: 'POST',
             url: '/Student/ShowStudentCreate',
+            data:
+            {
+               studentId:id
+            },
             success: function (response) {               
                 onShowModal(response);
+                setStudentMode(id);
             }
         });
     }
     
     this.loadGroup = function (periodGradeId) {
         
-        $('#GradeGroups').prop('disabled', 'disabled');
+       
 
         $.ajax({
             dataType: 'json',
@@ -70,7 +93,7 @@
                     $('#GradeGroups').prop('disabled', false);
 
                 $.each(response.Data, function (key, row) {                    
-                        let groupDesc = row.GroupDescription;
+                    let groupDesc = row.GroupNumber;
                         let periodGradeGroupId = row.PeriodGradeGroupId;
 
                         $('#GradeGroups')
@@ -78,6 +101,39 @@
                                     .attr("value", periodGradeGroupId)
                                     .text(groupDesc));
                     });
+            }
+        });
+    }
+
+    this.loadGrade = function (periodId) {      
+
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '/PeriodGrade/GetAllByPeriod',
+            data:
+                {
+                    periodId: periodId == '' ? 0 : periodId
+                },
+            success: function (response) {
+                $('#Grade').empty();
+                $('#Grade').append($("<option></option>")
+                                .attr("value", 0)
+                                .text('Please select the Group'));
+
+                if (!$.isEmptyObject(response.Data))
+                    $('#Grade').prop('disabled', false);
+
+                $.each(response.Data, function (key, row) {
+                    console.log(row);
+                    let gradeDesc = row.GradeModel.GradeDescription;
+                    let periodGradeId = row.PeriodGradeId;
+
+                    $('#Grade')
+                     .append($("<option></option>")
+                                .attr("value", periodGradeId)
+                                .text(gradeDesc));
+                });
             }
         });
     }
@@ -93,6 +149,8 @@
         let cityId = 1;
         let state = $("#StateCode").val();
         let zipCode = $("#ZipCode").val();
+
+        let studentId = $('#hvStudentId').val();
         
 
         //Group Info
@@ -119,7 +177,8 @@
                     },
                     StateCode: state,
                     ZipCode: zipCode,
-                    PeriodGroupId: periodGroupId
+                    PeriodGroupId: periodGroupId,
+                    StudentId:studentId
                 },
                 success: function (response) {
                     onSuccess(response);
@@ -169,7 +228,8 @@
                 },
                 ZipCode: {
                     required: true
-                }
+                },
+                City: {required:true}
             },
             messages: {
                 FirstName: {
@@ -189,7 +249,8 @@
                 },
                 ZipCode: {
                     required: "Enter the Zip Code"
-                }
+                },
+                City:{required:"Select the City"}
             },
             highlight: function (element) {
                 $(element).closest('.form-group').addClass('has-error');

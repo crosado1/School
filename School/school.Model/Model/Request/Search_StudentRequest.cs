@@ -11,6 +11,7 @@ namespace school.Model.Model.Request
         public int PeriodId { get; set; }
         public int GradeId { get; set; }
         public int GenderId { get; set; }
+        public int CityId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string StudentCode { get; set; }

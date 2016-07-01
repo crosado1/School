@@ -465,6 +465,17 @@
           <Parameter Name="periodId" Type="int" Mode="In" />
           <Parameter Name="periodStatusTypeId" Type="int" Mode="In" />
         </Function>
+        <Function Name="proc_Student_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="firstName" Type="varchar" Mode="In" />
+          <Parameter Name="lastName" Type="varchar" Mode="In" />
+          <Parameter Name="genderId" Type="int" Mode="In" />
+          <Parameter Name="studentCode" Type="varchar(max)" Mode="In" />
+          <Parameter Name="cityId" Type="int" Mode="In" />
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageCount" Type="int" Mode="In" />
+          <Parameter Name="sortBy" Type="varchar" Mode="In" />
+          <Parameter Name="sortOrder" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="proc_Student_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="studentId" Type="int" Mode="In" />
         </Function>
@@ -959,7 +970,7 @@
           <Parameter Name="periodGradeId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_Grade_GetAll" ReturnType="Collection(SchoolModel.proc_Grade_GetAll_Result)" >
-            <Parameter Name="periodId" Mode="In" Type="Int32" />
+          <Parameter Name="periodId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_Grade_ExpenceSummaryByPeriod" ReturnType="Collection(SchoolModel.proc_Grade_ExpenceSummaryByPeriod_Result)">
           <Parameter Name="periodId" Mode="In" Type="Int32" />
@@ -1057,6 +1068,17 @@
             <End Role="Period" EntitySet="Periods" />
             <End Role="PeriodStatu" EntitySet="PeriodStatus" />
           </AssociationSet>
+          <FunctionImport Name="proc_Student_GetAll" ReturnType="Collection(SchoolModel.proc_Student_GetAll_Result)">
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="genderId" Mode="In" Type="Int32" />
+            <Parameter Name="studentCode" Mode="In" Type="String" />
+            <Parameter Name="cityId" Mode="In" Type="Int32" />
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageCount" Mode="In" Type="Int32" />
+            <Parameter Name="sortBy" Mode="In" Type="String" />
+            <Parameter Name="sortOrder" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_Period_GetAll_Result">
           <Property Type="Int32" Name="periodId" Nullable="false" />
@@ -1328,6 +1350,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="proc_Student_GetAll_Result">
+          <Property Type="Int32" Name="studentId" Nullable="false" />
+          <Property Type="String" Name="firstName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="middleName" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="lastName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="genderId" Nullable="false" />
+          <Property Type="String" Name="address1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="address2" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="cityId" Nullable="true" />
+          <Property Type="String" Name="zipCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="stateCode" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="GenderDescription" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CityDescription" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="TotalRecord" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1744,6 +1781,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="proc_Student_GetAll" FunctionName="SchoolModel.Store.proc_Student_GetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolModel.proc_Student_GetAll_Result">
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="genderId" ColumnName="genderId" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+                <ScalarProperty Name="stateCode" ColumnName="stateCode" />
+                <ScalarProperty Name="GenderDescription" ColumnName="GenderDescription" />
+                <ScalarProperty Name="CityDescription" ColumnName="CityDescription" />
+                <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

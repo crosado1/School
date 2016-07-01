@@ -350,5 +350,46 @@ namespace school.Repository.EntityFramework
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_PeriodStatus_Insert", periodIdParameter, periodStatusTypeIdParameter);
         }
+    
+        public virtual ObjectResult<proc_Student_GetAll_Result> proc_Student_GetAll(string firstName, string lastName, Nullable<int> genderId, string studentCode, Nullable<int> cityId, Nullable<int> pageIndex, Nullable<int> pageCount, string sortBy, string sortOrder)
+        {
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("firstName", firstName) :
+                new ObjectParameter("firstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("lastName", lastName) :
+                new ObjectParameter("lastName", typeof(string));
+    
+            var genderIdParameter = genderId.HasValue ?
+                new ObjectParameter("genderId", genderId) :
+                new ObjectParameter("genderId", typeof(int));
+    
+            var studentCodeParameter = studentCode != null ?
+                new ObjectParameter("studentCode", studentCode) :
+                new ObjectParameter("studentCode", typeof(string));
+    
+            var cityIdParameter = cityId.HasValue ?
+                new ObjectParameter("cityId", cityId) :
+                new ObjectParameter("cityId", typeof(int));
+    
+            var pageIndexParameter = pageIndex.HasValue ?
+                new ObjectParameter("pageIndex", pageIndex) :
+                new ObjectParameter("pageIndex", typeof(int));
+    
+            var pageCountParameter = pageCount.HasValue ?
+                new ObjectParameter("pageCount", pageCount) :
+                new ObjectParameter("pageCount", typeof(int));
+    
+            var sortByParameter = sortBy != null ?
+                new ObjectParameter("sortBy", sortBy) :
+                new ObjectParameter("sortBy", typeof(string));
+    
+            var sortOrderParameter = sortOrder != null ?
+                new ObjectParameter("sortOrder", sortOrder) :
+                new ObjectParameter("sortOrder", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_Student_GetAll_Result>("proc_Student_GetAll", firstNameParameter, lastNameParameter, genderIdParameter, studentCodeParameter, cityIdParameter, pageIndexParameter, pageCountParameter, sortByParameter, sortOrderParameter);
+        }
     }
 }

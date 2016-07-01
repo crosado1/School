@@ -20,12 +20,13 @@
                     'type': 'POST',
                     'url': 'Student/GetAll',
                     'data': {
-                        'PeriodId': $('#search_periodId').val(),
-                        'GradeId': $('#search_gradeId').val(),
+                        //'PeriodId': $('#search_periodId').val(),
+                        //'GradeId': $('#search_gradeId').val(),
                         'StudentCode': $('#search_studentCode').val(),
                         'FirstName': $('#search_firstName').val(),
                         'LastName': $('#search_lastName').val(),
                         'GenderId': $('#search_genderId').val(),
+                        'CityId':1,
                         'PageSize': pageInfo.end,
                         'SortColumn': 'FirstName',
                         'PageIndex': (pageInfo.start) + 1
@@ -47,32 +48,24 @@
                 $("#usersTable").wrap( "<div class='table-responsive'></div>" );
             },
             'columns': [
-                { 'data': 'PeriodGradeGroupModel.PeriodGradeModel.PeriodModel.YearDescription', 'bSortable': false },
+                //{ 'data': 'PeriodGradeGroupModel.PeriodGradeModel.PeriodModel.YearDescription', 'bSortable': false },
                 {
                     'data': 'StudentFullName',
                     'bSortable': false,
                     'mRender': function (data, type, row) {                       
-                        return row.StudentModel.FirstName + ' ' + row.StudentModel.MiddleName + ' ' + row.StudentModel.LastName;
+                        return row.FirstName + ' ' + row.MiddleName + ' ' + row.LastName;
                     }
                 },
-                { 'data': 'StudentModel.StudentCode', 'bSortable': false },
-                { 'data': 'PeriodGradeGroupModel.PeriodGradeModel.GradeModel.GradeDescription', 'bSortable': false },
-                { 'data': 'PeriodGradeGroupModel.GroupDescription', 'bSortable': false },
-                { 'data': 'StudentModel.GenderModel.GenderDescription', 'bSortable': false },                
+                { 'data': 'StudentCode', 'bSortable': false },
+                { 'data': 'CityModel.CityDescription', 'bSortable': false },
+                //{ 'data': 'PeriodGradeGroupModel.PeriodGradeModel.GradeModel.GradeDescription', 'bSortable': false },
+                //{ 'data': 'PeriodGradeGroupModel.GroupDescription', 'bSortable': false },
+                { 'data': 'GenderModel.GenderDescription', 'bSortable': false },                
                 {
                     'data': '',
                     'bSortable': false,
                     'mRender': function (data, type, row) {
                         return getActions(row);
-                        //return $('<a>', {
-                        //    text: 'Pay',
-                        //    onclick: 'viewPaymentInfo(this)',
-                        //    href: '#',
-                        //    'data-toggle': 'modal',
-                        //    'class': 'btn btn-success btn-sm',
-                        //    'data-target': '#pay-student',
-                        //    'data-id': row.PeriodGradeStudentId
-                        //}).prop('outerHTML');
                     }
                 }
             ]
@@ -90,31 +83,31 @@
     }
 
     this.getActions = function (row) {
-        let activePeriod = row.PeriodGradeGroupModel.PeriodGradeModel.PeriodModel.Active;
-        let isReadyToNextYear = row.StudentModel.IsReadyToNextYear;
+        //let activePeriod = row.PeriodGradeGroupModel.PeriodGradeModel.PeriodModel.Active;
+        //let isReadyToNextYear = row.StudentModel.IsReadyToNextYear;
 
-        console.log(isReadyToNextYear);
+        //console.log(isReadyToNextYear);
         
-        let payButton = '';
+        //let payButton = '';
         
-        if (activePeriod) {
-            payButton = $('<a>', {
-                text: 'Pay',
-                onclick: 'showPaymentModal(this)',
-                href: '#',
-                'class': 'btn btn-success btn-sm',
-                'data-id': row.PeriodGradeStudentId
-            }).prop('outerHTML');
-        }
-        else {
-            payButton = $('<a>', {
-                text: 'Pay',                
-                href: '#',
-                disabled: true,                
-                'class': 'btn btn-success btn-sm',                
-                'data-id': row.PeriodGradeStudentId
-            }).prop('outerHTML');
-        }
+        //if (activePeriod) {
+        //    payButton = $('<a>', {
+        //        text: 'Pay',
+        //        onclick: 'showPaymentModal(this)',
+        //        href: '#',
+        //        'class': 'btn btn-success btn-sm',
+        //        'data-id': row.PeriodGradeStudentId
+        //    }).prop('outerHTML');
+        //}
+        //else {
+        //    payButton = $('<a>', {
+        //        text: 'Pay',                
+        //        href: '#',
+        //        disabled: true,                
+        //        'class': 'btn btn-success btn-sm',                
+        //        'data-id': row.PeriodGradeStudentId
+        //    }).prop('outerHTML');
+        //}
 
         let profileButton = $('<button>', {
             text: 'Profile',
@@ -123,24 +116,47 @@
             //'data-toggle': 'modal',
             'class': 'btn btn-info btn-sm',
             //'data-target': '#profile-student',
-            'data-id': row.StudentModel.StudentId
+            'data-id': row.StudentId
         }).prop('outerHTML');
 
-        let readyToNextYearButton = '';
+        
+        //let readyToNextYearButton = '';
 
-        readyToNextYearButton = $('<button>', {
-            text: 'Enrollment',
-            //onclick: 'showStudentProfileModal(this)',
-            //href: '#',
-            //'data-toggle': 'modal',
-            'class': 'btn btn-warning btn-sm',
-            //'data-target': '#profile-student',
-            'data-id': row.StudentModel.StudentId
-        }).prop('outerHTML');
+        //if (isTrue(isReadyToNextYear)) {
+        //    readyToNextYearButton = $('<button>', {
+        //        text: 'Enrollment',
+        //        onclick: 'showStudentCreateModal(this)',
+        //        //href: '#',
+        //        //'data-toggle': 'modal',
+        //        'class': 'btn btn-warning btn-sm',
+        //        //'data-target': '#profile-student',
+        //        'data-id': row.StudentModel.StudentId
+        //    }).prop('outerHTML');
+        //}
+       
 
 
         
-        return payButton + ' ' + profileButton + ' ' + readyToNextYearButton;
+        return profileButton;
+
+        //return '';
+    }
+
+    function isTrue(value) {
+        if (typeof (value) == 'string') {
+            value = value.toLowerCase();
+        }
+        switch (value) {
+            case true:
+            case "true":
+            case 1:
+            case "1":
+            case "on":
+            case "yes":
+                return true;
+            default:
+                return false;
+        }
     }
 
     var loadSearchStudentModal = function () {
@@ -164,13 +180,13 @@
     }
 
     var setSearchParameters = function () {
-        $('#search_periodId').val($('#Period').val());
-        $('#search_gradeId').val($('#Grade').val());
+        //$('#search_periodId').val($('#Period').val());
+        //$('#search_gradeId').val($('#Grade').val());
         $('#search_studentCode').val($('#txtStudentCode').val());
         $('#search_firstName').val($('#txtFirstName').val());
         $('#search_lastName').val($('#txtLastName').val());
         $('#search_genderId').val($('#Gender').val());
-
+        $('#search_cityId').val($('#City').val());
         $('#dvResult').hide();
         loadStudent();
     }
