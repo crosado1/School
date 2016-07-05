@@ -353,6 +353,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\slimscroll\slimscroll.min.js" />
     <Content Include="Scripts\views\graphic\graphic.js" />
+    <Content Include="Scripts\views\payTransaction\pay - Copy.js" />
     <Content Include="Scripts\views\payTransaction\payStudentTransaction.js" />
     <Content Include="Scripts\views\periodGrade\create.js" />
     <Content Include="Scripts\views\periodGrade\search.js" />
@@ -418,6 +419,7 @@
     <Content Include="Views\Period\_create.cshtml" />
     <Content Include="Views\PeriodGrade\_create.cshtml" />
     <Content Include="Views\Student\_profile.cshtml" />
+    <Content Include="Views\Student\_pay - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

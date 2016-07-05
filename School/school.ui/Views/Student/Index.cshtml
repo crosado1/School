@@ -7,11 +7,15 @@
     .error {
         border-color: #b94a48;
     }
+
+    .modal .modal-dialog {
+        width: 75%; /* or whatever you wish */
+    }
     
 </style>
 @*modals*@
 <div class="modal fade" id="search-student">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -38,7 +42,7 @@
 </div>
 
 <div class="modal fade" id="profile-student">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -48,8 +52,8 @@
             </div>
             <div class="modal-body">
                 <form id="t">
-                    <div id="loadProfile">
-                        @Html.Partial("_profile")
+                    <div id="loadProfile">                       
+                        @*@Html.Partial("_profile")*@
                     </div>
                 </form>
                 
@@ -63,9 +67,8 @@
    
 </div>
 
-<div class="modal fade" id="new-student"  >
-    
-        <div class="modal-dialog modal-lg">
+<div class="modal fade" id="new-student">    
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -94,6 +97,7 @@
 <input id="search_lastName" type="hidden" />
 <input id="search_genderId" type="hidden" />
 <input id="search_cityId" type="hidden" />
+<input type="hidden" id="hvSelectedStudentId" />
 
 <div class="container-fluid">
     <div class="row">
@@ -102,8 +106,8 @@
                 <h1>Students <small>Student List</small></h1>
                 <div class="row">
                         <div class="col-md-4">
-                            <button class="btn btn-success" typeof="btnSearchStudent" data-toggle="modal" data-target="#search-student" type="button"> <span class="glyphicon glyphicon-filter"></span> Filter</button>
-                            <button class="btn btn-primary" typeof="btnNewStudent" data-id="0" onclick="showStudentCreateModal(this);" data-toggle="modal" @*data-target="#new-student"*@ type="button"> <span class="glyphicon glyphicon-plus"></span> New Student</button>
+                            <button class="btn btn-success" id="btnSearchStudent"  data-toggle="modal" @*data-target="#search-student"*@ type="button"> <span class="glyphicon glyphicon-filter"></span> Filter</button>
+                            <button class="btn btn-primary" id="btnNewStudent" data-id="0" onclick="showStudentCreateModal(this);" data-toggle="modal" @*data-target="#new-student"*@ type="button"> <span class="glyphicon glyphicon-plus"></span> New Student</button>
                         </div>
 
                     <div class="col-md-5">
@@ -136,16 +140,18 @@
         </div>
     </div>
 </div>
+
 @section scripts
 {
+
 <script src="~/Scripts/dataTable/datatables.min.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/dateFormat/date.format.js"></script>
 <script src="~/Scripts/slimscroll/slimscroll.min.js"></script>
 <script src="~/Scripts/views/student/search.js"></script>
-<script src="~/Scripts/views/payTransaction/pay.js"></script>   
+@*<script src="~/Scripts/views/payTransaction/pay.js"></script>*@   
 <script src="~/Scripts/views/student/create.js"></script>
-<script src="~/Scripts/views/student/profile.js"></script>    
+  <script src="~/Scripts/views/student/profile.js"></script>  
      }
 
 

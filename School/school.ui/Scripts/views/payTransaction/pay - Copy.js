@@ -1,17 +1,11 @@
 ﻿(function () {
 
     var init = function () {
-       
-        onInitFunction.push(pay_onload);
-        //onInitTab('test', 't', function () {
-        //    alert('on init tab');
-        //});
-        //alert('pay init');
-        //viewPaymentInfo(7);
-        //viewPaymentHistory(7);
+        
     }
 
-    this.showPaymentModal = function(button)    {
+    this.showPaymentModal = function(button)
+    {
         var button = $(button);
         let searchId = button.data('id');
         // Set hidden value
@@ -63,12 +57,6 @@
         });
 
         $('#pay-student').modal('show');
-    }
-
-    this.pay_onload = function () {
-        alert('Prueba de Carlos pay_Onload');
-        viewPaymentInfo(7);
-        viewPaymentHistory(7);
     }
 
     this.viewPaymentHistory = function (searchId) {
@@ -163,4 +151,4 @@
 
     $('#history-scroll').slimScroll({ height: '200px' });
     $('#availables-scroll').slimScroll({ height: '100px' });
-})();
+}());

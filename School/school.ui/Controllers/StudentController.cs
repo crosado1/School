@@ -121,8 +121,8 @@ namespace school.ui.Controllers
         {
             return Json(new
             {
-                Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_payTransactionSummary.cshtml", null),
-
+                //Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_payTransactionSummary.cshtml", null),
+                Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_pay.cshtml", null),
                 Message = "",
                 Status = "OK"
             }, JsonRequestBehavior.AllowGet);

@@ -1,4 +1,5 @@
-﻿(function()
+﻿
+(function()
 {
     /* Private methods */
     var init = function () {
@@ -7,7 +8,11 @@
     var showTabContent = function (tab) {
         let url = tab.data('url');
         let content = $('#' + tab.data('content'));
-        let studentId = 7;
+        let studentId = $('#hvSelectedStudentId').val();
+
+        let onload = tab.data('onload');
+        
+
         $.ajax({
             dataType: 'json',
             type: 'POST',
@@ -21,19 +26,43 @@
         });
     }
 
+
+    //function pay_onload() {
+    //    return 5 * 9;
+    //}
+
+    //this.sum = function (a, b) { return a + b; }
+
     var setTabContent = function (content, response, tab) {
         content.html(response.Html);
-
-        let isHasLoadClass = $(tab).hasClass('loadServerSide');
+        console.log(onInitFunction);
+        for (var i = 0; i < onInitFunction.length; i++) {            
+            //console.log(onload);
+            onInitFunction[i]();
+        }
+        onInitFunction = [];
         
 
-        if (isHasLoadClass && response.Status == 'OK')
-            $(tab).removeClass('loadServerSide');
+        //let isHasLoadClass = $(tab).hasClass('loadServerSide');
+        
+
+        //if (isHasLoadClass && response.Status == 'OK')
+        //    $(tab).removeClass('loadServerSide');
     }
+
+    //this.onInitTab = function (param1, param2, callback) {
+    //    alert('se inicializo');
+    //}
+
+    //function onInitTab(param1, param2, callback) {
+    //    alert('se inicializo');
+    //}
+
 
     /* Public methods*/
     this.loadProfile = function()
     {
+        alert('Carlos loadProfile');
         $.ajax({
             'dataType': 'json',
             'type': 'POST',
@@ -46,8 +75,11 @@
     }
 
     this.showStudentProfileModal = function (button) {
+        
         let actionButton = $(button);
         let studentId = actionButton.data('id');
+
+        $('#hvSelectedStudentId').val(studentId);
         $('#profile-student').modal('show');
     }
 
@@ -60,4 +92,12 @@
     });
 
     $('#profile-student').on('show.bs.modal', loadProfile);
+
+    $('#profile-student').on('shown.bs.modal', function () {
+       
+    });
+
+    //$('#profile-student').on('shown', function () {
+    //    alert('modal');
+    //});
 }())
