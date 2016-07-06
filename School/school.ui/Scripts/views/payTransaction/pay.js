@@ -29,24 +29,27 @@
             type: 'POST',
             url: '/PayTransaction/GetAvailablePay',
             data: {
-                periodGradeStudentId: searchId
+                studentId: searchId
             },
             success: function (response) {
                 if (response.Data.length > 0) {
                     $.each(response.Data, function (key, cell) {                        
                         $('#_availableTransaction > tbody').append($('<tr></tr>')
+                            .append($('<td></td>').text(cell.YearDescription))
+                            .append($('<td></td>').text(cell.Grade))
                             .append($('<td></td>').text(cell.StudentPayTransactionModel.StudentPayTransactionDescription))
                             .append($('<td></td>').text(getMoneyFormat(cell.StudentPayTransactionModel.StudentPayConfigurationModel.PayConfiguration)))
                             .append($('<td></td>').text(getMoneyFormat(cell.PayAmount)))
                             .append($('<td></td>').text(getMoneyFormat(cell.Remaining)))
-                            .append($('<input/>',{type:'text',
+                            .append($('<td class="col-md-2"></td>').append($('<input/>', {
+                                type: 'text',
                                 id: 'txtPayAmount_' + cell.StudentPayTransactionModel.StudentPayTransactionId,
                                 value: cell.Remaining,
                                     'class': 'col-xs-2 form-control'
-                                }))
+                                })))
                             .append($('<td></td>').append($('<button>', {
                                 text: 'Submit Pay',
-                                onclick: 'submitPay(this)',
+                                onclick: 'submitPay(this);return false;',
                                 'class': 'btn btn-sm btn-success',
                                 'data-id': cell.StudentPayTransactionModel.StudentPayTransactionId,
                                 'data-balance': cell.Remaining,
@@ -62,11 +65,10 @@
             }
         });
 
-        $('#pay-student').modal('show');
+        
     }
 
     this.pay_onload = function () {
-        alert('Prueba de Carlos pay_Onload');
         viewPaymentInfo(7);
         viewPaymentHistory(7);
     }
@@ -84,6 +86,8 @@
                 if (response.Data.length > 0) {
                     $.each(response.Data, function (key, cell) {
                         $('#_historyTransaction > tbody').append($('<tr></tr>')
+                            .append($('<td></td>').text(cell.YearDescription))
+                            .append($('<td></td>').text(cell.Grade))
                             .append($('<td></td>').text(cell.StudentPayTransactionModel.StudentPayTransactionDescription))                            
                             .append($('<td></td>').text(getMoneyFormat(cell.PayAmount)))
                             .append($('<td></td>').text(getDateFormat(cell.PayDate).partialDate)));
@@ -114,11 +118,12 @@
     };
 
     this.submitPay = function (button) {
+        
         var button = $(button);
         let id = button.data('id');
         let balance = button.data('balance');
         let payAmount = $('#txtPayAmount_' + id);
-        let periodGradeStudentId = $('#pay_periodGradeStudentId').val();
+        let studentId = $('#hvSelectedStudentId').val();
       
         button.attr('disabled', true);
 
@@ -136,13 +141,14 @@
                 },
                 success: function (response) {
                     button.attr('disabled', false);
-                    viewPaymentInfo(periodGradeStudentId);
-                    viewPaymentHistory(periodGradeStudentId);
+                    viewPaymentInfo(studentId);
+                    viewPaymentHistory(studentId);
                 }
             });
         }
-        else
+        else {
             button.attr('disabled', false);
+        }           
     }
 
     var validateSubmitPay = function (id,balance) {

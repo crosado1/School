@@ -17,5 +17,9 @@ namespace school.Repository.EntityFramework
         public decimal payAmount { get; set; }
         public System.DateTime payDate { get; set; }
         public string studentPayTransactionDescription { get; set; }
+        public string yearFrom { get; set; }
+        public string yearTo { get; set; }
+        public string gradeDescription { get; set; }
+        public int periodId { get; set; }
     }
 }

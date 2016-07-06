@@ -62,7 +62,6 @@
     /* Public methods*/
     this.loadProfile = function()
     {
-        alert('Carlos loadProfile');
         $.ajax({
             'dataType': 'json',
             'type': 'POST',
@@ -96,8 +95,4 @@
     $('#profile-student').on('shown.bs.modal', function () {
        
     });
-
-    //$('#profile-student').on('shown', function () {
-    //    alert('modal');
-    //});
 }())

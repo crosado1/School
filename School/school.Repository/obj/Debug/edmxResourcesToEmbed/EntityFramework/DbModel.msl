@@ -258,6 +258,10 @@
           <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
           <ScalarProperty Name="studentPayTransactionDescription" ColumnName="studentPayTransactionDescription" />
           <ScalarProperty Name="remaining" ColumnName="remaining" />
+          <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+          <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
+          <ScalarProperty Name="yearTo" ColumnName="yearTo" />
+          <ScalarProperty Name="periodId" ColumnName="periodId" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -269,6 +273,10 @@
           <ScalarProperty Name="payAmount" ColumnName="payAmount" />
           <ScalarProperty Name="payDate" ColumnName="payDate" />
           <ScalarProperty Name="studentPayTransactionDescription" ColumnName="studentPayTransactionDescription" />
+          <ScalarProperty Name="yearFrom" ColumnName="yearFrom" />
+          <ScalarProperty Name="yearTo" ColumnName="yearTo" />
+          <ScalarProperty Name="gradeDescription" ColumnName="gradeDescription" />
+          <ScalarProperty Name="periodId" ColumnName="periodId" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -288,6 +296,9 @@
           <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
           <ScalarProperty Name="genderLetter" ColumnName="genderLetter" />
           <ScalarProperty Name="cityDescription" ColumnName="cityDescription" />
+          <ScalarProperty Name="phone1" ColumnName="phone1" />
+          <ScalarProperty Name="phone2" ColumnName="phone2" />
+          <ScalarProperty Name="phone3" ColumnName="phone3" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

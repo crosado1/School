@@ -11,9 +11,9 @@ namespace school.Repository.Abstract
 {
     public interface IPayTransactionRepository : IGenericRepository<PayTransactionModel>, IDisposable
     {
-        ServiceResponseWithResultset<PayTransactionModel> GetAllAvailablesPay(int periodGradeStudentId);
+        ServiceResponseWithResultset<PayTransactionModel> GetAllAvailablesPay(int studentId);
         SaveResult SubmitPayment(decimal paymentAmount,decimal balance, int studentPayTransactionId,int submitById);
-        ServiceResponseWithResultset<PayTransactionModel> GetPayHistory(int periodGradeStudentId);
+        ServiceResponseWithResultset<PayTransactionModel> GetPayHistory(int studentId);
         ServiceResponseWithResultset<StudentTransactionModel> GetAllByStudent(int studentId); 
 
     }

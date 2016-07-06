@@ -47,11 +47,11 @@ namespace school.Repository.Concrete
             throw new NotImplementedException();
         }
 
-        public ServiceResponseWithResultset<PayTransactionModel> GetAllAvailablesPay(int periodGradeStudentId)
+        public ServiceResponseWithResultset<PayTransactionModel> GetAllAvailablesPay(int studentId)
         {
             try
             {
-                var result = this._context.proc_Student_PaymentAvailable(periodGradeStudentId).ToList();
+                var result = this._context.proc_Student_PaymentAvailable(studentId).ToList();
                 List<PayTransactionModel> collection = new List<PayTransactionModel>();
                 foreach (var item in result)
                 {
@@ -59,7 +59,8 @@ namespace school.Repository.Concrete
                     {
                         PayAmount=item.payAmount.Value,
                         Remaining=item.remaining.Value,
-                         
+                        Grade = item.gradeDescription,
+                        YearDescription = item.yearFrom + " - " + item.yearTo,                         
                          StudentPayTransactionModel = new StudentPayTransactionModel
                          {
                              StudentPayConfigurationModel = new StudentPayConfigurationModel
@@ -137,16 +138,18 @@ namespace school.Repository.Concrete
             }
         }
 
-        public ServiceResponseWithResultset<PayTransactionModel> GetPayHistory(int periodGradeStudentId)
+        public ServiceResponseWithResultset<PayTransactionModel> GetPayHistory(int studentId)
         {
             try
             {
-                var result = this._context.proc_PayTransaction_GetAll(periodGradeStudentId).ToList();
+                var result = this._context.proc_PayTransaction_GetAll(studentId).ToList();
                 List<PayTransactionModel> collection = new List<PayTransactionModel>();
                 foreach (var item in result)
                 {
                     collection.Add(new PayTransactionModel
                     {
+                        YearDescription = item.yearFrom + " - " + item.yearTo,
+                        Grade = item.gradeDescription,
                         PayAmount = item.payAmount,
                         PayDate = item.payDate,
                         PayTransactionId = item.payTransactionId,

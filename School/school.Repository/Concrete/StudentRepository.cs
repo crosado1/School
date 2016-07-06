@@ -103,9 +103,12 @@ namespace school.Repository.Concrete
                         LastName = result.lastName,
                         MiddleName = result.middleName,
                         StateCode = result.stateCode,
-                        StudentCode = "12345",
+                        StudentCode = this.GetStudentNumber(result.studentId),
                         StudentId = result.studentId,
-                        ZipCode = result.zipCode
+                        ZipCode = result.zipCode,
+                        Phone1=result.phone1,
+                        Phone2=result.phone2,
+                        Phone3=result.phone3
                     }
                 };
             }
@@ -144,8 +147,8 @@ namespace school.Repository.Concrete
                             MiddleName = item.middleName,
                             LastName = item.lastName,
                             StudentId = item.studentId,
-                            StudentCode = "123456",
-                            GenderModel = new GenderModel
+                        StudentCode = this.GetStudentNumber(item.studentId),
+                        GenderModel = new GenderModel
                             {
                                 GenderDescription = item.GenderDescription,
                                 GenderId = item.genderId
@@ -176,6 +179,34 @@ namespace school.Repository.Concrete
 
                 };
             }
+        }
+
+        private string GetStudentNumber(int studentId)
+        {
+            string value = string.Empty;
+            switch (studentId.ToString().Length)
+            {
+                case 1:
+                    value= "00000";
+                    break;
+                case 2:
+                    value = "0000";
+                    break;
+                case 3:
+                    value = "000";
+                    break;
+                case 4:
+                    value = "00";
+                    break;
+                case 5:
+                    value = "0";
+                    break;
+                default:
+                    break;                    
+
+            }
+
+            return value + studentId.ToString();
         }
     }
 }

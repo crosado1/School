@@ -196,11 +196,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cr_bootstrap-theme.css" />
+    <Content Include="Content\cr_bootstrap-theme.min.css" />
+    <Content Include="Content\cr_bootstrap.css" />
+    <Content Include="Content\cr_bootstrap.min.css" />
     <Content Include="Content\bower_components\Font-Awesome\css\font-awesome.css" />
     <Content Include="Content\bower_components\Font-Awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\build.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\profile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -320,10 +325,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\cr_bootstrap.css.map" />
+    <Content Include="Content\cr_bootstrap-theme.css.map" />
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -408,7 +417,6 @@
     <Content Include="Views\Dashboard\_adminDashboard.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Graphic\_studentByGrades.cshtml" />
-    <Content Include="Views\Student\_profile_bak.cshtml" />
     <Content Include="Views\Student\Test.cshtml" />
     <Content Include="Views\Student\_demographic.cshtml" />
     <Content Include="Views\Student\_payTransactionSummary.cshtml" />
@@ -418,8 +426,9 @@
     <Content Include="Views\GradeGroup\_addGroup.cshtml" />
     <Content Include="Views\Period\_create.cshtml" />
     <Content Include="Views\PeriodGrade\_create.cshtml" />
-    <Content Include="Views\Student\_profile.cshtml" />
+    <Content Include="Views\Student\_profile_bak_20160706.cshtml" />
     <Content Include="Views\Student\_pay - Copy.cshtml" />
+    <Content Include="Views\Student\_profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

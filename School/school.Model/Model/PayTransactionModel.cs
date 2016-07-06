@@ -18,5 +18,7 @@ namespace school.Model.Model
 
         public decimal Remaining { get; set; }
 
+        public string Grade { get; set; }
+        public string YearDescription { get; set; }
     }
 }

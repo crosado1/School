@@ -153,13 +153,13 @@ namespace school.Repository.EntityFramework
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_Grade_ExpenceSummaryByPeriod_Result>("proc_Grade_ExpenceSummaryByPeriod", periodIdParameter);
         }
     
-        public virtual ObjectResult<proc_Student_PaymentAvailable_Result> proc_Student_PaymentAvailable(Nullable<int> periodGradeStudentId)
+        public virtual ObjectResult<proc_Student_PaymentAvailable_Result> proc_Student_PaymentAvailable(Nullable<int> studentId)
         {
-            var periodGradeStudentIdParameter = periodGradeStudentId.HasValue ?
-                new ObjectParameter("periodGradeStudentId", periodGradeStudentId) :
-                new ObjectParameter("periodGradeStudentId", typeof(int));
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("studentId", studentId) :
+                new ObjectParameter("studentId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_Student_PaymentAvailable_Result>("proc_Student_PaymentAvailable", periodGradeStudentIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_Student_PaymentAvailable_Result>("proc_Student_PaymentAvailable", studentIdParameter);
         }
     
         public virtual int proc_PayTransaction_SubmitPay(Nullable<int> studentPayTransactionId, Nullable<decimal> paymentAmount, Nullable<decimal> balance, Nullable<int> submitById)
@@ -183,13 +183,13 @@ namespace school.Repository.EntityFramework
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_PayTransaction_SubmitPay", studentPayTransactionIdParameter, paymentAmountParameter, balanceParameter, submitByIdParameter);
         }
     
-        public virtual ObjectResult<proc_PayTransaction_GetAll_Result> proc_PayTransaction_GetAll(Nullable<int> periodGradeStudentId)
+        public virtual ObjectResult<proc_PayTransaction_GetAll_Result> proc_PayTransaction_GetAll(Nullable<int> studentId)
         {
-            var periodGradeStudentIdParameter = periodGradeStudentId.HasValue ?
-                new ObjectParameter("periodGradeStudentId", periodGradeStudentId) :
-                new ObjectParameter("periodGradeStudentId", typeof(int));
+            var studentIdParameter = studentId.HasValue ?
+                new ObjectParameter("studentId", studentId) :
+                new ObjectParameter("studentId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_PayTransaction_GetAll_Result>("proc_PayTransaction_GetAll", periodGradeStudentIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_PayTransaction_GetAll_Result>("proc_PayTransaction_GetAll", studentIdParameter);
         }
     
         public virtual ObjectResult<proc_Student_GetById_Result> proc_Student_GetById(Nullable<int> studentId)

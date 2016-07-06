@@ -20,9 +20,9 @@ namespace school.ui.Controllers
         {
             return View();
         }
-        public JsonResult GetAvailablePay(int periodGradeStudentId)
+        public JsonResult GetAvailablePay(int studentId)
         {
-            var result = _payTranRepo.GetAllAvailablesPay(periodGradeStudentId);
+            var result = _payTranRepo.GetAllAvailablesPay(studentId);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         public JsonResult SubmitPayment(decimal paymentAmount, int studentPayTransactionId,decimal balance)

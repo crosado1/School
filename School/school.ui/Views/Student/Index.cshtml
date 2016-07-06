@@ -9,8 +9,20 @@
     }
 
     .modal .modal-dialog {
-        width: 75%; /* or whatever you wish */
+        width: 75%; 
     }
+
+    #new-student .modal-dialog {
+        width: 50%; 
+    }
+
+    .btn-custom {
+        width: 120px !important;
+    }
+
+    .btn-space {
+    margin-right: 5px;
+}
     
 </style>
 @*modals*@
@@ -37,7 +49,7 @@
 </div>
 <div class="modal fade" id="pay-student">
     <div id="payHtml">
-        @Html.Partial("_pay")
+        @*@Html.Partial("_pay")*@
     </div>   
 </div>
 
@@ -77,14 +89,21 @@
                     <h3 class="modal-title">Student Information</h3>
                 </div>
                 <div class="modal-body">
-                    <div id="newStudentHtml">
-                        @*@Html.Partial("_addStudent",new school.Model.Model.StudentModel())*@
-                    </div>                 
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="newStudentHtml">
+
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                                   
                 </div>
-                <div class="modal-footer">
-                    @*<button id="btnSearch" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>*@
-                    <button class="btn btn-sm btn-warning" data-dismiss="modal"><i class="icon-remove"></i> Close</button>
-                </div>
+                @*<div class="modal-footer">
+                    
+                    <button class="btn btn-default btn-custom" data-dismiss="modal"><i class="icon-remove"></i> Close</button>
+                </div>*@
             </div>
         </div>
 </div>

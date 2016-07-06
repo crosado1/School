@@ -10,51 +10,51 @@
 
 
 <input id="pay_periodGradeStudentId" type="hidden" />
-            <div class="row">
-                <div class="col-md-12">
-                    <h4><strong>Availables Pay</strong></h4>
-                    <br />
-                    <div id="availables-scroll">
-                        <table id="_availableTransaction" class="table table-striped table-fixed-header" style="margin-bottom: 0;">
-                            <thead>
-                                <tr>
-                                    <th>Transaction Detail</th>
-                                    <th>Total Pay Amount</th>
-                                    <th>Total Pay</th>
-                                    <th>Balance</th>
-                                    <th>Amount To Pay</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <div class="row">
-                <div class="col-md-12">
-                    <h4><strong>History Pay</strong></h4>
-                    <br />
-                    <div id="history-scroll">
-                        <table id="_historyTransaction" class="table table-striped table-fixed-header" style="margin-bottom: 0;">
-                            <thead>
-                                <tr>
-                                    <th>Transaction Detail</th>                                    
-                                    <th>Total Pay</th>
-                                    <th>Pay Date</th>                                    
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
 
-@*@section scripts
-{
-    <script src="~/Scripts/views/payTransaction/pay.js"></script>
-    }*@
+<div class="row">
+    <div class="col-md-12">
+        <h4><strong>Availables Pay</strong></h4>
+        <br />
+        <div id="availables-scroll">
+            <table id="_availableTransaction" class="table table-striped table-fixed-header" style="margin-bottom: 0;">
+                <thead>
+                    <tr>
+                        <th>Period</th>
+                        <th>Grade</th>
+                        <th>Transaction Detail</th>
+                        <th>Total Pay Amount</th>
+                        <th>Total Pay</th>
+                        <th>Balance</th>
+                        <th>Amount To Pay</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-12">
+        <h4><strong>History Pay</strong></h4>
+        <br />
+        <div id="history-scroll">
+            <table id="_historyTransaction" class="table table-striped table-fixed-header" style="margin-bottom: 0;">
+                <thead>
+                    <tr>
+                        <th>Period</th>
+                        <th>Grade</th>
+                        <th>Transaction Detail</th>                                    
+                        <th>Total Pay</th>
+                        <th>Pay Date</th>                                    
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <script src="~/Scripts/views/payTransaction/pay.js"></script>
 

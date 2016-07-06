@@ -26,5 +26,8 @@ namespace school.Repository.EntityFramework
         public string genderDescription { get; set; }
         public string genderLetter { get; set; }
         public string cityDescription { get; set; }
+        public string phone1 { get; set; }
+        public string phone2 { get; set; }
+        public string phone3 { get; set; }
     }
 }

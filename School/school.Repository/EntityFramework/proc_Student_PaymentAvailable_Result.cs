@@ -21,5 +21,9 @@ namespace school.Repository.EntityFramework
         public System.DateTime transactionDate { get; set; }
         public string studentPayTransactionDescription { get; set; }
         public Nullable<decimal> remaining { get; set; }
+        public string gradeDescription { get; set; }
+        public string yearFrom { get; set; }
+        public string yearTo { get; set; }
+        public int periodId { get; set; }
     }
 }

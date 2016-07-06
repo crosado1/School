@@ -14,15 +14,14 @@ namespace school.Model.Model
         public string LastName { get; set; }
         public GenderModel GenderModel { get; set; }
         public string StudentCode { get; set; }
-
         public CityModel CityModel { get; set; }
-
         public string Address1 { get; set; }
         public string Address2 { get; set; }
-
         public string ZipCode { get; set; }
         public string StateCode { get; set; }
-
         public bool IsReadyToNextYear { get; set; }
+        public string Phone1 { get; set; }
+        public string Phone2 { get; set; }
+        public string Phone3 { get; set; }
     }
 }
