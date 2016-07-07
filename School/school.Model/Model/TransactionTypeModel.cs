@@ -10,9 +10,8 @@ namespace school.Model.Model
     {
         public int TransactionTypeId { get; set; }
         public string TransactionTypeDescription { get; set; }
-
         public bool MarkOfDefault { get; set; }
-
         public int RunScheduleId { get; set; }
+        public bool OptionalPayment { get; set; }
     }
 }

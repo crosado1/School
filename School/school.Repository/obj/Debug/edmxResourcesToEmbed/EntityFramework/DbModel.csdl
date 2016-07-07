@@ -112,6 +112,9 @@
     <Property Name="zipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="stateCode" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="City" Relationship="SchoolModel.FK_Student_City" FromRole="Student" ToRole="City" />
+    <Property Name="phone1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="phone2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="phone3" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="StudentPayTransaction">
     <Key>
@@ -146,6 +149,7 @@
     <NavigationProperty Name="PeriodGradeStudentTranTypeConfigurations" Relationship="Self.FK_PeriodGradeStudentTranTypeConfiguration_TransactionType" FromRole="TransactionType" ToRole="PeriodGradeStudentTranTypeConfiguration" />
     <Property Name="markOfDefault" Type="Boolean" />
     <Property Name="runScheduleId" Type="Int32" />
+    <Property Name="optionalPayment" Type="Boolean" />
   </EntityType>
   <Association Name="FK_Student_Gender">
     <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
@@ -783,5 +787,9 @@
     <Property Type="String" Name="GenderDescription" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="CityDescription" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="TotalRecord" Nullable="false" />
+    <Property Type="Int32" Name="IsReadyToNextYear" Nullable="false" />
+    <Property Type="String" Name="phone1" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="phone2" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="phone3" Nullable="true" MaxLength="20" />
   </ComplexType>
 </Schema>

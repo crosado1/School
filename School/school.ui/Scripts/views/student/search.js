@@ -84,7 +84,7 @@
 
     this.getActions = function (row) {
         //let activePeriod = row.PeriodGradeGroupModel.PeriodGradeModel.PeriodModel.Active;
-        //let isReadyToNextYear = row.StudentModel.IsReadyToNextYear;
+        let isReadyToNextYear = row.IsReadyToNextYear;
 
         //console.log(isReadyToNextYear);
         
@@ -125,14 +125,15 @@
         //if (isTrue(isReadyToNextYear)) {
             readyToNextYearButton = $('<button>', {
                 text: 'Enroll',
-                onclick: 'showStudentCreateModal(this)',
+                onclick: 'showStudentEnrollmentModal(this)',
+                disabled: !isTrue(isReadyToNextYear),
                 //href: '#',
                 //'data-toggle': 'modal',
                 'class': 'btn btn-default btn-sm btn-custom-grid',
                 //'data-target': '#profile-student',
-                'data-id': 1
+                'data-id': row.StudentId
             }).prop('outerHTML');
-        //}
+       // }
        
 
 

@@ -132,6 +132,9 @@
     <Property Name="cityId" Type="int" />
     <Property Name="zipCode" Type="varchar" MaxLength="50" />
     <Property Name="stateCode" Type="char" MaxLength="2" />
+    <Property Name="phone1" Type="varchar" MaxLength="20" />
+    <Property Name="phone2" Type="varchar" MaxLength="20" />
+    <Property Name="phone3" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="StudentPayTransaction">
     <Key>
@@ -160,6 +163,7 @@
     <Property Name="transactionTypeDescription" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="markOfDefault" Type="bit" />
     <Property Name="runScheduleId" Type="int" />
+    <Property Name="optionalPayment" Type="bit" />
   </EntityType>
   <EntityType Name="User">
     <Key>

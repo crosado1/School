@@ -69,8 +69,10 @@
     }
 
     this.pay_onload = function () {
-        viewPaymentInfo(7);
-        viewPaymentHistory(7);
+        let studentId = $('#hvSelectedStudentId').val();
+        alert(studentId);
+        viewPaymentInfo(studentId);
+        viewPaymentHistory(studentId);
     }
 
     this.viewPaymentHistory = function (searchId) {

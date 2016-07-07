@@ -50,7 +50,8 @@ namespace school.Repository.Concrete
                     {
                         TransactionTypeDescription = item.transactionTypeDescription,
                         TransactionTypeId = item.transactionTypeId,
-                        MarkOfDefault = item.markOfDefault.HasValue?item.markOfDefault.Value:false
+                        MarkOfDefault = item.markOfDefault.HasValue?item.markOfDefault.Value:false,
+                        OptionalPayment = item.optionalPayment.HasValue?item.optionalPayment.Value:false
                     });
                 }
 

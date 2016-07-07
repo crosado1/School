@@ -1,7 +1,7 @@
 ﻿@model school.Model.Model.StudentModel
 
 <button class="btn btn-default btn-custom-md btn-space pull-right" data-dismiss="modal"><i class="icon-remove"></i> Close</button>
-<button class="btn btn-success btn-custom-md btn-space pull-right" onclick="saveStudent();">Enrollment</button>
+<button class="btn btn-success btn-custom-md btn-space pull-right" onclick="saveEnrollment();">Enrollment</button>
 
 <br />
 <br />
@@ -40,7 +40,9 @@
                         <tr>
                             <th class="col-md-2"></th>
                             <th class="col-md-4">Transaction</th>
-                            <th class="col-md-4">Pay</th>
+                            <th class="col-md-3">How much to pay</th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-2">Required Payment</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,6 +63,17 @@
                                     <div class="form-group">
                                         <input class="form-control " id="txt_@x.TransactionTypeId" type="text" />
                                     </div>
+                                </td>
+                                <td>
+                                    <input type="hidden" id="hdOpt_@x.TransactionTypeId" value="@x.OptionalPayment" />
+                                </td>
+                                <td>
+                                    @if (x.OptionalPayment)
+                                    {
+                                        <div class="form-group">
+                                            <input class="form-control " id="txtOpt_@x.TransactionTypeId" type="text" />
+                                        </div>
+                                    }
                                 </td>
                             </tr>
                         }

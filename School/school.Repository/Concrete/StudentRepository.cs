@@ -147,6 +147,7 @@ namespace school.Repository.Concrete
                             MiddleName = item.middleName,
                             LastName = item.lastName,
                             StudentId = item.studentId,
+                            IsReadyToNextYear = item.IsReadyToNextYear == 1?true:false,
                         StudentCode = this.GetStudentNumber(item.studentId),
                         GenderModel = new GenderModel
                             {

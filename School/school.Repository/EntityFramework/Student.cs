@@ -30,6 +30,9 @@ namespace school.Repository.EntityFramework
         public Nullable<int> cityId { get; set; }
         public string zipCode { get; set; }
         public string stateCode { get; set; }
+        public string phone1 { get; set; }
+        public string phone2 { get; set; }
+        public string phone3 { get; set; }
     
         public virtual Gender Gender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

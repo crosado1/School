@@ -8,9 +8,9 @@
     }
 
     var setStudentMode = function (studentId) {
-        if (studentId > 0) {
-            $('#form-demographic .form-control').attr('disabled', true);           
-        }
+        //if (studentId > 0) {
+        //    $('#form-demographic .form-control').attr('disabled', true);           
+        //}
 
         $('#hvStudentId').val(studentId);
            
@@ -26,6 +26,13 @@
         $('#newStudentHtml').html(response.Html);
         $('#new-student').modal('show');
         initDemographicValidation();
+        initGradeValidation();
+        initGradeOptions();
+    }
+
+    var onShowEnrollmentModal = function (response) {
+        $('#enrollStudentHtml').html(response.Html);
+        $('#enroll-student').modal('show');       
         initGradeValidation();
         initGradeOptions();
     }
@@ -49,6 +56,25 @@
        // loadStudent();
     }
 
+    var onEnrollmentSuccess = function (response) {
+        let classToApply = 'alert-success';
+        if (response.Status == 'OK')
+            classToApply = 'alert-success';
+        else
+            classToApply = 'alert-danger';
+
+        $('#dvResult').addClass(classToApply);
+
+        $('#enroll-student').modal('hide');
+        $('#dvResult').html(response.Message);
+        $('#dvResult').show();
+
+        // load Student List
+        if (response.StudentId != 0)
+            setStudent(response.StudentId);
+        // loadStudent();
+    }
+
     /************************************************/
 
     /* Global methods */
@@ -62,7 +88,8 @@
             url: rootDir + 'Student/ShowStudentCreate',
             data:
             {
-               studentId:id
+                studentId: id,
+                isEnrollment: 'N'
             },
             success: function (response) {               
                 onShowModal(response);
@@ -70,11 +97,29 @@
             }
         });
     }
+
+    this.showStudentEnrollmentModal = function (button) {
+        let buttonObj = $(button);
+        let id = buttonObj.data('id');
+
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: rootDir + 'Student/ShowStudentCreate',
+            data:
+            {
+                studentId: id,
+                isEnrollment: 'Y'
+            },
+            success: function (response) {
+                onShowEnrollmentModal(response);
+                $('#hvSelectedStudentId').val(id);
+                //setStudentMode(id);
+            }
+        });
+    }
     
     this.loadGroup = function (periodGradeId) {
-        
-       
-
         $.ajax({
             dataType: 'json',
             type: 'POST',
@@ -125,7 +170,7 @@
                     $('#Grade').prop('disabled', false);
 
                 $.each(response.Data, function (key, row) {
-                    console.log(row);
+                    //console.log(row);
                     let gradeDesc = row.GradeModel.GradeDescription;
                     let periodGradeId = row.PeriodGradeId;
 
@@ -186,6 +231,36 @@
             });
         }
     }
+
+    this.saveEnrollment = function () {     
+
+        let studentId = $('#hvSelectedStudentId').val();
+
+        //Group Info
+        let periodGroupId = $("#GradeGroups").val();
+
+       
+        if (validateEnrollmentForms()) {
+            alert('ok');
+            $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                url: rootDir + 'Student/SaveEnrollment',
+                data: {
+                    transactions: transactionTypeArray,
+                    PeriodGroupId: periodGroupId,
+                    StudentId: studentId
+                },
+                success: function (response) {
+                    alert('ok');
+                    onEnrollmentSuccess(response);
+                }
+            });
+        }
+        else
+            alert('error');
+        
+    }
     /************************************************/
 
     /* Validations */
@@ -201,6 +276,23 @@
         isValidTransaction = validateTransactionType();
 
         if (isValidDemographic == false || isValidGrade == false || isValidTransaction == false)
+            return false;
+        else
+            return true;
+    }
+
+    var validateEnrollmentForms = function () {
+       
+        let isValidGrade = true;
+        var isValidTransaction = true;
+        
+        let formGrade = $('#form-grade');
+
+        
+        isValidGrade = formGrade.valid();
+        isValidTransaction = validateTransactionType();
+
+        if (isValidGrade == false || isValidTransaction == false)
             return false;
         else
             return true;

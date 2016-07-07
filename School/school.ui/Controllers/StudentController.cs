@@ -127,10 +127,12 @@ namespace school.ui.Controllers
                 Status = "OK"
             }, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult ShowStudentCreate(int studentId)
+        public JsonResult ShowStudentCreate(int studentId,string isEnrollment)
         {
+            var controlToLoad = isEnrollment == "N"? "_addStudent.cshtml": "_enrollment.cshtml";
             try
             {
+
                 ViewBag.Period = _periodRepository.GetAll().Data
                     .Select(i => new SelectListItem()
                     {
@@ -145,22 +147,28 @@ namespace school.ui.Controllers
                                                     Value = i.GradeId.ToString()
                                                 });
 
-                ViewBag.Gender = _genderRepository.GetAll().Data
-                                                   .Select(i => new SelectListItem()
-                                                   {
-                                                       Text = i.GenderDescription,
-                                                       Value = i.GenderId.ToString()
-                                                   });
+                
 
                 ViewBag.TransactionType = _transactionTypeRepository.GetAll().Data;
 
 
-                ViewBag.Cities = _cityRepository.GetAll().Data
-                                                    .Select(i => new SelectListItem()
-                                                    {
-                                                        Text = i.CityDescription,
-                                                        Value = i.CityId.ToString()
-                                                    });
+                if (isEnrollment == "N")
+                {
+                    ViewBag.Cities = _cityRepository.GetAll().Data
+                                                   .Select(i => new SelectListItem()
+                                                   {
+                                                       Text = i.CityDescription,
+                                                       Value = i.CityId.ToString()
+                                                   });
+
+                    ViewBag.Gender = _genderRepository.GetAll().Data
+                                                       .Select(i => new SelectListItem()
+                                                       {
+                                                           Text = i.GenderDescription,
+                                                           Value = i.GenderId.ToString()
+                                                       });
+                }
+               
 
                 // Get Student Info
                 var studentResponse = new ServiceResponseModel<StudentModel>();
@@ -175,8 +183,8 @@ namespace school.ui.Controllers
 
                 return Json(new
                 {
-                    Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_addStudent.cshtml", studentResponse.Model),
-
+                    //Html = RenderPartial.RenderPartialView(this, "~/Views/Student/_addStudent.cshtml", studentResponse.Model),
+                    Html = RenderPartial.RenderPartialView(this, "~/Views/Student/" + controlToLoad, studentResponse.Model),
                     Message = "",
                     Status = "OK"
                 }, JsonRequestBehavior.AllowGet);
@@ -255,7 +263,47 @@ namespace school.ui.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
+        public JsonResult SaveEnrollment(Dictionary<string, string> transactions, StudentModel student, int periodGroupId)
+        {
+            var studentId = student.StudentId;
+            try
+            {
+                SaveResult studentResult = new SaveResult { Status = "OK" };
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    
+                    var periodGradeStudentResult = this.SaveGradeGroup(studentId, periodGroupId);
 
+                    if (periodGradeStudentResult.Status == "OK")
+                    {
+                        var configurationResult = this.SaveStudentConfiguration(transactions, periodGradeStudentResult.Id);
+
+                        if (configurationResult.Status != "OK")
+                            throw new Exception(configurationResult.Message);
+
+                    }
+                    else
+                        throw new Exception(periodGradeStudentResult.Message);
+
+                    scope.Complete();
+                }
+
+                return Json(new
+                {
+                    StudentId = studentId,
+                    Message = "Student Configuration was created",
+                    Status = "OK"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    Message = ex.Message,
+                    Status = "ERROR"
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
         private SaveResult SaveGradeGroup(int studentId,int periodGroupId)
         {
             return _periodGradeStudentRepository.Add(new PeriodGradeStudentModel
@@ -264,7 +312,6 @@ namespace school.ui.Controllers
                 PeriodGradeGroupModel = new PeriodGradeGroupModel { PeriodGradeGroupId = periodGroupId }
             });
         }
-
         private SaveResult SaveStudentConfiguration(Dictionary<string, string> transactions,int periodGradeStudentId)
         {
             try

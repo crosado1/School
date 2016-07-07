@@ -91,6 +91,9 @@
     <EntitySetMapping Name="Students">
       <EntityTypeMapping TypeName="SchoolModel.Student">
         <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="phone3" ColumnName="phone3" />
+          <ScalarProperty Name="phone2" ColumnName="phone2" />
+          <ScalarProperty Name="phone1" ColumnName="phone1" />
           <ScalarProperty Name="stateCode" ColumnName="stateCode" />
           <ScalarProperty Name="zipCode" ColumnName="zipCode" />
           <ScalarProperty Name="cityId" ColumnName="cityId" />
@@ -128,6 +131,7 @@
     <EntitySetMapping Name="TransactionTypes">
       <EntityTypeMapping TypeName="SchoolModel.TransactionType">
         <MappingFragment StoreEntitySet="TransactionType">
+          <ScalarProperty Name="optionalPayment" ColumnName="optionalPayment" />
           <ScalarProperty Name="runScheduleId" ColumnName="runScheduleId" />
           <ScalarProperty Name="markOfDefault" ColumnName="markOfDefault" />
           <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
@@ -438,6 +442,10 @@
           <ScalarProperty Name="GenderDescription" ColumnName="GenderDescription" />
           <ScalarProperty Name="CityDescription" ColumnName="CityDescription" />
           <ScalarProperty Name="TotalRecord" ColumnName="TotalRecord" />
+          <ScalarProperty Name="IsReadyToNextYear" ColumnName="IsReadyToNextYear" />
+          <ScalarProperty Name="phone1" ColumnName="phone1" />
+          <ScalarProperty Name="phone2" ColumnName="phone2" />
+          <ScalarProperty Name="phone3" ColumnName="phone3" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
