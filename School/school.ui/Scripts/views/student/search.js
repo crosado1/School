@@ -18,7 +18,7 @@
                 $.ajax({
                     'dataType': 'json',
                     'type': 'POST',
-                    'url': 'Student/GetAll',
+                    'url': rootDir + 'Student/GetAll',
                     'data': {
                         //'PeriodId': $('#search_periodId').val(),
                         //'GradeId': $('#search_gradeId').val(),
@@ -26,7 +26,7 @@
                         'FirstName': $('#search_firstName').val(),
                         'LastName': $('#search_lastName').val(),
                         'GenderId': $('#search_genderId').val(),
-                        'CityId':1,
+                        'CityId': $('#search_cityId').val(),
                         'PageSize': pageInfo.end,
                         'SortColumn': 'FirstName',
                         'PageIndex': (pageInfo.start) + 1
@@ -114,30 +114,30 @@
             onclick: 'showStudentProfileModal(this)',
             //href: '#',
             //'data-toggle': 'modal',
-            'class': 'btn btn-info btn-sm',
+            'class': 'btn btn-primary btn-sm btn-custom-grid',
             //'data-target': '#profile-student',
             'data-id': row.StudentId
         }).prop('outerHTML');
 
         
-        //let readyToNextYearButton = '';
+        let readyToNextYearButton = '';
 
         //if (isTrue(isReadyToNextYear)) {
-        //    readyToNextYearButton = $('<button>', {
-        //        text: 'Enrollment',
-        //        onclick: 'showStudentCreateModal(this)',
-        //        //href: '#',
-        //        //'data-toggle': 'modal',
-        //        'class': 'btn btn-warning btn-sm',
-        //        //'data-target': '#profile-student',
-        //        'data-id': row.StudentModel.StudentId
-        //    }).prop('outerHTML');
+            readyToNextYearButton = $('<button>', {
+                text: 'Enroll',
+                onclick: 'showStudentCreateModal(this)',
+                //href: '#',
+                //'data-toggle': 'modal',
+                'class': 'btn btn-default btn-sm btn-custom-grid',
+                //'data-target': '#profile-student',
+                'data-id': 1
+            }).prop('outerHTML');
         //}
        
 
 
         
-        return profileButton;
+            return profileButton + ' ' + readyToNextYearButton;
 
         //return '';
     }
@@ -159,11 +159,14 @@
         }
     }
 
+    this.showSearch = function () {
+        $('#search-student').modal('show');
+    }
     var loadSearchStudentModal = function () {
         $.ajax({
             'dataType': 'json',
             'type': 'POST',
-            'url': 'Student/ShowSearch',
+            'url': rootDir + 'Student/ShowSearch',
             'success': function (json) {
                 $("#searchHtml").html(json.Html);
                 initSearchModalAfterLoad();
@@ -171,7 +174,7 @@
         });
     }
 
-    $('#search-student').on('show.bs.modal', function () {
+    $('#search-student').on('shown.bs.modal', function () {
         loadSearchStudentModal();       
     });
 
@@ -195,7 +198,7 @@
          $.ajax({
                 dataType: 'json',
                 type: 'POST',
-                url: '/Student/GetStudentById',
+                url: rootDir + 'Student/GetStudentById',
                 data: {
                     studentId: studentId
                 },

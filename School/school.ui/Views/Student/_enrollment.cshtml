@@ -1,0 +1,80 @@
+﻿@model school.Model.Model.StudentModel
+
+<button class="btn btn-default btn-custom-md btn-space pull-right" data-dismiss="modal"><i class="icon-remove"></i> Close</button>
+<button class="btn btn-success btn-custom-md btn-space pull-right" onclick="saveStudent();">Enrollment</button>
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-md-12">        
+        <form id="form-grade">
+            <h3><strong>Grade and Group</strong></h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Period</label>
+                        @Html.DropDownList("Period", (IEnumerable<SelectListItem>)ViewBag.Period, "", new { @class = "form-control", style = "margin-bottom: 20px", @onchange = "loadGrade(this.value);" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Grade</label>
+                        @Html.DropDownList("Grade", (IEnumerable<SelectListItem>)ViewBag.Grade, "", new { @class = "form-control", style = "margin-bottom: 20px", @onchange = "loadGroup(this.value);" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Groups</label>
+                        <select id="GradeGroups" name="GradeGroups" class="form-control"></select>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form id="form-transaction">
+            <h3><strong>Pay Configuration</strong></h3>
+            <div id="transaction-scroll" class="col-md-12">
+                <table id="_transactionType" class="table table-condensed" style="margin-bottom: 0;">
+                    <thead>
+                        <tr>
+                            <th class="col-md-2"></th>
+                            <th class="col-md-4">Transaction</th>
+                            <th class="col-md-4">Pay</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in ViewBag.TransactionType)
+                        {
+                            <tr>
+                                <td>
+
+                                    <div class="checkbox checkbox-info checkbox-circle">
+                                        <input class="styled" id=chk_@x.TransactionTypeId data-search=@x.TransactionTypeId type="checkbox" checked=@x.MarkOfDefault disabled=@x.MarkOfDefault>
+                                        <label for=chk_@x.TransactionTypeId>Required</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    @x.TransactionTypeDescription
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <input class="form-control " id="txt_@x.TransactionTypeId" type="text" />
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+

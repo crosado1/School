@@ -6,7 +6,7 @@
     }
 
     var showTabContent = function (tab) {
-        let url = tab.data('url');
+        let url = rootDir + tab.data('url');
         let content = $('#' + tab.data('content'));
         let studentId = $('#hvSelectedStudentId').val();
 
@@ -65,7 +65,7 @@
         $.ajax({
             'dataType': 'json',
             'type': 'POST',
-            'url': '/Student/ShowStudentProfile',
+            'url': rootDir + 'Student/ShowStudentProfile',
             'success': function (json) {
                 $("#loadProfile").html(json.Html);
                 showTabContent($('#maincontent li > a').first());

@@ -11,7 +11,7 @@
         $.ajax({
             dataType: 'json',
             type: 'POST',
-            url: 'Period/GetAll',
+            url: rootDir + 'Period/GetAll',
             //data: {
             //    MemberNumber: $('#member-number').val(),
             //    Period: $('#Period').val(),
@@ -94,7 +94,7 @@
 
     this.goToGradePage = function (button) {        
         let periodId = $(button).data('id');
-        window.location.href = '/PeriodGrade/?periodId=' + periodId
+        window.location.href = rootDir + 'PeriodGrade/?periodId=' + periodId
     }
 
     var getActivePeriod = function (activeValue) {

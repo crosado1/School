@@ -59,7 +59,7 @@
         $.ajax({
             dataType: 'json',
             type: 'POST',
-            url: '/Student/ShowStudentCreate',
+            url: rootDir + 'Student/ShowStudentCreate',
             data:
             {
                studentId:id
@@ -78,7 +78,7 @@
         $.ajax({
             dataType: 'json',
             type: 'POST',
-            url: '/Grade/GetGroups',
+            url: rootDir + 'Grade/GetGroups',
             data:
                 {
                     periodGradeId: periodGradeId == '' ? 0 : periodGradeId
@@ -110,7 +110,7 @@
         $.ajax({
             dataType: 'json',
             type: 'POST',
-            url: '/PeriodGrade/GetAllByPeriod',
+            url: rootDir + 'PeriodGrade/GetAllByPeriod',
             data:
                 {
                     periodId: periodId == '' ? 0 : periodId
@@ -161,7 +161,7 @@
             $.ajax({
                 dataType: 'json',
                 type: 'POST',
-                url: '/Student/Save',
+                url: rootDir + 'Student/Save',
                 data: {
                     transactions: transactionTypeArray,
                     firstName: firstName,

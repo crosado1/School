@@ -429,6 +429,7 @@
     <Content Include="Views\Student\_profile_bak_20160706.cshtml" />
     <Content Include="Views\Student\_pay - Copy.cshtml" />
     <Content Include="Views\Student\_profile.cshtml" />
+    <Content Include="Views\Student\_enrollment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
