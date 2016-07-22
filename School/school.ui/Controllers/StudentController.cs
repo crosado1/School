@@ -263,46 +263,50 @@ namespace school.ui.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
-        public JsonResult SaveEnrollment(Dictionary<string, string> transactions, StudentModel student, int periodGroupId)
+        //public JsonResult SaveEnrollment(Dictionary<string, string> transactions, StudentModel student, int periodGroupId)
+        public JsonResult SaveEnrollment(List<TestTuple> transactions, StudentModel student, int periodGroupId)
         {
-            var studentId = student.StudentId;
-            try
+            return Json(new
             {
-                SaveResult studentResult = new SaveResult { Status = "OK" };
-                using (TransactionScope scope = new TransactionScope())
-                {
-                    
-                    var periodGradeStudentResult = this.SaveGradeGroup(studentId, periodGroupId);
+                s = "tset"
+            }, JsonRequestBehavior.AllowGet);
+            //var studentId = student.StudentId;
+            //try
+            //{
+            //    SaveResult studentResult = new SaveResult { Status = "OK" };
+            //    using (TransactionScope scope = new TransactionScope())
+            //    {                    
+            //        var periodGradeStudentResult = this.SaveGradeGroup(studentId, periodGroupId);
 
-                    if (periodGradeStudentResult.Status == "OK")
-                    {
-                        var configurationResult = this.SaveStudentConfiguration(transactions, periodGradeStudentResult.Id);
+            //        if (periodGradeStudentResult.Status == "OK")
+            //        {
+            //            var configurationResult = this.SaveStudentConfiguration(transactions, periodGradeStudentResult.Id);
 
-                        if (configurationResult.Status != "OK")
-                            throw new Exception(configurationResult.Message);
+            //            if (configurationResult.Status != "OK")
+            //                throw new Exception(configurationResult.Message);
 
-                    }
-                    else
-                        throw new Exception(periodGradeStudentResult.Message);
+            //        }
+            //        else
+            //            throw new Exception(periodGradeStudentResult.Message);
 
-                    scope.Complete();
-                }
+            //        scope.Complete();
+            //    }
 
-                return Json(new
-                {
-                    StudentId = studentId,
-                    Message = "Student Configuration was created",
-                    Status = "OK"
-                }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new
-                {
-                    Message = ex.Message,
-                    Status = "ERROR"
-                }, JsonRequestBehavior.AllowGet);
-            }
+            //    return Json(new
+            //    {
+            //        StudentId = studentId,
+            //        Message = "Student Configuration was created",
+            //        Status = "OK"
+            //    }, JsonRequestBehavior.AllowGet);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return Json(new
+            //    {
+            //        Message = ex.Message,
+            //        Status = "ERROR"
+            //    }, JsonRequestBehavior.AllowGet);
+            //}
         }
         private SaveResult SaveGradeGroup(int studentId,int periodGroupId)
         {
@@ -346,5 +350,12 @@ namespace school.ui.Controllers
             }
             
         }
+    }
+
+    public class TestTuple
+    {
+        public string key { get; set; }
+        public string val1 { get; set; }
+        public string val2 { get; set; }
     }
 }

@@ -239,21 +239,32 @@
         //Group Info
         let periodGroupId = $("#GradeGroups").val();
 
-       
-        if (validateEnrollmentForms()) {
-            alert('ok');
+        var parsed = JSON.parse('[{"key":"key1", "val1":"test", "val2":"test 2"},{"key":"key2", "val1":"testing", "val2":"t"}]');
+
+        var people = [];
+        for (var i = 0; i < parsed.length; i++) {
+            var person = [parsed[i].key, parsed[i].val1, parsed[i].val2];
+            people.push(person);
+        }
+
+        console.log(people);
+
+        //if (true) {
+        if (validateEnrollmentForms()) {       
+            alert('ok enrollments');
             $.ajax({
                 dataType: 'json',
                 type: 'POST',
                 url: rootDir + 'Student/SaveEnrollment',
                 data: {
-                    transactions: transactionTypeArray,
+                    //transactions: transactionTypeArray,
+                    transactions:people,
                     PeriodGroupId: periodGroupId,
                     StudentId: studentId
                 },
                 success: function (response) {
                     alert('ok');
-                    onEnrollmentSuccess(response);
+                    //onEnrollmentSuccess(response);
                 }
             });
         }
@@ -400,6 +411,9 @@
         $('#_transactionType').find('input[type="checkbox"]:checked').each(function () {
             let searchValue = $(this).data('search');
             let txtEvaluate = $('#txt_' + searchValue);
+            let txtOptionalPay = $('#txtOpt_' + searchValue);
+            console.log(txtOptionalPay);
+
 
             transactionTypeArray[searchValue] = txtEvaluate.val();
 
