@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<link href="~/Content/Site.css" rel="stylesheet" />
 <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
 
 <div class="modal fade" id="add-period">
@@ -50,28 +52,50 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
             <form id="form-save-period">
-                <div id="addPeriodHtml">
-                   
+                <div id="addPeriodHtml">                    
                 </div>
             </form>
         </div>
-        <div class="col-md-8">
-            <div class="table-responsive">
-                <table id="tblPeriod" class="table table-bordered table-sm">
-                    <thead>
-                        <tr>
-                            <th><strong>Periods Timeline</strong></th>
-                            <th><strong>Active</strong></th>   
-                            <th><strong>Status</strong></th>                         
-                            <th><strong>Actions</strong> </th>
-                        </tr>
-                    </thead>
-                    <tbody>                        
-                    </tbody>
-                </table>
-            </div>
+        <div class="col-md-10">
+            <div class="box">
+                <!--BOX HEADER-->
+                <div class="box-header">
+                    <!--BOX TITLE-->
+                    <div class="box-title pull-left">
+                        <p><i class="fa fa-history fa-lg"></i></p>
+                        <p>Period History</p>
+                    </div>
+                    <!--end: TITLE-->
+                    <!--ICONS - FUNCTIONAL-->
+                    @*<div class="box-icon pull-right">
+                        <a href="#" class="btn-help" title="Help" role="button"><i class="fa fa-question-circle fa-lg"></i></a>
+                        <a href="#" class="btn-minimize" title="Expand / Collapse" role="button"><i class="fa fa-chevron-up fa-lg"></i></a>
+                    </div>*@
+                    <!--end: ICONS-->
+                </div>
+                <!--end: BOX HEADER-->
+                <!--BOX CONTENT-->
+                <div class="box-content">
+                    <div class="table-responsive">
+                        <table id="tblPeriod" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th><strong>Periods Timeline</strong></th>
+                                    <th><strong>Active</strong></th>
+                                    <th><strong>Status</strong></th>
+                                    <th><strong>Actions</strong> </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> <!--end: BOX CONTENT-->
+           
+        
+            
         </div>
     </div>
 </div>
