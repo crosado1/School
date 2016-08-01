@@ -1,13 +1,23 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Period Grades";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
+<link href="~/Content/Site.css" rel="stylesheet" />+
+
+<style>
+    .modal-backdrop {
+        z-index:-1 !important;
+    }
+</style>
+
 
 <input type="hidden" id="hvPeriodGradeId" />
 <input type="hidden" id="hvPeriodId" value="@ViewBag.PeriodId" />
+
+
 
 <div class="modal fade" id="add-group">
     <div class="modal-dialog">
@@ -19,8 +29,6 @@
             <div class="modal-body">
                 <form id="form-save-group">
                     <div id="addGroupHtml">
-
-                        @*@Html.Partial("~/Views/GradeGroup/_addGroup.cshtml")*@
                     </div>
                 </form>
             </div>
@@ -40,12 +48,6 @@
                 <h4 class="modal-title">Add Grade</h4>
             </div>
             <div class="modal-body">
-                @*<form id="form-save-grade">
-                    <div id="addGradeHtml">
-
-                        
-                    </div>
-                </form>*@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -59,33 +61,44 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h1>Group Configuration <small>Admin Configure the Period Group</small></h1>
-                <div class="row">
-                        <div class="col-md-12">
-                            @*<button class="btn btn-primary" onclick="showAddGrade();" type="button"><span style="margin-right: 5px" class="glyphicon glyphicon-plus"></span>Add New Grade</button>*@
-                        </div>
-                    <div class="col-md-5">
-                        @*<div id="dvResult" style="display:none" role="alert">...</div>*@
-                    </div>
-                    </div>
+                <h1>Grade Configuration <small>Admin Configure the Period Grades</small></h1>
             </div>
         </div>
     </div>
     <div class="row">
-        @*<div style="display:none" class="col-md-12">
-            <canvas id="clients" width="500" height="100"></canvas>
-        </div>*@
-        <div class="col-md-4">
+        <div class="col-md-2">
             <form id="form-save-grade">
                 <div id="addGradeHtml">
 
-                    @*@Html.Partial("~/Views/GradeGroup/_addGroup.cshtml")*@
                 </div>
             </form>
         </div>
-        <div class="col-md-8">
-            <div class="panel-group" id="_periodGradeAccordion" role="tablist" aria-multiselectable="true">
-            </div>
+        <div class="col-md-10">
+            <div class="box">
+                <!--BOX HEADER-->
+                <div class="box-header">
+                    <!--BOX TITLE-->
+                    <div class="box-title pull-left">
+                        <p><i class="fa fa-list fa-lg"></i></p>
+                        <p>Period Grades</p>
+                    </div>
+                    <!--end: TITLE-->
+                    <!--ICONS - FUNCTIONAL-->
+                    @*<div class="box-icon pull-right">
+                    <a href="#" class="btn-help" title="Help" role="button"><i class="fa fa-question-circle fa-lg"></i></a>
+                    <a href="#" class="btn-minimize" title="Expand / Collapse" role="button"><i class="fa fa-chevron-up fa-lg"></i></a>
+                </div>*@
+                    <!--end: ICONS-->
+                </div>
+                <!--end: BOX HEADER-->
+                <!--BOX CONTENT-->
+                <div class="box-content">
+                    <div class="panel-group" id="_periodGradeAccordion" role="tablist" aria-multiselectable="true">
+                    </div>
+                </div>
+            </div> <!--end: BOX CONTENT-->
+
+           
         </div>
     </div>    
 </div>

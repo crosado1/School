@@ -22,18 +22,6 @@ C:\Users\Administrator\Downloads\School\School\school.Repository\bin\Debug\Entit
 C:\Users\Administrator\Downloads\School\School\school.Repository\obj\Debug\school.Repository.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Downloads\School\School\school.Repository\obj\Debug\school.Repository.dll
 C:\Users\Administrator\Downloads\School\School\school.Repository\obj\Debug\school.Repository.pdb
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\school.Repository.dll.config
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\school.Repository.dll
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\school.Repository.pdb
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\EntityFramework.dll
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\school.Model.dll
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\school.Model.pdb
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\EntityFramework.xml
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\obj\Debug\school.Repository.csprojResolveAssemblyReference.cache
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\obj\Debug\school.Repository.dll
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\obj\Debug\school.Repository.pdb
 C:\Users\Administrator\Documents\School\School\school.Repository\obj\Debug\school.Repository.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\School\School\school.Repository\bin\Debug\school.Repository.dll.config
 C:\Users\Administrator\Documents\School\School\school.Repository\bin\Debug\school.Repository.dll
@@ -46,3 +34,15 @@ C:\Users\Administrator\Documents\School\School\school.Repository\bin\Debug\Entit
 C:\Users\Administrator\Documents\School\School\school.Repository\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Administrator\Documents\School\School\school.Repository\obj\Debug\school.Repository.dll
 C:\Users\Administrator\Documents\School\School\school.Repository\obj\Debug\school.Repository.pdb
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\school.Repository.dll.config
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\school.Repository.dll
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\school.Repository.pdb
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\EntityFramework.dll
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\school.Model.dll
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\school.Model.pdb
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\EntityFramework.xml
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\obj\Debug\school.Repository.csprojResolveAssemblyReference.cache
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\obj\Debug\school.Repository.dll
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.Repository\obj\Debug\school.Repository.pdb
