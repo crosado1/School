@@ -232,7 +232,7 @@ namespace school.Repository.EntityFramework
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_PeriodGradeStudent_Insert", periodGradeStudentId, periodGradeGroupIdParameter, studentIdParameter);
         }
     
-        public virtual int proc_PeriodGradeStudentTranTypeConfiguration_Insert(ObjectParameter periodGradeStudentTranTypeConfigurationId, Nullable<int> periodGradeStudentId, Nullable<int> transactionTypeId, Nullable<decimal> payConfiguration)
+        public virtual int proc_PeriodGradeStudentTranTypeConfiguration_Insert(ObjectParameter periodGradeStudentTranTypeConfigurationId, Nullable<int> periodGradeStudentId, Nullable<int> transactionTypeId, Nullable<decimal> payConfiguration, Nullable<decimal> payAmount, Nullable<int> submitById)
         {
             var periodGradeStudentIdParameter = periodGradeStudentId.HasValue ?
                 new ObjectParameter("periodGradeStudentId", periodGradeStudentId) :
@@ -246,7 +246,15 @@ namespace school.Repository.EntityFramework
                 new ObjectParameter("payConfiguration", payConfiguration) :
                 new ObjectParameter("payConfiguration", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_PeriodGradeStudentTranTypeConfiguration_Insert", periodGradeStudentTranTypeConfigurationId, periodGradeStudentIdParameter, transactionTypeIdParameter, payConfigurationParameter);
+            var payAmountParameter = payAmount.HasValue ?
+                new ObjectParameter("payAmount", payAmount) :
+                new ObjectParameter("payAmount", typeof(decimal));
+    
+            var submitByIdParameter = submitById.HasValue ?
+                new ObjectParameter("submitById", submitById) :
+                new ObjectParameter("submitById", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_PeriodGradeStudentTranTypeConfiguration_Insert", periodGradeStudentTranTypeConfigurationId, periodGradeStudentIdParameter, transactionTypeIdParameter, payConfigurationParameter, payAmountParameter, submitByIdParameter);
         }
     
         public virtual int proc_Student_Insert(ObjectParameter studentId, string firstName, string middleName, string lastName, Nullable<int> genderId, string address1, string address2, Nullable<int> cityId, string zipCode, string stateCode)
@@ -390,6 +398,27 @@ namespace school.Repository.EntityFramework
                 new ObjectParameter("sortOrder", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_Student_GetAll_Result>("proc_Student_GetAll", firstNameParameter, lastNameParameter, genderIdParameter, studentCodeParameter, cityIdParameter, pageIndexParameter, pageCountParameter, sortByParameter, sortOrderParameter);
+        }
+    
+        public virtual int proc_StudentPayTransaction_Insert(Nullable<int> periodGradeStudentTranTypeConfigurationId, string studentPayTransactionDescription, Nullable<decimal> payAmount, Nullable<int> submitById)
+        {
+            var periodGradeStudentTranTypeConfigurationIdParameter = periodGradeStudentTranTypeConfigurationId.HasValue ?
+                new ObjectParameter("periodGradeStudentTranTypeConfigurationId", periodGradeStudentTranTypeConfigurationId) :
+                new ObjectParameter("periodGradeStudentTranTypeConfigurationId", typeof(int));
+    
+            var studentPayTransactionDescriptionParameter = studentPayTransactionDescription != null ?
+                new ObjectParameter("studentPayTransactionDescription", studentPayTransactionDescription) :
+                new ObjectParameter("studentPayTransactionDescription", typeof(string));
+    
+            var payAmountParameter = payAmount.HasValue ?
+                new ObjectParameter("payAmount", payAmount) :
+                new ObjectParameter("payAmount", typeof(decimal));
+    
+            var submitByIdParameter = submitById.HasValue ?
+                new ObjectParameter("submitById", submitById) :
+                new ObjectParameter("submitById", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_StudentPayTransaction_Insert", periodGradeStudentTranTypeConfigurationIdParameter, studentPayTransactionDescriptionParameter, payAmountParameter, submitByIdParameter);
         }
     }
 }

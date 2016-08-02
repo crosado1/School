@@ -15,5 +15,8 @@ namespace school.Model.Model
         public DateTime FromDate { get; set; }
         public DateTime? ToDate { get; set; }
         public int RunScheduleId { get; set; }
+
+        public decimal PayAmount { get; set; }
+        
     }
 }

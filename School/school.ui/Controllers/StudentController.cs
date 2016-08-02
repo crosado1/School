@@ -132,8 +132,9 @@ namespace school.ui.Controllers
             var controlToLoad = isEnrollment == "N"? "_addStudent.cshtml": "_enrollment.cshtml";
             try
             {
-
+                var allowedStattus = new[] { 1, 3 };
                 ViewBag.Period = _periodRepository.GetAll().Data
+                    .Where(m => allowedStattus.Contains(m.PeriodStatusTypeModel.PeriodStatusTypeId))
                     .Select(i => new SelectListItem()
                     {
                         Text = i.YearFrom + ' ' + i.YearTo,
@@ -264,49 +265,49 @@ namespace school.ui.Controllers
             }
         }
         //public JsonResult SaveEnrollment(Dictionary<string, string> transactions, StudentModel student, int periodGroupId)
-        public JsonResult SaveEnrollment(List<TestTuple> transactions, StudentModel student, int periodGroupId)
+        public JsonResult SaveEnrollment(List<StudentConfigurationPayModel> transactions, StudentModel student, int periodGroupId)
         {
-            return Json(new
+            //return Json(new
+            //{
+            //    s = "tset"
+            //}, JsonRequestBehavior.AllowGet);
+            var studentId = student.StudentId;
+            try
             {
-                s = "tset"
-            }, JsonRequestBehavior.AllowGet);
-            //var studentId = student.StudentId;
-            //try
-            //{
-            //    SaveResult studentResult = new SaveResult { Status = "OK" };
-            //    using (TransactionScope scope = new TransactionScope())
-            //    {                    
-            //        var periodGradeStudentResult = this.SaveGradeGroup(studentId, periodGroupId);
+                SaveResult studentResult = new SaveResult { Status = "OK" };
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    var periodGradeStudentResult = this.SaveGradeGroup(studentId, periodGroupId);
 
-            //        if (periodGradeStudentResult.Status == "OK")
-            //        {
-            //            var configurationResult = this.SaveStudentConfiguration(transactions, periodGradeStudentResult.Id);
+                    if (periodGradeStudentResult.Status == "OK")
+                    {
+                        var configurationResult = this.SaveStudentConfiguration(transactions, periodGradeStudentResult.Id);
 
-            //            if (configurationResult.Status != "OK")
-            //                throw new Exception(configurationResult.Message);
+                        if (configurationResult.Status != "OK")
+                            throw new Exception(configurationResult.Message);
 
-            //        }
-            //        else
-            //            throw new Exception(periodGradeStudentResult.Message);
+                    }
+                    else
+                        throw new Exception(periodGradeStudentResult.Message);
 
-            //        scope.Complete();
-            //    }
+                    scope.Complete();
+                }
 
-            //    return Json(new
-            //    {
-            //        StudentId = studentId,
-            //        Message = "Student Configuration was created",
-            //        Status = "OK"
-            //    }, JsonRequestBehavior.AllowGet);
-            //}
-            //catch (Exception ex)
-            //{
-            //    return Json(new
-            //    {
-            //        Message = ex.Message,
-            //        Status = "ERROR"
-            //    }, JsonRequestBehavior.AllowGet);
-            //}
+                return Json(new
+                {
+                    StudentId = studentId,
+                    Message = "Student Configuration was created",
+                    Status = "OK"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    Message = ex.Message,
+                    Status = "ERROR"
+                }, JsonRequestBehavior.AllowGet);
+            }
         }
         private SaveResult SaveGradeGroup(int studentId,int periodGroupId)
         {
@@ -350,12 +351,48 @@ namespace school.ui.Controllers
             }
             
         }
+
+        private SaveResult SaveStudentConfiguration(List<StudentConfigurationPayModel> transactions, int periodGradeStudentId)
+        {
+            try
+            {
+                foreach (var item in transactions)
+                {
+                    var configurationResult = _studentPayConfigurationRepository.Add(new StudentPayConfigurationModel
+                    {
+                        PayConfiguration = Decimal.Parse(item.payConfiguration),
+                        TransactionTypeId = Int32.Parse(item.transactionTypeId),
+                        PayAmount = Decimal.Parse(item.payAmount),
+                        PeriodGradeStudentModel = new PeriodGradeStudentModel { PeriodGradeStudentId = periodGradeStudentId }
+
+                    });
+
+                    if (configurationResult.Status != "OK")
+                        throw new Exception(configurationResult.Message);
+                }
+
+                return new SaveResult
+                {
+                    Message = "Student Configuration was saved successfully!",
+                    Status = "OK"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new SaveResult
+                {
+                    Message = ex.Message,
+                    Status = "ERROR"
+                };
+            }
+
+        }
     }
 
-    public class TestTuple
+    public class StudentConfigurationPayModel
     {
-        public string key { get; set; }
-        public string val1 { get; set; }
-        public string val2 { get; set; }
+        public string transactionTypeId { get; set; }
+        public string payConfiguration { get; set; }
+        public string payAmount { get; set; }
     }
 }

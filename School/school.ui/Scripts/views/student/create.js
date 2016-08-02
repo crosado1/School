@@ -17,6 +17,10 @@
     }
 
     var initGradeOptions = function () {
+
+        $('#Grade').empty();
+        $('#GradeGroups').empty();
+
         $('#GradeGroups').prop('disabled', 'disabled');
         $('#Grade').prop('disabled', 'disabled');
     }
@@ -151,7 +155,7 @@
     }
 
     this.loadGrade = function (periodId) {      
-
+        initGradeOptions();
         $.ajax({
             dataType: 'json',
             type: 'POST',
@@ -239,15 +243,50 @@
         //Group Info
         let periodGroupId = $("#GradeGroups").val();
 
-        var parsed = JSON.parse('[{"key":"key1", "val1":"test", "val2":"test 2"},{"key":"key2", "val1":"testing", "val2":"t"}]');
+        var transactionObjectArray = [];
 
-        var people = [];
-        for (var i = 0; i < parsed.length; i++) {
-            var person = [parsed[i].key, parsed[i].val1, parsed[i].val2];
-            people.push(person);
-        }
 
-        console.log(people);
+        $('#_transactionType').find('input[type="checkbox"]:checked').each(function () {
+            let searchValue = $(this).data('search');
+            let txtEvaluate = $('#txt_' + searchValue);
+            let txtOptionalPay = $('#txtOpt_' + searchValue);
+
+            var transactionModel = new Object();
+
+            //console.log(txtOptionalPay);
+           
+            transactionModel.transactionTypeId = searchValue;
+            transactionModel.payConfiguration = txtEvaluate.val();
+            transactionModel.payAmount = txtOptionalPay.val() == '' || txtOptionalPay.val() == null ? '0' : txtOptionalPay.val();
+
+            
+    
+            transactionObjectArray.push(transactionModel);
+        });
+
+        
+
+        //var object = new Object();
+        //var object1 = new Object();
+        //object.key = '1';
+        //object.val1 = '250.00';
+        //object.val2 = '150.00'
+
+        //transactionObjectArray.push(object);
+
+        //object1.key = '2';
+        //object1.val1 = '300.00';
+        //object1.val2 = '150.00'
+
+        //transactionObjectArray.push(object1);
+
+
+        //for (var i = 0; i < parsed.length; i++) {
+        //    var person = [parsed[i].key, parsed[i].val1, parsed[i].val2];
+        //    people.push(person);
+        //}
+
+       // console.log(transactionObjectArray);
 
         //if (true) {
         if (validateEnrollmentForms()) {       
@@ -258,14 +297,17 @@
                 url: rootDir + 'Student/SaveEnrollment',
                 data: {
                     //transactions: transactionTypeArray,
-                    transactions:people,
+                    transactions: transactionObjectArray,
                     PeriodGroupId: periodGroupId,
                     StudentId: studentId
                 },
                 success: function (response) {
                     alert('ok');
                     //onEnrollmentSuccess(response);
-                }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('error');                    
+                }               
             });
         }
         else

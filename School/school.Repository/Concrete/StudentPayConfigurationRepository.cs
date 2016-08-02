@@ -24,7 +24,7 @@ namespace school.Repository.Concrete
             {
                 ObjectParameter param1 = new ObjectParameter("periodGradeStudentTranTypeConfigurationId", entity.PeriodGradeStudentTranTypeConfigurationId);
                 var result = _context.proc_PeriodGradeStudentTranTypeConfiguration_Insert(param1, entity.PeriodGradeStudentModel.PeriodGradeStudentId,
-                                                                                          entity.TransactionTypeId,entity.PayConfiguration);
+                                                                                          entity.TransactionTypeId,entity.PayConfiguration,entity.PayAmount,1);
                 return new SaveResult
                 {
                     Id = (int)param1.Value,

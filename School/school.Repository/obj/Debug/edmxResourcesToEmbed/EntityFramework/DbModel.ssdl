@@ -459,6 +459,8 @@
     <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />
     <Parameter Name="transactionTypeId" Type="int" Mode="In" />
     <Parameter Name="payConfiguration" Type="money" Mode="In" />
+    <Parameter Name="payAmount" Type="money" Mode="In" />
+    <Parameter Name="submitById" Type="int" Mode="In" />
   </Function>
   <Function Name="proc_PeriodStatus_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="periodId" Type="int" Mode="In" />
@@ -492,6 +494,12 @@
   </Function>
   <Function Name="proc_Student_PaymentAvailable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="studentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_StudentPayTransaction_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="periodGradeStudentTranTypeConfigurationId" Type="int" Mode="In" />
+    <Parameter Name="studentPayTransactionDescription" Type="varchar" Mode="In" />
+    <Parameter Name="payAmount" Type="money" Mode="In" />
+    <Parameter Name="submitById" Type="int" Mode="In" />
   </Function>
   <Function Name="proc_User_GetUserByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="roleId" Type="int" Mode="In" />

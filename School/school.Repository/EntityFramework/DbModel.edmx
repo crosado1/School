@@ -464,6 +464,8 @@
           <Parameter Name="periodGradeStudentId" Type="int" Mode="In" />
           <Parameter Name="transactionTypeId" Type="int" Mode="In" />
           <Parameter Name="payConfiguration" Type="money" Mode="In" />
+          <Parameter Name="payAmount" Type="money" Mode="In" />
+          <Parameter Name="submitById" Type="int" Mode="In" />
         </Function>
         <Function Name="proc_PeriodStatus_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="periodId" Type="int" Mode="In" />
@@ -497,6 +499,12 @@
         </Function>
         <Function Name="proc_Student_PaymentAvailable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="studentId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_StudentPayTransaction_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="periodGradeStudentTranTypeConfigurationId" Type="int" Mode="In" />
+          <Parameter Name="studentPayTransactionDescription" Type="varchar" Mode="In" />
+          <Parameter Name="payAmount" Type="money" Mode="In" />
+          <Parameter Name="submitById" Type="int" Mode="In" />
         </Function>
         <Function Name="proc_User_GetUserByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="roleId" Type="int" Mode="In" />
@@ -1014,6 +1022,8 @@
             <Parameter Name="periodGradeStudentId" Mode="In" Type="Int32" />
             <Parameter Name="transactionTypeId" Mode="In" Type="Int32" />
             <Parameter Name="payConfiguration" Mode="In" Type="Decimal" />
+            <Parameter Name="payAmount" Mode="In" Type="Decimal" />
+            <Parameter Name="submitById" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_Student_Insert">
             <Parameter Name="studentId" Mode="InOut" Type="Int32" />
@@ -1086,6 +1096,12 @@
             <Parameter Name="pageCount" Mode="In" Type="Int32" />
             <Parameter Name="sortBy" Mode="In" Type="String" />
             <Parameter Name="sortOrder" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_StudentPayTransaction_Insert">
+            <Parameter Name="periodGradeStudentTranTypeConfigurationId" Mode="In" Type="Int32" />
+            <Parameter Name="studentPayTransactionDescription" Mode="In" Type="String" />
+            <Parameter Name="payAmount" Mode="In" Type="Decimal" />
+            <Parameter Name="submitById" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_Period_GetAll_Result">
@@ -1842,6 +1858,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_StudentPayTransaction_Insert" FunctionName="SchoolModel.Store.proc_StudentPayTransaction_Insert" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

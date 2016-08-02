@@ -449,5 +449,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_StudentPayTransaction_Insert" FunctionName="SchoolModel.Store.proc_StudentPayTransaction_Insert" />
   </EntityContainerMapping>
 </Mapping>

@@ -144,6 +144,7 @@ C:\Users\Administrator\Documents\School\School\school.ui\bin\Microsoft.Owin.Secu
 C:\Users\Administrator\Documents\School\School\school.ui\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Administrator\Documents\School\School\school.ui\obj\Debug\school.ui.dll
 C:\Users\Administrator\Documents\School\School\school.ui\obj\Debug\school.ui.pdb
+C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.ui\obj\Debug\school.ui.csprojResolveAssemblyReference.cache
 C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.ui\bin\roslyn\csc.exe
 C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.ui\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.ui\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -214,6 +215,5 @@ C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.ui\bin\
 C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.ui\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.ui\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.ui\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.ui\obj\Debug\school.ui.csprojResolveAssemblyReference.cache
 C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.ui\obj\Debug\school.ui.dll
 C:\Users\cr2485\Documents\Visual Studio 2015\Projects\TEST\School\school.ui\obj\Debug\school.ui.pdb

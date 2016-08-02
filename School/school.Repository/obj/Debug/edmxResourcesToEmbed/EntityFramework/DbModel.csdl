@@ -418,6 +418,8 @@
       <Parameter Name="periodGradeStudentId" Mode="In" Type="Int32" />
       <Parameter Name="transactionTypeId" Mode="In" Type="Int32" />
       <Parameter Name="payConfiguration" Mode="In" Type="Decimal" />
+      <Parameter Name="payAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="submitById" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="proc_Student_Insert">
       <Parameter Name="studentId" Mode="InOut" Type="Int32" />
@@ -490,6 +492,12 @@
       <Parameter Name="pageCount" Mode="In" Type="Int32" />
       <Parameter Name="sortBy" Mode="In" Type="String" />
       <Parameter Name="sortOrder" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_StudentPayTransaction_Insert">
+      <Parameter Name="periodGradeStudentTranTypeConfigurationId" Mode="In" Type="Int32" />
+      <Parameter Name="studentPayTransactionDescription" Mode="In" Type="String" />
+      <Parameter Name="payAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="submitById" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_Period_GetAll_Result">
