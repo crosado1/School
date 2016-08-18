@@ -6,6 +6,9 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <link href=@Url.Content("~/Content/fontawesome/font-awesome.css") rel="stylesheet" />
+
     <style>
         .modal-header {
             background: linear-gradient(to bottom, #1abde7 0%,#1c9dd1 100%);
@@ -52,18 +55,18 @@
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav">
-                    <li role="presentation" class="active"><a href="~/Dashboard">Home</a></li>
-                    <li> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Maintenance <b class="caret"></b></a>
+                    <li role="presentation" class="active"><a href="~/Dashboard"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                    <li> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Maintenance <b class="caret"></b></a>
                         <ul class="dropdown-menu multi-level">
-                            <li><a href="~/Period">Periods</a></li>
+                            <li><a href="~/Period"><i class="fa fa-calendar fa-lg"></i> Periods</a></li>
                             <li><a href="#">Grades</a></li>
                             <li><a href="#">Students</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrative <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Administrative <b class="caret"></b></a>
                         <ul class="dropdown-menu multi-level">
-                            <li><a href="~/Student">Search Students</a></li>                          
+                            <li><a href=@Url.Content("~/Student")><i class="fa fa-users fa-lg"></i> Students</a></li>                          
                         </ul>
                     </li>
                     

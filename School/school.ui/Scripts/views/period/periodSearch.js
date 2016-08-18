@@ -23,10 +23,10 @@
                     
                     $.each(response.Data, function (key, cell) {
                         $('#tblPeriod > tbody').append($('<tr></tr>')
-                            .append($('<td></td>').text(cell.YearDescription))
-                            .append($('<td></td>').html(getActivePeriod(cell.Active)))
-                            .append($('<td></td>').html(cell.PeriodStatusTypeModel.PeriodStatusTypeDesc))
-                            .append($('<td></td>').html(setPeriodActions(cell))));
+                            .append($('<td align="center"></td>').text(cell.YearDescription))
+                            .append($('<td align="center"></td>').html(getActivePeriod(cell.Active)))
+                            .append($('<td align="center"></td>').html(cell.PeriodStatusTypeModel.PeriodStatusTypeDesc))
+                            .append($('<td align="center"></td>').html(setPeriodActions(cell))));
                             //.append($('<td></td>').append($('<button>', {
                             //    text: 'Details',
                             //    onclick: 'viewDetail(this)',
@@ -56,9 +56,10 @@
                     text: 'Grades',
                     onclick: 'goToGradePage(this)',
                     href: '#',
-                    'class': 'btn btn-success btn-sm',
+                    'class': 'btn btn-info btn-sm',
                     'data-id': row.PeriodId
-                }).prop('outerHTML');
+                //}).prop('outerHTML');
+                }).html('<i class="fa fa-pencil fa-lg"></i>').prop('outerHTML');
                 break;
 
         }
