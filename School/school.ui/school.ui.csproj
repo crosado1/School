@@ -212,6 +212,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\3d-doughnut-chart-large.png" />
     <Content Include="Images\avatar_2x.png" />
+    <Content Include="Images\banner.jpg" />
     <Content Include="Images\Jane_Hall_profile.jpg" />
     <Content Include="Images\javascript_dynamic_column_chart.png" />
     <Content Include="Images\loading.gif" />
