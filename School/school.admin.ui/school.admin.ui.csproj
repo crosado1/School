@@ -171,6 +171,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PeriodController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -532,6 +533,8 @@
     <Content Include="template\design\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="template\design\js\flot\custom\.DS_Store" />
     <Content Include="template\design\js\jvectormap\data.json" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Student\_add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

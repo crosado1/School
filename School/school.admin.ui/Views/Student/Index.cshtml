@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@*Modals*@
+<div class="modal fade in" style="display:none" id="modalMd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel5" aria-hidden="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title text-info" id="myModalLabel5">Modal title</h4>
+            </div>*@
+            <div class="modal-body">
+                @{Html.RenderPartial("~/Views/Student/_add.cshtml");}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" data-original-title="" title=""><i class="fa fa-times"></i> Close</button>
+                <button type="button" class="btn btn-success" data-original-title="" title=""><i class="fa fa-save"></i> Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- Top Bar starts -->
+<div class="top-bar">
+    <div class="page-title">
+        <i class="fa fa-group"></i> Students List
+    </div>
+</div>
+<!-- Top Bar ends -->
+<!-- Main Container starts -->
+<div class="main-container-full">
+    <!-- Container fluid Starts -->
+    <div class="container-fluid">
+
+        <!-- Spacer starts -->
+        <div class="spacer">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-sx-12">
+                </div>
+                <div class="col-md-6 col-sm-12 col-sx-12">
+                    <div class="pull-right">
+                        <button type="button" data-toggle="modal" data-target="#modalMd" class="btn btn-info"><i class="fa fa-plus"></i> <span class="hidden-xs">New Student</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="less-margin">
+
+            <!-- Row Start -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="blog">
+                        <div class="blog-header">
+                            <h5 class="blog-title"><i class="fa fa-user fa-lg"></i> Students History</h5>
+                        </div>
+                        <div class="blog-body">
+                            <div class="table-responsive">
+                                <table class="table table-condensed table-bordered no-margin">
+                                    <thead>
+                                        <tr>
+                                            <th><strong></strong></th>
+                                            <th><strong>Student Full Name</strong></th>
+                                            <th><strong>Student Code</strong></th>
+                                            <th><strong>City</strong></th>
+                                            <th><strong>Gender</strong> </th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button data-toggle="dropdown" class="btn btn-linkedin dropdown-toggle btn-md" type="button">Configuration <span class="caret"></span></button>
+                                                    <ul role="menu" class="dropdown-menu">
+                                                        <li><a href="#" data-original-title="" title="">Student Payments</a></li>
+                                                        <li><a href="#" data-original-title="" title="">Student Group</a></li>                                                        
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                            <td>
+                                               Carlos L. Rosado Santiago
+                                            </td>
+                                            <td>
+                                                00001
+                                            </td>
+                                            <td>
+                                                Naranjito
+                                            </td>
+                                            <td>
+                                                Masculino
+                                            </td>
+                                            <td>
+                                                <button type="button" title="Edit Student" class="btn btn-success"><i class="fa fa-pencil"></i></button>
+                                                <button type="button" title="Profile Student" class="btn btn-fb"><i class="fa fa-user"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button data-toggle="dropdown" class="btn btn-linkedin dropdown-toggle btn-md" type="button">Configuration <span class="caret"></span></button>
+                                                    <ul role="menu" class="dropdown-menu">
+                                                        <li><a href="#" data-original-title="" title="">Student Payments</a></li>
+                                                        <li><a href="#" data-original-title="" title="">Student Group</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                Yalitza Collazo Ortiz
+                                            </td>
+                                            <td>
+                                                00002
+                                            </td>
+                                            <td>
+                                                Barranquitas
+                                            </td>
+                                            <td>
+                                                Femenino
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-success"><i class="fa fa-pencil"></i></button>
+                                                <button type="button" title="Profile Student" class="btn btn-fb"><i class="fa fa-user"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button data-toggle="dropdown" class="btn btn-linkedin dropdown-toggle btn-md" type="button">Configuration <span class="caret"></span></button>
+                                                    <ul role="menu" class="dropdown-menu">
+                                                        <li><a href="#" data-original-title="" title="">Student Payments</a></li>
+                                                        <li><a href="#" data-original-title="" title="">Student Group</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                Amaris N. Rosado Collazo
+                                            </td>
+                                            <td>
+                                                00003
+                                            </td>
+                                            <td>
+                                                Naranjito
+                                            </td>
+                                            <td>
+                                                Femenino
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-success"><i class="fa fa-pencil"></i></button>
+                                                <button type="button" title="Profile Student" class="btn btn-fb"><i class="fa fa-user"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button data-toggle="dropdown" class="btn btn-linkedin dropdown-toggle btn-md" type="button">Configuration <span class="caret"></span></button>
+                                                    <ul role="menu" class="dropdown-menu">
+                                                        <li><a href="#" data-original-title="" title="">Student Payments</a></li>
+                                                        <li><a href="#" data-original-title="" title="">Student Group</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                Yadrian AndresRosado Collazo
+                                            </td>
+                                            <td>
+                                                00004
+                                            </td>
+                                            <td>
+                                                Naranjito
+                                            </td>
+                                            <td>
+                                                Masculino
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-success"><i class="fa fa-pencil"></i></button>
+                                                <button type="button" title="Profile Student" class="btn btn-fb"><i class="fa fa-user"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Spacer ends -->
+
+    </div>
+    <!-- Container fluid ends -->
+</div>
+<!-- Main Container ends -->
+
+
+
+
+
+

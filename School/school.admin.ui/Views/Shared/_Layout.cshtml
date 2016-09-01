@@ -60,6 +60,26 @@
     <!-- JVector Map -->
     <script src=@Url.Content("~/Scripts/template/jvectormap/jquery-jvectormap-1.2.2.min.js")></script>
     <script src=@Url.Content("~/Scripts/template/jvectormap/jquery-jvectormap-usa.js")></script>
+
+
+    <!-- Custom JS -->
+    <script src=@Url.Content("~/Scripts/template/flot/custom/line.js")></script>
+
+    <script src=@Url.Content("~/Scripts/template/flot/custom/area.js")></script>
+    <script src=@Url.Content("~/Scripts/template/flot/custom/combine-chart.js")></script>
+    <script src=@Url.Content("~/Scripts/template/flot/custom/combine-chart-compare.js")></script>
+    <script src=@Url.Content("~/Scripts/template/flot/custom/stacked-area.js")></script>
+    <script src=@Url.Content("~/Scripts/template/flot/custom/vertical.js")></script>
+    <script src=@Url.Content("~/Scripts/template/flot/custom/horizontal.js")></script>
+    <script src=@Url.Content("~/Scripts/template/flot/custom/stacked-vertical.js")></script>
+    <script src=@Url.Content("~/Scripts/template/flot/custom/stacked-horizontal.js")></script>
+    <script src=@Url.Content("~/Scripts/template/flot/custom/rectangular-pie.js")></script>
+    <script src=@Url.Content("~/Scripts/template/flot/custom/realtime.js")></script>
+    <script src=@Url.Content("~/Scripts/template/flot/custom/pie.js")></script>
+    <script src=@Url.Content("~/Scripts/template/flot/custom/donut.js")></script>
+    <script src=@Url.Content("~/Scripts/template/flot/custom/scatter.js")></script>   
+   
+
     <!-- Custom Index -->
     <script src=@Url.Content("~/Scripts/template/custom.js")></script>
     <script src=@Url.Content("~/Scripts/template/custom-index.js")></script>
@@ -106,7 +126,7 @@
         <div id='menu'>
             <ul>
                 <li class="highlight">
-                    <a href='index.html'>
+                    <a href=@Url.Content("~/")>
                         <i class="fa fa-desktop"></i>
                         <span>Dashboard</span>
                         <span class="current-page"></span>
