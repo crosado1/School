@@ -17,6 +17,7 @@ namespace school.admin.ui.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private string t;
 
         public AccountController()
         {
